@@ -2,9 +2,13 @@
 layout: post
 title:  "第一篇博客看来是Markdown语法的笔记了。"
 date:   2014-01-17 15:30:25
+timestamp: "2014-01-18 11:22:06 scinart"
 categories: markdown
+comments: true
+cc: "by-nc-sa"
+
 ---
-	更新时间： Time-stamp: <2014-01-17 22:53:34 scinart>
+
 * This will become a table of contents (this text will be scraped). 目录测试
 {:toc}
 
@@ -24,9 +28,14 @@ categories: markdown
 ` *\*斜体\** :` *\*斜体\**
 
 ` ***\*\*\*粗斜体\*\*\**** : ` ***\*\*\*粗斜体\*\*\****
- 
-水平线 如果在一行里只放三个或更多个连字符，或星号或下划线，你就会得到一个水平线标记(&lt;hr /&gt;)。如:<br/>
+
+~~删除线~~ 本地测试未成功。
+
+水平线 如果在一行里只放三个或更多个连字符，或星号或下划线，你就会得到一个水平线标记(&lt;hr /&gt;)。如:  
 ` * * * `&nbsp;&nbsp;&nbsp;&nbsp;` *** `&nbsp;&nbsp;&nbsp;&nbsp;` - - - `&nbsp;&nbsp;&nbsp;&nbsp;` _________ `
+
+想要分成两行，需要在行尾输入两个空格。  
+我说的对吧~
 ### 列表 ##
 
 ##### 无序列表
@@ -78,14 +87,28 @@ which displays as:</code></pre>
 
 	本来加四个空格或者一个Tab就是代码，只是代码若以星号等打头则我还不知道语法。
 内联代码可以用 `` ` `` 来包围，如果代码里有`` ` ``, 可以用多个``` `` ```包含代码。
-也可以用???来指明语言。如
+
+### 链接
+
+Inline:
+<pre><code>&lt;https://www.google.com&gt;</code></pre>
+<pre><code>[google](https://www.google.com)</code></pre>
+Reference:
+<pre><code>[scinart's github][scinart_github]<br/>[scinart_github]:https://www.github.com/scinart</code></pre>
+
+<http://www.google.com>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[scinart's github][scinart_github]
+[scinart_github]:https://www.github.com/scinart
+
+**可惜用<>包含的东西只能用http, https亲测不行。**
+
+<pre><code>
+![](http://www.google.rw/images/srpr/logo4w.png)<br/>
+![][google_url]<br/>
+[google_url]:http://www.google.rw/images/srpr/logo4w.png<br/>
+</code></pre>
+
+See a big Mandelbrot set:  
+![](http://upload.wikimedia.org/wikipedia/commons/2/21/Mandel_zoom_00_mandelbrot_set.jpg)
+file from <http://en.wikipedia.org/wiki/File:Mandel_zoom_00_mandelbrot_set.jpg>
 
 
--- EOF --
-
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
-
-
-
-<p>{{ page.date | date_to_string }}</p>
