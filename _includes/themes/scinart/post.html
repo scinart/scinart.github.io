@@ -1,3 +1,5 @@
+<link href="/css/desert.css" rel="stylesheet">
+
 <div class="page-header">
   <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
 </div>
@@ -17,11 +19,11 @@
     </div>
 
   {% if page.cc == "by-nc-sa" %}
-    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons BY-NC-SA 3.0 Unported License</a>.
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="/assets/images/cc-by-nc-sa.png" /></a>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons BY-NC-SA 3.0 Unported License</a>.
   {% endif %}
 
   {% if page.cc == "by-nc-nd" %}
-    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons BY-NC-ND 3.0 Unported License</a>.
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"><img alt="Creative Commons License" style="border-width:0" src="/assets/images/cc-by-nc-nd.png" /></a>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons BY-NC-ND 3.0 Unported License</a>.
   {% endif %}
 
 
@@ -58,6 +60,16 @@
       </ul>
     </div>
     <hr>
+    <script src="/js/google-code-prettify/src/prettify.js"></script>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+    <script>
+    $(function() {
+        window.prettyPrint && prettyPrint();
+    });
+    $(function() {
+        $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+    });
+    </script>
     {% include JB/comments %}
   </div>
 </div>

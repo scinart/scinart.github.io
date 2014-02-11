@@ -2,15 +2,14 @@
 layout: post
 title:  "第一篇博客看来是Markdown语法的笔记了。"
 date:   2014-01-17 15:30:25
-timestamp: "2014-01-18 11:22:06 scinart"
+timestamp: "2014-02-11 23:15:22 scinart"
 categories: markdown
 comments: true
 cc: "by-nc-sa"
 
 ---
 
-* This will become a table of contents (this text will be scraped). 目录测试
-{:toc}
+* TODO: 生成目录
 
 ### 标题 ##
 	# 这是一级标题，就像这样。
@@ -88,6 +87,28 @@ which displays as:</code></pre>
 	本来加四个空格或者一个Tab就是代码，只是代码若以星号等打头则我还不知道语法。
 内联代码可以用 `` ` `` 来包围，如果代码里有`` ` ``, 可以用多个``` `` ```包含代码。
 
+#####代码高亮
+
+代码高亮有几种方案，我选择轻量级的前端渲染，用的是google-code-prettify
+
+下载[google-code-prettify](https://code.google.com/p/google-code-prettify/)，将`run_prettify.js`和某css(ps：给了好几种，可以根据自己的喜好选择，有预览)加到网页模板中。比如我加到了我的 `_include/themes/...../post.html`里了。
+
+以后要贴代码的时候，放在 `<pre class="prettyprint linenums">`和`</pre>`标签之间。(ps:linenums表示显示代码的行号，如果要从第四行开始，可以写成这样linenums:4)
+
+<strong>
+[其他的基本是按这里做的](http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/)
+</strong>
+
+<pre class="prettyprint lang-html">
+&lt;pre class="prettyprint lang-html"&gt;
+  The lang-* class specifies the language file extensions.
+  File extensions supported by default include
+    "bsh", "c", "cc", "cpp", "cs", "csh", "cyc", "cv", "htm", "html",
+    "java", "js", "m", "mxml", "perl", "pl", "pm", "py", "rb", "sh",
+    "xhtml", "xml", "xsl".
+&lt;/pre&gt;
+</pre>
+
 ### 链接
 
 Inline:
@@ -102,13 +123,13 @@ Reference:
 **可惜用<>包含的东西只能用http, https亲测不行。**
 
 <pre><code>
-![](http://www.google.rw/images/srpr/logo4w.png)<br/>
+![这里是alt内容](http://www.google.rw/images/srpr/logo4w.png)<br/>
 ![][google_url]<br/>
 [google_url]:http://www.google.rw/images/srpr/logo4w.png<br/>
 </code></pre>
 
-See a big Mandelbrot set:  
-![](http://upload.wikimedia.org/wikipedia/commons/2/21/Mandel_zoom_00_mandelbrot_set.jpg)
+See a big Mandelbrot set:
+![Mandelbrot_set](http://upload.wikimedia.org/wikipedia/commons/2/21/Mandel_zoom_00_mandelbrot_set.jpg)
 file from <http://en.wikipedia.org/wiki/File:Mandel_zoom_00_mandelbrot_set.jpg>
 
 
