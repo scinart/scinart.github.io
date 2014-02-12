@@ -2,14 +2,13 @@
 layout: post
 title:  "第一篇博客看来是Markdown语法的笔记了。"
 date:   2014-01-17 15:30:25
-timestamp: "2014-02-11 23:15:22 scinart"
+timestamp: "2014-02-12 09:38:14 scinart"
 categories: markdown
 comments: true
+toc: true
 cc: "by-nc-sa"
 
 ---
-
-* TODO: 生成目录
 
 ### 标题 ##
 	# 这是一级标题，就像这样。
@@ -87,7 +86,7 @@ which displays as:</code></pre>
 	本来加四个空格或者一个Tab就是代码，只是代码若以星号等打头则我还不知道语法。
 内联代码可以用 `` ` `` 来包围，如果代码里有`` ` ``, 可以用多个``` `` ```包含代码。
 
-#####代码高亮
+####代码高亮
 
 代码高亮有几种方案，我选择轻量级的前端渲染，用的是google-code-prettify
 

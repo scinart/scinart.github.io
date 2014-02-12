@@ -1,5 +1,5 @@
 /* desert scheme ported from vim to google prettify */
-pre.prettyprint { display: block; background-color: #333 }
+pre.prettyprint { display: block; background-color: #333; color:#eeee11}
 pre .nocode { background-color: none; color: #000 }
 pre .str { color: #ffa0a0 } /* string  - pink */
 pre .kwd { color: #f0e68c; font-weight: bold }
@@ -35,4 +35,10 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
   pre .tag, code .tag { color: #006; font-weight: bold }
   pre .atn, code .atn { color: #404 }
   pre .atv, code .atv { color: #060 }
+}
+
+/* scinart customizable css */
+/* 标题颜色 */
+h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: #000080
 }

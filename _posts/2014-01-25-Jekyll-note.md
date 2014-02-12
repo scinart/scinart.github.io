@@ -2,9 +2,10 @@
 layout: post
 title:  "Jekyll的笔记，网页就是这货生成的。"
 date:   2014-01-25 00:00:00
-timestamp: "2014-01-25 12:28:57 scinart"
+timestamp: "2014-02-12 09:10:41 scinart"
 categories: markdown
 comments: true
+toc: false
 cc: "by-nc-sa"
 
 ---

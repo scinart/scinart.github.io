@@ -10,6 +10,7 @@
       <span> Creation Time: {{ page.date | date_to_long_string }}<br/></span>
       <span> Last Modified: {{ page.timestamp }} </span>
     </div>
+    <div id="toc"></div>
     <div class="content">
       {{ content }}
     </div>
@@ -62,6 +63,7 @@
     <hr>
     <script src="/js/google-code-prettify/src/prettify.js"></script>
     <script src="/js/jquery-2.1.0.min.js"></script>
+    <script src="/js/jquery.toc.js"></script>
     <script>
     $(function() {
         window.prettyPrint && prettyPrint();
@@ -69,7 +71,13 @@
     $(function() {
         $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
     });
+    {% if page.toc %}
+    $("#toc").toc();
     </script>
+    <link href="/css/toc.css" rel="stylesheet">
+    {% else %}
+    </script>
+    {% endif %}
     {% include JB/comments %}
   </div>
 </div>
