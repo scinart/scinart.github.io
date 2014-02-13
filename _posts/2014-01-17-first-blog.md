@@ -2,7 +2,7 @@
 layout: post
 title:  "第一篇博客看来是Markdown语法的笔记了。"
 date:   2014-01-17 15:30:25
-timestamp: "2014-02-12 09:38:14 scinart"
+timestamp: "2014-02-13 10:55:17 scinart"
 categories: markdown
 comments: true
 toc: true
@@ -27,7 +27,7 @@ cc: "by-nc-sa"
 
 ` ***\*\*\*粗斜体\*\*\**** : ` ***\*\*\*粗斜体\*\*\****
 
-~~删除线~~ 本地测试未成功。
+` ~~删除线~~ : ` ~~本地测试未成功。~~ **使用RDiscount引擎成功**
 
 水平线 如果在一行里只放三个或更多个连字符，或星号或下划线，你就会得到一个水平线标记(&lt;hr /&gt;)。如:  
 ` * * * `&nbsp;&nbsp;&nbsp;&nbsp;` *** `&nbsp;&nbsp;&nbsp;&nbsp;` - - - `&nbsp;&nbsp;&nbsp;&nbsp;` _________ `

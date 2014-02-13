@@ -45,7 +45,7 @@
   {% endunless %}  
 
     <hr>
-    <div class="pagination">
+    <div class="pagination" style="display:inline">
       <ul>
       {% if page.previous %}
         <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; Previous</a></li>
@@ -60,6 +60,17 @@
       {% endif %}
       </ul>
     </div>
+    <!-- JiaThis Button BEGIN -->
+    <div class="jiathis_style_32x32" style="float:right; margin-rigt:200px; display:inline;">
+      <a class="jiathis_button_tsina"></a>
+      <a class="jiathis_button_renren"></a>
+      <a class="jiathis_button_douban"></a>
+      <a class="jiathis_button_googleplus"></a>
+      <a href="http://www.jiathis.com/share?uid=1893367" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">更多</a>
+      <a class="jiathis_counter_style"></a>
+    </div>
+    <!-- JiaThis Button END -->
+
     <hr>
     <script src="/js/google-code-prettify/src/prettify.js"></script>
     <script src="/js/jquery-2.1.0.min.js"></script>
@@ -87,5 +98,6 @@
     </script>
     {% endif %}
     {% include JB/comments %}
+    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1893367" charset="utf-8"></script>
   </div>
 </div>
