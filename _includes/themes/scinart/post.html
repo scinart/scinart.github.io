@@ -64,6 +64,7 @@
     <script src="/js/google-code-prettify/src/prettify.js"></script>
     <script src="/js/jquery-2.1.0.min.js"></script>
     <script src="/js/jquery.toc.js"></script>
+    <script src="/js/detectbrowserjquery.js"></script>
     <script>
     $(function() {
         window.prettyPrint && prettyPrint();
@@ -72,7 +73,14 @@
         $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
     });
     {% if page.toc %}
-    $("#toc").toc();
+    if (!jQuery.browser.mobile)
+    {//PC client.
+        $("#toc").toc();
+    }
+    else
+    {//mobile browser is too narrow to show left-side toc.
+        $("#toc").remove();
+    }   
     </script>
     <link href="/css/toc.css" rel="stylesheet">
     {% else %}
