@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Scinart's Blog (alpha)
+title: Scinart's Blog
 tagline: Supporting tagline
 ---
 {% include JB/setup %}
