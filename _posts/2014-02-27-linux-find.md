@@ -2,7 +2,7 @@
 layout: post
 title: "Linux Find 查找文件"
 date: 2014-02-27 20:55:28
-timestamp: "2014-02-28 16:31:57 scinart"
+timestamp: "2014-02-28 23:23:59 scinart"
 categories: linux
 tag: linux-command
 comments: true
@@ -41,6 +41,8 @@ cc: "by-nc-sa"
 
   All these parameters have an impact on the following expressions. But what if you want to have all expressions evaluated, regardless of whether an earlier one has succeeded or failed? For this, find provides the comma operator:
 However, only the output of the last command is returned, but the first is evaluated anyway.
+
+  **在使用中``()``和``!``都需要用``\``转义**
 
 #### positional options (always true):
 

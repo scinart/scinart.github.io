@@ -2,7 +2,7 @@
 layout: post
 title:  "第一篇博客看来是Markdown语法的笔记了。"
 date:   2014-01-17 15:30:25
-timestamp: "2014-02-23 00:01:07 scinart"
+timestamp: "2014-03-02 20:40:28 scinart"
 categories: markdown
 comments: true
 toc: true
@@ -76,10 +76,15 @@ cc: "by-nc-sa"
 ### 引用
 
 <pre><code>加&gt;就是引用，&gt; &gt; 就是两层引用。
+
 &gt; Rep 1
+&gt;
 &gt; &gt; Rep 2
+
 which displays as:</code></pre>
+
 > Rep 1
+>
 > > Rep 2
 
 ### 代码
