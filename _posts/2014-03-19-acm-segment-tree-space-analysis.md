@@ -2,7 +2,7 @@
 layout: post
 title: "线段树为什么要开4倍空间"
 date: 2014-03-19
-timestamp: "2014-03-20 00:45:01 scinart"
+timestamp: "2014-03-20 00:51:31 scinart"
 categories: acm
 tag:
 comments: false
@@ -27,7 +27,7 @@ H(L) =
 \end{cases} \\
 $$
 
-这是一个很简单的递归式，并用公式[3.11]({{site.url}}/math/note/2014/03/16/QA39.2.G733-1994-CM-3/#mjx-eqn-3.11)逐次代换，就等到
+这是一个很简单的递归式，并用公式[3.11]({{site.url}}/math/2014/03/16/QA39.2.G733-1994-CM-3/#mjx-eqn-3.11)逐次代换，就等到
 
 $$
 H(L) = k + H\left( \left\lceil \frac{L}{2^k} \right\rceil \right), \text{其中 k 是满足} 2^k≥L \text{的最小值} \\
