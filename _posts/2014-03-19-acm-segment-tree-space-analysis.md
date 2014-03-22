@@ -2,10 +2,10 @@
 layout: post
 title: "线段树为什么要开4倍空间"
 date: 2014-03-19
-timestamp: "2014-03-20 00:51:31 scinart"
+timestamp: "2014-03-23 01:01:26 scinart"
 categories: acm
 tag:
-comments: false
+comments: true
 toc: 
 cc: "by-nc-sa"
 
@@ -13,7 +13,7 @@ cc: "by-nc-sa"
 
 最近在看《具体数学》，这篇当做是一个练习吧。
 
-假设我们用一个数组来头轻脚重地存储一个线段树，根节点是1，孩子节点分别是2*n, 2*n+1, 那么，设线段长为L(即[1..L+1))
+假设我们用一个数组来头轻脚重地存储一个线段树，根节点是1，孩子节点分别是2n, 2n+1, 那么，设线段长为L(即[1..L+1))
 
 ![img]({{ site.img_url }}/Segment-Tree-Example.png)
 
@@ -45,8 +45,8 @@ $$
 \begin{align}
 2^H-1 =& 2^{\left\lceil \lg{L} \right\rceil + 1} - 1 \\
       =& 2 \times 2^{\left\lceil \lg{L} \right\rceil } - 1 \\
-      ≤& 2 \times 2(L-1) - 1 \\
-	  =& 4L-5
+      ≤& 2 \times 2(L-1) - 1,\; L ≥ 2\\
+	  =& 4L-5,\; L ≥ 2
 \end{align}
 $$
 
