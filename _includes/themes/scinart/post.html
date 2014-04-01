@@ -1,4 +1,4 @@
-<link href="/css/desert.css" rel="stylesheet">
+<link href="/css/pretty-print-desert.css" rel="stylesheet">
 
 <div class="page-header">
   <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
@@ -72,16 +72,28 @@
     <!-- JiaThis Button END -->
 
     <hr>
-    <script src="/js/google-code-prettify/src/prettify.js"></script>
     <script src="/js/jquery-2.1.0.min.js"></script>
     <script src="/js/jquery.toc.js"></script>
+    <script src="/js/google-code-prettify/src/prettify.js"></script>
+    <script src="/js/highlightjs-8.0.min.js"></script>
+    <!-- <link href="/css/highlight-styles/rainbow.css" rel="stylesheet"> -->
+    <!-- <link href="/css/highlight-styles/monokai.css" rel="stylesheet"> -->
+    <!-- <link href="/css/highlight-styles/monokai_sublime.css" rel="stylesheet"> -->
+    <link href="/css/highlight-styles/school_book.css" rel="stylesheet">
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("pre.hljs").each(function(i, e) {hljs.highlightBlock(e)}).attr("style", "overflow:auto");
+      });
+    </script>
     <script src="/js/detectbrowserjquery.js"></script>
     <script>
     $(function() {
         window.prettyPrint && prettyPrint();
     });
     $(function() {
-        $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+        $('pre.prettyprint').addClass('linenums').attr('style', 'overflow:auto');
     });
     {% if page.toc %}
     if (!jQuery.browser.mobile)

@@ -9,3 +9,9 @@ hidden {
   backgronud: #eeeeee;
   color: #eeeeee;
 }
+
+pre {
+  display: block;
+  background-color: #333333;
+  color: #eeee11;
+}
