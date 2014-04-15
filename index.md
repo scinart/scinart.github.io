@@ -5,7 +5,7 @@ tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
-> Carpe Diem
+> Carpe Diem.
 
 <p style="text-align: right"> -- 《死亡诗社》台词 </p>
 
@@ -25,7 +25,14 @@ tagline: Supporting tagline
 最新文章：<br/>
 
 <ul>
-  {% for post in site.posts limit: 20 %}
+  <!-- the following line will work after jekyll 2.0.0 (now 1.5.1) -->
+  {% assign sorted = site.posts | sort:"timestamp" %}
+  {% if sorted %}
+  {% else %}
+    {% assign sorted = site.posts %}
+  {% endif %}
+
+  {% for post in sorted limit:20 %}
     <li>
     <a href="{{ post.url }}">{{ post.date | date_to_string }} &raquo; {{ post.title }}</a>
     {% if post.content contains '<!-- more -->' %}
