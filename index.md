@@ -27,13 +27,14 @@ tagline: Supporting tagline
 <ul>
   <!-- the following line will work after jekyll 2.0.0 (now 1.5.1) -->
   <!-- now I'm 2.0.3 but somehow the reverse filter ⇓ doesn't work -->
+  <!-- wired that it works on github 2014-06-14 23:53:58-->
   {% assign sorted = site.posts | sort:"timestamp" | reverse %}
   {% if sorted %}
   {% else %}
     {% assign sorted = site.posts %}
   {% endif %}
   <!-- when the reverse filter works, the following "reversed" should be moved and limit:NUM should be added.-->
-  {% for post in sorted reversed %}
+  {% for post in sorted limit:20 %}
     <li>
     <a href="{{ post.url }}">{{ post.date | date_to_string }} &raquo; {{ post.title }}</a>
     {% if post.content contains '<!-- more -->' %}
