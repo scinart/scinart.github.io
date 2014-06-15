@@ -34,7 +34,7 @@ tagline: Supporting tagline
     {% assign sorted = site.posts %}
   {% endif %}
   <!-- when the reverse filter works, the following "reversed" should be moved and limit:NUM should be added.-->
-  {% for post in sorted limit:20 %}
+  {% for post in sorted limit: 20 %}
     <li>
     <a href="{{ post.url }}">{{ post.date | date_to_string }} &raquo; {{ post.title }}</a>
     {% if post.content contains '<!-- more -->' %}
