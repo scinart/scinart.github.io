@@ -24,26 +24,36 @@ tagline: Supporting tagline
 
 最新文章：<br/>
 
-<ul>
+<ol>
   <!-- the following line will work after jekyll 2.0.0 (now 1.5.1) -->
-  <!-- now I'm 2.0.3 but somehow the reverse filter ⇓ doesn't work -->
-  <!-- wired that it works on github 2014-06-14 23:53:58-->
-  {% assign sorted = site.posts | sort:"timestamp" | reverse %}
+  {% assign sorted = site.posts | sort:"timestamp" %}
   {% if sorted %}
+    <!-- jekyll version >= 2.0.0 -->
+    <!-- the syntax is quite ugly. but leave it as it is.-->
+    {% assign count = 0 %}
+    {% for post in sorted reversed %}
+      {% capture count %}{{ count | plus: 1 }}{% endcapture %}
+      {% if count.size == 1 or count <='20'  %} {% if count.size <= 2 %}
+        <li> <a href="{{ post.url }}">{{ post.date | date_to_string }} &raquo; {{ post.title }}</a>
+        {% if post.content contains '<!-- more -->' %}
+        <span style="padding-left: 20px">{{ post.content | split:'<!-- more -->' | first }}</span>
+        <!-- <p><a href="{{ post.url }}">Continue reading</a></p> -->
+        <br/>......
+        {% endif %}
+        </li>
+      {% endif %} {% endif %}
+    {% endfor %}
   {% else %}
-    {% assign sorted = site.posts %}
+    {% for post in site.posts limit:20 %}
+        <li> <a href="{{ post.url }}">{{ post.date | date_to_string }} &raquo; {{ post.title }}</a>
+        {% if post.content contains '<!-- more -->' %}
+        <span style="padding-left: 20px">{{ post.content | split:'<!-- more -->' | first }}</span>
+        <!-- <p><a href="{{ post.url }}">Continue reading</a></p> -->
+        <br/>......
+        {% endif %}
+        </li>
+    {% endfor %}
   {% endif %}
-  <!-- when the reverse filter works, the following "reversed" should be moved and limit:NUM should be added.-->
-  {% for post in sorted limit: 20 %}
-    <li>
-    <a href="{{ post.url }}">{{ post.date | date_to_string }} &raquo; {{ post.title }}</a>
-    {% if post.content contains '<!-- more -->' %}
-    <span style="padding-left: 20px">{{ post.content | split:'<!-- more -->' | first }}</span>
-    <!-- <p><a href="{{ post.url }}">Continue reading</a></p> -->
-	<br/>......
-	{% endif %}
-    </li>
-  {% endfor %}
-</ul>
+</ol>
 
 
