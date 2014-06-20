@@ -20,7 +20,7 @@ pre {
 /*.link-fadeinbg { background: rgba(149,165,166,0.1); } */
 
 a {
-	border-bottom: 1px solid rgba(52,73,94,0.4);
+	/*border-bottom: 1px solid rgba(52,73,94,0.4);*/
 	font-weight: 500;
 	-webkit-transition: background-color 0.3s, border-color 0.3s;
 	transition: background-color 0.3s, border-color 0.3s;
