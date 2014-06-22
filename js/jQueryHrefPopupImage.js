@@ -17,8 +17,7 @@ this.screenshotPreview = function(){
     $("a.screenshot").hover(
         function(e){
             this.t = this.title;
-            this.title = "";
-            var c = (this.t != "") ? "<br/>" + this.t + "<br/>" : "";
+            var c = (this.title != "") ? "<br/>" + this.t + "<br/>" : "";
             $(this).append("<p id='screenshot'> " + c + "<img src='" + this.rel + "' alt='url preview' />" + "</p>");
             $("#screenshot")
                 .css("top",(e.pageY - xOffset) + "px")
@@ -27,6 +26,7 @@ this.screenshotPreview = function(){
                 .css("opacity", 0.92)
                 .css("z-index", 99)
                 .fadeIn("fast");
+            this.title = "";
         },
         function(){
             this.title = this.t;
