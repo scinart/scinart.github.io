@@ -2,7 +2,7 @@
 layout: post
 title: "ASOIAF-1-02-Catelyn"
 date: 2014-06-21
-timestamp: "2014-06-23 01:32:40 scinart"
+timestamp: "2014-09-09 14:19:46 scinart"
 categories: asoiaf
 tag: asoiaf
 comments: true
@@ -86,7 +86,7 @@ Some of the content is from <http://awoiaf.westeros.org>, <http://zh.asoiaf.wiki
 <a href="http://zh.asoiaf.wikia.com/wiki/%E7%91%9F%E6%9B%A6%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9"
    class="screenshot"
    rel="http://img4.wikia.nocookie.net/__cb20120215222814/asoiaf/zh/images/thumb/b/b0/Cersei_Lannister.png/250px-Cersei_Lannister.png"
-   title="Cersei Lannister is the eldest child of Tywin and Joanna Lannister by mere moments, and the twin sister of Jaime Lannister. After Robert&apos;s Rebellion she married the new king, Robert Baratheon, and became Queen of the Seven Kingdoms.">
+   title="Cersei Lannister is the eldest child of Tywin and Joanna Lannister by mere moments, and the twin sister of Jaime Lannister. After Robert&apos;s Rebellion she married the new king, Robert Baratheon, and became Queen of the Seven Kingdoms. He earned the derogatory nickname Kingslayer when he treasonously slew King Aerys near the end of Robert&quot;s Rebellion.">
   Cersei Lannister
 </a>
 
