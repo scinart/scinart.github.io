@@ -60,6 +60,25 @@
       {% endif %}
       </ul>
     </div>
+
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+          tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+           }
+        });
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
     <!-- JiaThis Button BEGIN -->
     <div class="jiathis_style_24x24" style="float:right; margin-rigt:200px; display:inline;">
       <a class="jiathis_button_tsina"></a>
@@ -120,22 +139,5 @@
     <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1893367" charset="utf-8"></script>
     <!-- JiaThis Script END -->
 
-    <!-- MathJax -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-          tex2jax: {
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-           }
-        });
-    </script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-          var all = MathJax.Hub.getAllJax(), i;
-          for(i=0; i < all.length; i += 1) {
-              all[i].SourceElement().parentNode.className += ' has-jax';
-          }
-      });
-    </script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   </div>
 </div>

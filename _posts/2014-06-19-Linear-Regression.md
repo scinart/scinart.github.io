@@ -3,7 +3,7 @@ layout: post
 title: "Linear Regression Note"
 date: 2014-06-19
 timestamp: "2014-06-20 17:38:03 scinart"
-categories: cs
+categories: math
 tag: note
 comments: true
 toc: true
