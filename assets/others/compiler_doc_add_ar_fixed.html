@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<head>
+<title>编译器文档</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="编译器文档"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T22:05+0800"/>
+<meta name="author" content="Scinart O; Dar Fux."/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  .example{
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  .name h3{text-align: center;}
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">编译器文档</h1>
+<div  class="name">
+<h3>1110526 欧阳宏宇</h3>
+<h3>1110523 李雨轩</h3>
+</div>
+
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 编译器简介</a>
+<ul>
+<li><a href="#sec-1-1">1.1 SUPPORT TYPE 支持的类型</a></li>
+<li><a href="#sec-1-2">1.2 Implicit type conversion 隐式类型转换</a></li>
+<li><a href="#sec-1-3">1.3 Supported GRAMMER 支持的语法</a></li>
+<li><a href="#sec-1-4">1.4 Supported OPERATOR 支持的运算符 (by Precedence Order)</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 编译器组成</a>
+<ul>
+<li><a href="#sec-2-1">2.1 主要部分：</a></li>
+<li><a href="#sec-2-2">2.2 辅助部分：</a></li>
+<li><a href="#sec-2-3">2.3 代码编译相关：</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 词法分析细节</a>
+<ul>
+<li><a href="#sec-3-1">3.1 正规式定义：</a></li>
+<li><a href="#sec-3-2">3.2 一些主要特殊动作的实现：</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4 语法分析细节（文法）</a></li>
+<li><a href="#sec-5">5 汇编代码生成部分细节</a>
+<ul>
+<li><a href="#sec-5-1">5.1 表达式生成举例（加法）</a></li>
+<li><a href="#sec-5-2">5.2 控制语句举例(if)</a></li>
+<li><a href="#sec-5-3">5.3 循环语句举例(while)</a></li>
+<li><a href="#sec-5-4">5.4 函数参数传递</a></li>
+<li><a href="#sec-5-5">5.5 栈式内存分配</a></li>
+<li><a href="#sec-5-6">5.6 类型转换</a></li>
+<li><a href="#sec-5-7">5.7 数组空间分配</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6 其它技术细节及补充</a>
+<ul>
+<li><a href="#sec-6-1">6.1 FUNCTION CALL 函数调用</a>
+<ul>
+<li><a href="#sec-6-1-1">6.1.1 calling convention 函数调用规范</a></li>
+<li><a href="#sec-6-1-2">6.1.2 memory allocation of local variables 变量内存分配</a></li>
+<li><a href="#sec-6-1-3">6.1.3 looking up of a variable in symbol table 多级符号表</a></li>
+<li><a href="#sec-6-1-4">6.1.4 using variable. 使用变量</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-2">6.2 DECLARATION of VARIABLES 变量声明</a>
+<ul>
+<li><a href="#sec-6-2-1">6.2.1 string</a></li>
+<li><a href="#sec-6-2-2">6.2.2 global variable</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-3">6.3 general expressions 表达式</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 编译器简介</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>这是一个以标准C语言语法和约定为蓝本，并在其基础上有所删改的简单部分C语言编译器实现，它利用flex作为词法分析工具，bison作为文法翻译工具，实现了从一个近似的C语言向特定类型汇编语言的转换。以下各表简要列举出了该编译器的一些特性：
+</p>
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> SUPPORT TYPE 支持的类型</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="right" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Type</th><th scope="col" class="left">treat as</th><th scope="col" class="right">bits</th><th scope="col" class="left">support</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">int</td><td class="left">int</td><td class="right">32</td><td class="left">yes</td></tr>
+<tr><td class="left">unsigned int</td><td class="left">unsigend int</td><td class="right">32</td><td class="left">yes</td></tr>
+<tr><td class="left">long</td><td class="left">int</td><td class="right">32</td><td class="left">yes</td></tr>
+<tr><td class="left">unsigned long</td><td class="left">unsigned int</td><td class="right">32</td><td class="left">yes</td></tr>
+<tr><td class="left">long long int</td><td class="left">long long int</td><td class="right">64</td><td class="left">yes</td></tr>
+<tr><td class="left">unsigned long long int</td><td class="left">unsigned long long int</td><td class="right">64</td><td class="left">yes</td></tr>
+<tr><td class="left">float</td><td class="left">double</td><td class="right">64</td><td class="left">yes</td></tr>
+<tr><td class="left">double</td><td class="left">doule</td><td class="right">64</td><td class="left">yes</td></tr>
+<tr><td class="left">char</td><td class="left">int</td><td class="right">&ndash;</td><td class="left">partial</td></tr>
+<tr><td class="left">pointer</td><td class="left">pointer</td><td class="right">32</td><td class="left">yes</td></tr>
+<tr><td class="left">struct</td><td class="left">&ndash;</td><td class="right"></td><td class="left">no</td></tr>
+<tr><td class="left">array</td><td class="left">distinct id</td><td class="right"></td><td class="left">partial</td></tr>
+<tr><td class="left">3</td><td class="left">long long int</td><td class="right">64</td><td class="left">yes</td></tr>
+<tr><td class="left">5.5</td><td class="left">double</td><td class="right">64</td><td class="left">yes</td></tr>
+<tr><td class="left">"sth"</td><td class="left">char*</td><td class="right">&ndash;</td><td class="left">yes</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Implicit type conversion 隐式类型转换</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">fromType</th><th scope="col" class="left">toType</th><th scope="col" class="left">supported?</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">int</td><td class="left">unsigned int</td><td class="left">auto</td></tr>
+<tr><td class="left">unsigned int</td><td class="left">int</td><td class="left">auto</td></tr>
+<tr><td class="left">int</td><td class="left">long long</td><td class="left">yes</td></tr>
+<tr><td class="left">unsigned int</td><td class="left">long long</td><td class="left">yes</td></tr>
+<tr><td class="left">int</td><td class="left">unsigned long long</td><td class="left">yes</td></tr>
+<tr><td class="left">unsigned int</td><td class="left">unsigned long long</td><td class="left">yes</td></tr>
+<tr><td class="left">(unsigend)int</td><td class="left">double</td><td class="left">yes</td></tr>
+<tr><td class="left">(unsigend)long long</td><td class="left">double</td><td class="left">yes</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">(unsigned)long long</td><td class="left">(unsigned)int</td><td class="left">yes, with warning message.</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">double</td><td class="left">ANY</td><td class="left">no</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Supported GRAMMER 支持的语法</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">NAME</th><th scope="col" class="left">C99?</th><th scope="col" class="left">supported?</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">MACRO</td><td class="left"></td><td class="left">no</td></tr>
+<tr><td class="left">DECLARATION</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">DECLARATION_ARRAY</td><td class="left"></td><td class="left">no</td></tr>
+<tr><td class="left">DECLARATION_AND_ASSIGN</td><td class="left">yes</td><td class="left">no</td></tr>
+<tr><td class="left">FUNCTION_DECLARATION</td><td class="left"></td><td class="left">no</td></tr>
+<tr><td class="left">FUNCTION_IMPLEMENTATION</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">FUNCTION_CALL</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">IF</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">WHILE</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">FOR(DECLARATION;;)</td><td class="left">yes</td><td class="left">no</td></tr>
+<tr><td class="left">FOR(EXPR;;)</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">COMPOUND_STATEMENT</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">SWITCH_CASE</td><td class="left"></td><td class="left">no</td></tr>
+<tr><td class="left">COMMENT</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">BREAK</td><td class="left"></td><td class="left">no</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Supported OPERATOR 支持的运算符 (by Precedence Order)</h3>
+<div class="outline-text-3" id="text-1-4">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">OPERATOR</th><th scope="col" class="left">DESCRIPTOR</th><th scope="col" class="left">supported?</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">-&gt;</td><td class="left">Indirect membership operator</td><td class="left">no</td></tr>
+<tr><td class="left">.</td><td class="left">Direct membership operator</td><td class="left">no</td></tr>
+<tr><td class="left">++</td><td class="left">Increment operator, postfix</td><td class="left">yes</td></tr>
+<tr><td class="left">&ndash;</td><td class="left">Decrement operator, postfix</td><td class="left">yes</td></tr>
+<tr><td class="left">~</td><td class="left">Bitwise negation</td><td class="left">yes</td></tr>
+<tr><td class="left">+</td><td class="left">Unary plus (positive sign)</td><td class="left">yes</td></tr>
+<tr><td class="left">-</td><td class="left">Unary minus (negative sign)</td><td class="left">yes</td></tr>
+<tr><td class="left">++</td><td class="left">Increment operator, prefix</td><td class="left">yes</td></tr>
+<tr><td class="left">&ndash;</td><td class="left">Decrement operator, prefix</td><td class="left">yes</td></tr>
+<tr><td class="left">&amp;</td><td class="left">Address</td><td class="left">yes</td></tr>
+<tr><td class="left">*</td><td class="left">Dereference (indirect value)</td><td class="left">yes</td></tr>
+<tr><td class="left">()</td><td class="left">Type cast, that is, (type) expr</td><td class="left">no</td></tr>
+<tr><td class="left">sizeof</td><td class="left">Size in bytes</td><td class="left">yes</td></tr>
+<tr><td class="left">*</td><td class="left">L–R Multiply</td><td class="left">yes</td></tr>
+<tr><td class="left">/</td><td class="left">Divide</td><td class="left">yes</td></tr>
+<tr><td class="left">%</td><td class="left">Modulus (remainder)</td><td class="left">yes</td></tr>
+<tr><td class="left">+</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">-</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">&lt;&lt;</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">&gt;&gt;</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">&lt;</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">&gt;</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">&lt;=</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">&gt;=</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">==</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">!=</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">&amp;</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">¦</td><td class="left">bitwise or</td><td class="left">yes</td></tr>
+<tr><td class="left">&amp;&amp;</td><td class="left"></td><td class="left">yes</td></tr>
+<tr><td class="left">¦¦</td><td class="left">logical or</td><td class="left">yes</td></tr>
+<tr><td class="left">?:</td><td class="left"></td><td class="left">no</td></tr>
+<tr><td class="left">=</td><td class="left">R–L Simple assignment</td><td class="left">yes</td></tr>
+<tr><td class="left">*=</td><td class="left">Multiply and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">/=</td><td class="left">Divide and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">%=</td><td class="left">Take remainder and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">+=</td><td class="left">Add and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">-=</td><td class="left">Subtract and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">&amp;=</td><td class="left">Bitwise AND and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">^=</td><td class="left">Bitwise XOR and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">¦=</td><td class="left">Bitwise OR and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">&lt;&lt;=</td><td class="left">Left shift and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">&gt;&gt;=</td><td class="left">Right shift and assign</td><td class="left">yes</td></tr>
+<tr><td class="left">,</td><td class="left">L–R Combine two expressions into one</td><td class="left">yes</td></tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 编译器组成</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 主要部分：</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<pre>        主体函数:
+                头文件          main.h
+                源文件          main.c
+        flex文件：
+                源文件          par.l
+                生成的代码       par.c
+
+        bison文件:
+                源文件         par.y
+                生成的代码      par.tab.c
+                生成的头文件    par.tab.h
+</pre>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 辅助部分：</h3>
+<div class="outline-text-3" id="text-2-2">
+
+<pre>        用于语法树相关数据结构实现：
+                头文件          scitree.h
+                源文件          scitree.c
+        hash表实现：
+                uthash.h
+        string实现：
+                utstring.h
+</pre>
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 代码编译相关：</h3>
+<div class="outline-text-3" id="text-2-3">
+
+<p>        Makefile
+                参数：
+                        cp: 编译编译器源代码，并利用生成的编译器编译当前目录(obj)下的test.c文件，生成相应汇编代码
+                        clean: 删除编译器生成目录(obj)
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 词法分析细节</h2>
+<div class="outline-text-2" id="text-3">
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 正规式定义：</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+
+
+<pre class="example">十进制数
+dec (0|[1-9]([0-9]*))
+
+八进制数
+        oct 0([0-7]+)
+
+十六进制数
+        hex 0x([0-9a-fA-F]+)
+
+行注释
+        comment \/\/.*
+
+块注释
+        blockComment \/\*([^\*\"]*|\".*\"|\*+[^/])*\**\*\/
+
+浮点数
+        number ([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?)
+
+空白符
+        whitespace [ \t]
+行尾
+        lineEnd \n
+
+标识符
+        symbol [A-Za-z_][A-Za-z0-9_]*
+
+字符
+        char    '[^\\]'
+
+八进制转义字符
+        charOct '\\[0-7]{1,3}'
+
+十六进制转义字符
+        carHex  '\\x[0-9a-fA-F]{1,2}'
+
+特殊转义字符
+        charTrans '\\[abfnrt0'\"\\]'
+
+字符串
+        string \"[^"]*\"
+
+文件包含
+        includeContent &lt;[^&gt;\n]+&gt;
+
+定义串(#define的第二个参数)
+        defStr [^ \t\n][^\n]*
+
+标识符的自增/自减运算
+        idInc {symbol}"++"
+        idDec {symbol}"--"
+
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 一些主要特殊动作的实现：</h3>
+<div class="outline-text-3" id="text-3-2">
+
+<p>include的识别：
+通过识别行首的"#include"字符串使词法分析器进入INCLMODE状态，在此状态下捕获includeContent，直至行尾结束INCLMODE状态。
+</p>
+<p>
+define的识别：
+通过识别行首的"#define"进入DEFMODE状态，在此状态下读取一个标识符作为DEFINE_ID返回给语法分析器，并进入DEFMODE_STR状态，在此状态下识别一个字符串作为DEFINE_STR返回给语法分析器并回到DEFMODE状态，在行尾结束DEFMODE状态
+</p>
+<p>
+define机制的实现：
+在通常的PRE_INITIAL状态，读取到一个标识符时，先进入定义表DefineTable递归查找是否有相应的预定义，若无则进行正常分析；若有，则将预定义表中的字符串重新压入待分析缓冲区，再开始下一步的分析。
+</p>
+<p>
+转义字符的处理：
+通过与转义字符类型对应的处理动作，将转义字符转换为正确的ASCII值后再返回给语法分析器。
+</p>
+<p>
+标识符的处理：
+给语法分析器标识符的名字(如未在多级符号表中找到)或某一符号表项(若找到)。
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 语法分析细节（文法）</h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+
+<pre class="example">整个文件(只能有声明或函数实现)
+PROGRAM
+¦ STATEMENT 
+¦ PROGRAM FUNCTION_IMPLEMENTATION
+¦ PROGRAM STATEMENT
+¦ PROGRAM DEFINE_ACTION 
+¦ DEFINE_ACTION 
+;
+
+多个语句
+/*DONE: FUNCTION INTERNAL VARS -- except array
+just presume they are in the function implementation.
+at PROGRAM LEVEL: RESET THE INDEX to 0
+and CORRECT them if it is actually a statement.
+*/
+STATEMENTS : STATEMENT 
+¦ STATEMENTS STATEMENT 
+; 
+
+语句
+STATEMENT : EXPR SEMI 
+¦ COMPOUND_STATEMENT 
+¦ SEMI 
+¦ IF_STATEMENT 
+¦ WHILE_STATEMENT 
+¦ FOR_STATEMENT 
+¦ DECLARATION 
+¦ RETURN EXPR SEMI 
+;
+
+语句块
+COMPOUND_STATEMENT :
+  LBRACE RBRACE 
+¦ LBRACE STATEMENTS RBRACE 
+;
+
+函数实现
+FUNCTION_IMPLEMENTATION :
+  TYPE ID LPAREN  DECL_PARAM_LIST RPAREN COMPOUND_STATEMENT   
+¦ TYPE ID LPAREN RPAREN COMPOUND_STATEMENT  
+;
+
+参数声明
+DECL_PARAM_LIST :
+  TYPE ID   
+¦ DECL_PARAM_LIST COMMA TYPE ID  
+;
+
+for语句
+FOR_STATEMENT : FOR LPAREN EXPR SEMI EXPR SEMI EXPR RPAREN STATEMENT 
+¦ FOR LPAREN SEMI EXPR SEMI EXPR RPAREN STATEMENT 
+¦ FOR LPAREN EXPR SEMI EXPR SEMI RPAREN STATEMENT 
+¦ FOR LPAREN SEMI EXPR SEMI RPAREN STATEMENT 
+¦ FOR LPAREN  DECLARATION EXPR SEMI EXPR RPAREN STATEMENT 
+；
+
+if语句
+IF_STATEMENT : IF LPAREN EXPR RPAREN STATEMENT 
+¦ IF LPAREN EXPR RPAREN STATEMENT ELSE STATEMENT 
+;
+
+while循环
+WHILE_STATEMENT : WHILE LPAREN EXPR RPAREN STATEMENT 
+;
+
+变量声明
+DECLARATION : BASE_TYPE IDLIST SEMI 
+;
+
+标识符组
+IDLIST :
+  STARS ID  
+¦ ID    
+¦ STARS ID ASSIGN EXPR 
+¦ ID ASSIGN EXPR 
+¦ IDLIST COMMA STARS ID 
+¦ IDLIST COMMA ID 
+¦ IDLIST COMMA STARS ID ASSIGN EXPR 
+¦ IDLIST COMMA ID ASSIGN EXPR 
+¦ ARRAY 
+¦ IDLIST COMMA ARRAY 
+;
+
+类型
+TYPE : BASE_TYPE 
+¦ BASE_TYPE STARS  
+;
+
+基本类型
+BASE_TYPE : CHAR  
+¦ UNSIGNED CHAR 
+¦ SIGNED CHAR 
+¦ INT 
+¦ UNSIGNED 
+¦ UNSIGNED INT 
+¦ SIGNED INT 
+¦ LONG 
+¦ SIGNED LONG 
+¦ UNSIGNED LONG 
+¦ FLOAT 
+¦ DOUBLE 
+¦ LONG LONG 
+¦ LONG LONG INT 
+¦ UNSIGNED LONG LONG 
+¦ UNSIGNED LONG LONG INT 
+¦ SIGNED LONG LONG 
+¦ SIGNED LONG LONG INT 
+;
+
+星号组
+STARS : STARS STAR 
+¦ STAR 
+;
+
+表达式
+EXPR :
+  ID           /*ID*/
+¦ FUNCTION_CALL      /*FUNCTION_CALL*/
+¦ STRING         /*STRING*/
+¦ ARRAY     
+¦ CONST_EXPR       /*CONST_EXPR*/       
+¦ LPAREN EXPR RPAREN   /*LPAREN EXPR RPAREN*/
+¦ NUMBER         /*NUMBER*/
+¦ INTEGER        /*INTEGER*/
+¦ SIZEOF LPAREN TYPE RPAREN                       
+¦ SIZEOF LPAREN EXPR RPAREN                      
+¦ EXPR COMMA EXPR     
+¦ EXPR ASSIGN EXPR    
+¦ EXPR EQ EXPR      
+¦ EXPR LE EXPR      
+¦ EXPR GE EXPR      
+¦ EXPR NE EXPR      
+¦ EXPR LT EXPR      
+¦ EXPR GT EXPR      
+¦ EXPR PLUS EXPR      
+¦ EXPR MINUS EXPR     
+¦ EXPR STAR EXPR      
+¦ EXPR OVER EXPR      
+¦ EXPR MOD EXPR       
+¦ EXPR L_AND EXPR     
+¦ EXPR L_OR EXPR      
+¦ EXPR XOR EXPR       
+¦ EXPR OR EXPR      
+¦ EXPR AND EXPR       
+¦ EXPR SHL EXPR       
+¦ EXPR SRL EXPR       
+¦ MINUS EXPR %prec UMINUS
+¦ PLUS EXPR %prec UPLUS 
+¦ L_NOT EXPR      
+¦ NOT EXPR        
+¦ STAR EXPR %prec DEREFERENCE
+¦ INC EXPR %prec PINC 
+¦ DEC EXPR %prec PDEC 
+¦ ID_INC 
+¦ ID_DEC 
+;
+
+带有+=, -=之类的表达式(注，和const一点关系都没有，只是恰好叫这个名字。)
+CONST_EXPR : //right side assert not to be a pointer
+  EXPR EPLUS EXPR   
+¦ EXPR EMINUS EXPR    
+¦ EXPR ESTAR EXPR   
+¦ EXPR EOVER EXPR   
+¦ EXPR EMOD EXPR    
+¦ EXPR ESHL EXPR    
+¦ EXPR ESRL EXPR    
+¦ EXPR EAND EXPR    
+¦ EXPR EOR EXPR     
+¦ EXPR EXOR EXPR    
+;
+
+函数调用
+FUNCTION_CALL :
+  FUNCTION_NAME LPAREN CALL_PARAM_LIST RPAREN    
+¦ FUNCTION_NAME LPAREN RPAREN    
+;
+
+调用的参数列表(注，为表达式或逗号表达式)
+CALL_PARAM_LIST : EXPR  
+;
+
+函数名
+FUNCTION_NAME : ID  
+;
+
+宏定义
+DEFINE_ACTION : DEFINE_START DEF_WSs DEFINE_ID DEF_WSs DEFINE_STR DEFINE_END 
+；
+
+宏定义内空白符
+DEF_WSs : DEF_WSs DEF_WS
+¦ DEF_WS
+;
+
+数组
+ARRAY: ID LBRACKET INTEGER RBRACKET 
+¦ ARRAY LBRACKET INTEGER RBRACKET 
+;
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 汇编代码生成部分细节</h2>
+<div class="outline-text-2" id="text-5">
+
+
+
+</div>
+
+<div id="outline-container-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 表达式生成举例（加法）</h3>
+<div class="outline-text-3" id="text-5-1">
+
+
+
+
+<pre class="example">
+if(pEXPR-&gt;numstars)
+{
+    if(pEXPR-&gt;child[0]-&gt;numstars)//Pointer + INT (asserted)
+    {   //指针+整数
+        genEXPR(pEXPR-&gt;child[1]);
+        pushrax();
+        myassert(!(is_double(pEXPR-&gt;child[1]-&gt;type)), "double to int not supported, as in *+double");
+        genEXPR(pEXPR-&gt;child[0]);
+        int ptrs = type_size(pEXPR-&gt;child[0]-&gt;type, pEXPR-&gt;child[0]-&gt;numstars-1);
+        poprbx();
+        //这里是指针运算
+        while(ptrs/=2)
+            utstring_printf(text, "\taddq\t%%rbx, %%rbx\n");
+        utstring_printf(text, "\taddq\t%%rbx, %%rax\n");
+    }
+    else if(pEXPR-&gt;child[1]-&gt;numstars)//INT(asserted) + Pointer
+    {
+        //整数+指针同理
+        genEXPR(pEXPR-&gt;child[0]);
+        pushrax();
+        myassert(!(is_double(pEXPR-&gt;child[1]-&gt;type)), "double to int not supported, as in *+double");
+        int ptrs = type_size(pEXPR-&gt;child[0]-&gt;type, pEXPR-&gt;child[0]-&gt;numstars-1);
+        genEXPR(pEXPR-&gt;child[1]);
+        poprbx();
+        while(ptrs/=2)
+            utstring_printf(text, "\taddq\t%%rbx, %%rbx\n");
+        utstring_printf(text, "\taddq\t%%rbx, %%rax\n");
+    }
+}
+else // INTEGER or NUMBER ... seems done
+{
+    if(is_double(pEXPR-&gt;type))//DOUBLE
+    {
+        //结果为double时
+        genEXPR(pEXPR-&gt;child[0]);
+        if(!(is_double(pEXPR-&gt;child[0]-&gt;type)))
+            //这里是类型转换
+            //utstring_printf(text, "\tcvtsi2sd\t%%eax, %%xmm0\n");
+            type_convert(pEXPR-&gt;child[0]-&gt;type, BASE_TYPE_DOUBLE);
+
+        //from %%xmm0 to %%rax
+        utstring_printf(text, "\tmovq\t%%xmm0, %%rax\n");
+        utstring_printf(text, "\tpushq\t%%rax\n");
+
+        //加法的右边同上
+        genEXPR(pEXPR-&gt;child[1]);
+        if(!(is_double(pEXPR-&gt;child[1]-&gt;type)))
+            type_convert(pEXPR-&gt;child[1]-&gt;type, BASE_TYPE_DOUBLE);
+            // utstring_printf(text, "\tcvtsi2sd\t%%eax, %%xmm0\n");
+
+        utstring_printf(text, "\tpopq\t%%rax\n\tmovq\t%%rax, %%xmm1\n\taddsd\t%%xmm1, %%xmm0\n");
+    }
+    else //INTEGER ... seems done.
+    {// 整数+整数
+        if(pEXPR-&gt;type==BASE_TYPE_UNSIGNED_LONG_LONG || pEXPR-&gt;type==BASE_TYPE_LONG_LONG)
+        {   //long long
+
+            genEXPR(pEXPR-&gt;child[0]);
+            type_convert(pEXPR-&gt;child[0]-&gt;type, BASE_TYPE_LONG_LONG);
+
+            utstring_printf(text, "\tpushq\t%%rax\n");
+
+            genEXPR(pEXPR-&gt;child[1]);
+            type_convert(pEXPR-&gt;child[1]-&gt;type, BASE_TYPE_LONG_LONG);
+
+            utstring_printf(text, "\tpopq\t%%rbx\n");
+            utstring_printf(text, "\taddq\t%%rbx, %%rax\n");
+        }
+        else
+        {//int
+            genEXPR(pEXPR-&gt;child[0]);
+            // if(pEXPR-&gt;child[0]-&gt;type==BASE_TYPE_INT || pEXPR-&gt;child[0]-&gt;type==BASE_TYPE_UNSIGNED_INT)
+            //     utstring_printf(text, "\tmovzlq\t%%eax, %%rax\n");
+            utstring_printf(text, "\tpushq\t%%rax\n");
+            genEXPR(pEXPR-&gt;child[1]);
+            // if(pEXPR-&gt;child[1]-&gt;type==BASE_TYPE_INT || pEXPR-&gt;child[1]-&gt;type==BASE_TYPE_UNSIGNED_INT)
+            //     utstring_printf(text, "\tmovzx\t%%eax, %%rax\n");
+            utstring_printf(text, "\tpopq\t%%rbx\n");
+            utstring_printf(text, "\taddl\t%%ebx, %%eax\n");
+        }
+    }
+}
+
+--------SAMPLE--------
+INPUT:
+2+3
+
+OUTPUT:
+
+        movq    $2, %rax
+        pushq   %rax
+        movq    $3, %rax
+        popq    %rbx
+        addq    %rbx, %rax
+
+----------------------
+
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 控制语句举例(if)</h3>
+<div class="outline-text-3" id="text-5-2">
+
+
+
+
+<pre class="example">
+void genIF(struct sci_node* pIF)
+{
+    unsigned long long ELSE,END;
+    ELSE=LC_label++;
+    END=LC_label++;
+    genEXPR(pIF-&gt;child[0]);
+    utstring_printf(text, "\tcmpq\t$0, %%rax\n");
+    utstring_printf(text, "\tje\t.L%llu\n", ELSE);
+    genSTMT(pIF-&gt;child[1]);
+    utstring_printf(text, "\tjmp\t.L%llu\n", END);
+    utstring_printf(text, ".L%llu:\n", ELSE);
+    genSTMT(pIF-&gt;child[2]);//OK if it is empty.
+    utstring_printf(text, ".L%llu:\n", END);
+
+}
+--------SAMPLE--------
+INPUT:
+if(1) 1+1;
+else 2+2;
+
+OUTPUT:
+
+        movq    $1, %rax
+        cmpq    $0, %rax
+        je      .L0
+        movq    $1, %rax
+        pushq   %rax
+        movq    $1, %rax
+        popq    %rbx
+        addq    %rbx, %rax
+        jmp     .L1
+.L0:
+        movq    $2, %rax
+        pushq   %rax
+        movq    $2, %rax
+        popq    %rbx
+        addq    %rbx, %rax
+.L1:
+
+
+----------------------
+
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> 循环语句举例(while)</h3>
+<div class="outline-text-3" id="text-5-3">
+
+
+
+
+<pre class="example">void genWHILE(struct sci_node* pWHILE)
+{
+    unsigned long long WHILE,END;
+    WHILE=LC_label++;
+    END=LC_label++;
+    utstring_printf(text, ".L%llu:\n", WHILE);
+    genEXPR(pWHILE-&gt;child[0]);
+    utstring_printf(text, "\tcmpq\t$0, %%rax\n");
+    utstring_printf(text, "\tje\t.L%llu\n", END);
+    genSTMT(pWHILE-&gt;child[1]);
+    utstring_printf(text, "\tjmp\t.L%llu\n", WHILE);
+    utstring_printf(text, ".L%llu:\n", END);
+
+}
+--------SAMPLE--------
+INPUT:
+
+while(a&lt;5)
+    ++a;
+
+OUTPUT:
+
+.L0:
+        movq    -8(%rbp), %rax
+        pushq   %rax
+        movq    $5, %rax
+        popq    %rdx
+        cmpl    %eax, %edx
+        setl    %al
+        movzbl  %al, %eax
+        cmpq    $0, %rax
+        je      .L1
+        movl    -8(%rbp), %eax
+        movl    -8(%rbp), %edx
+        movl    $1, %ebx
+        addl    %ebx, %eax
+        movl    %eax, -8(%rbp)
+        movq    %rdx, %rax
+        jmp     .L0
+.L1:
+
+----------------------
+
+
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> 函数参数传递</h3>
+<div class="outline-text-3" id="text-5-4">
+
+
+
+
+<pre class="example">    case FUNCTION_CALL://result store by AMD 64 convention, 
+      {
+#ifdef SCI_DEBUG
+          utstring_printf(text, "//FUNCTION_CALL:\n");
+#endif
+          struct sci_node* pCPLIST=pEXPR-&gt;child[0]-&gt;child[1];
+          struct sci_node* pFNAME=pEXPR-&gt;child[0]-&gt;child[0];
+          int paramno=0;
+          int floatno=0;
+          int intno=0;
+          unsigned long long flags=0;
+          //压参并记录第几个参数是什么类型的。
+          while(pCPLIST)
+          {
+              genEXPR(pCPLIST-&gt;child[1]);//last argument.
+              paramno++;
+              flags&lt;&lt;=1;
+              if(is_double(pCPLIST-&gt;child[1]-&gt;type) &amp;&amp; !pCPLIST-&gt;child[1]-&gt;numstars)
+              {
+                  flags|=1;
+                  floatno++;
+                  utstring_printf(text, "\tmovq\t%%xmm0, %%rax\n");
+                  utstring_printf(text, "\tpushq\t%%rax\n");
+              }
+              else
+              {
+                  intno++;
+                  utstring_printf(text, "\tpushq\t%%rax\n");                  
+              }
+              pCPLIST=pCPLIST-&gt;child[0];
+          }
+          //我最多只记录了64位，所以参数不能超过64个
+          if(paramno&gt;=64)
+          {
+              yyerror("function call toooooooo many arguments. YOU HAVE %d!!!! OMG\n", paramno);
+          }
+
+          //前6个整型参数的位置和前8个浮点型参数的位置如下，多余的在栈里。
+          int intf=6;//int register
+          int floatf=8;//float register
+          utstring_printf(text, "\tmovq\t%%rsp, %%r10\n");
+          while(paramno--)
+          {
+              if(flags&amp;1)//double  fixme: all this?
+              {
+                  if(floatf==8)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tmovq\t%%rax, %%xmm0\n");
+                  if(floatf==7)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tmovq\t%%rax, %%xmm1\n");
+                  if(floatf==6)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tmovq\t%%rax, %%xmm2\n");
+                  if(floatf==5)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tmovq\t%%rax, %%xmm3\n");
+                  if(floatf==4)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tmovq\t%%rax, %%xmm4\n");
+                  if(floatf==3)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tmovq\t%%rax, %%xmm5\n");
+                  if(floatf==2)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tmovq\t%%rax, %%xmm6\n");
+                  if(floatf==1)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tmovq\t%%rax, %%xmm7\n");
+                  if(floatf&lt;=0)
+                  {//subq $8 %r10 --&gt; r10 growing downwards.
+                   //多余的参数放在内存的另一个地方，(从原rsp向低位增长)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tsubq\t$8, %%r10\n\tmovq\t%%rax, (%%r10)\n");
+                  }
+                  floatf--;
+              }
+              else //int or pointer
+              {
+                  if(intf==6)
+                      utstring_printf(text, "\tpopq\t%%rdi\n");
+                  if(intf==5)
+                      utstring_printf(text, "\tpopq\t%%rsi\n");
+                  if(intf==4)
+                      utstring_printf(text, "\tpopq\t%%rdx\n");
+                  if(intf==3)
+                      utstring_printf(text, "\tpopq\t%%rcx\n");
+                  if(intf==2)
+                      utstring_printf(text, "\tpopq\t%%r8\n");
+                  if(intf==1)
+                      utstring_printf(text, "\tpopq\t%%r9\n");
+                  if(intf&lt;=0)
+                  {
+                     //多余的参数放在内存的另一个地方，(从原rsp向低位增长)
+                      utstring_printf(text, "\tpopq\t%%rax\n\tsubq\t$8, %%r10\n\tmovq\t%%rax, (%%r10)\n");
+                  }
+                  intf--;
+              }
+              flags&gt;&gt;=1;
+          }
+          intf=intf&lt;0?intf:0;
+          floatf=floatf&lt;0?floatf:0;
+          int extra_stack_depth = -intf-floatf;
+          int esdcpy = extra_stack_depth;
+          while(extra_stack_depth--)
+          {// can be optimized using loop CX
+           // 将多余的再push到它应该在的栈中
+              utstring_printf(text, "\tmovq\t(%%r10), %%rax\n\tpushq\t%%rax\naddq\t$8, %%r10\n");
+          }
+          //fixme: what about?
+          // Ostrich's way....
+          utstring_printf(text, "\tmovq\t$%d, %%rax\n",floatno&gt;8?0:floatno);
+          if(pEXPR-&gt;child[0]-&gt;child[0]-&gt;fox-&gt;subtype&gt;0)//defined function
+              utstring_printf(text, "\tcall\t%s\n", ((struct my_struct*)(pEXPR-&gt;child[0]-&gt;child[0]-&gt;child[0]-&gt;fox-&gt;value))-&gt;name);
+          else
+              utstring_printf(text, "\tcall\t%s\n", ((char *)(pEXPR-&gt;child[0]-&gt;child[0]-&gt;child[0]-&gt;fox-&gt;value)));
+          utstring_printf(text, "\taddq\t$%d, %%rsp\n", 8*esdcpy);
+          break;
+      }
+
+--------SAMPLE--------
+INPUT:
+    printf("%d,%d,%d,%d,%d,%d", 1,2,3,4,5,6);
+OUTPUT:
+//FUNCTION_CALL:
+        movq    $6, %rax
+        pushq   %rax
+        movq    $5, %rax
+        pushq   %rax
+        movq    $4, %rax
+        pushq   %rax
+        movq    $3, %rax
+        pushq   %rax
+        movq    $2, %rax
+        pushq   %rax
+        movq    $1, %rax
+        pushq   %rax
+        movl    $.LC0, %eax
+        pushq   %rax
+        movq    %rsp, %r10
+        popq    %rdi
+        popq    %rsi
+        popq    %rdx
+        popq    %rcx
+        popq    %r8
+        popq    %r9
+        popq    %rax
+        subq    $8, %r10
+        movq    %rax, (%r10)
+        movq    (%r10), %rax
+        pushq   %rax
+        addq    $8, %r10
+        movq    $0, %rax
+        call    printf
+        addq    $8, %rsp
+
+----------------------
+
+
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> 栈式内存分配</h3>
+<div class="outline-text-3" id="text-5-5">
+
+<p>严格的说没有实现内存重用。
+</p>
+
+
+<pre class="example">--------CODE--------
+工作是在par.y里做的，用到了DECL_CHECK宏。里面做了好多事，代码不容易择出来，略
+--------SAMPLE--------
+INPUT:
+int main()
+{
+    int a;
+    double b;
+    a=2;
+    b=4.0;
+}
+OUTPUT:
+main:
+        pushq   %rbp
+        movq    %rsp, %rbp
+        subq    $16, %rsp
+//ASSIGN:
+        movq    $2, %rax
+        pushq   %rax
+        popq    %rbx
+        movl    %ebx, -8(%rbp)
+        movq    %rbx, %rax
+//ASSIGN:
+        movq    .LC0, %rax
+        movq    %rax, %xmm0
+        movq    %xmm0, %rax
+        pushq   %rax
+        popq    %rbx
+        movq    %rbx, -16(%rbp)
+        movq    %rbx, %xmm0
+        addq    $16, %rsp
+        movq    %rbp, %rsp
+        popq    %rbp
+        ret
+
+----------------------
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-5-6" class="outline-3">
+<h3 id="sec-5-6"><span class="section-number-3">5.6</span> 类型转换</h3>
+<div class="outline-text-3" id="text-5-6">
+
+
+
+
+<pre class="example">void int_to_long() //tested, OK
+{//movsz
+    utstring_printf(text, "\tmovsx\t%%eax, %%rax\n");
+}
+void uint_to_long() //tested, //not OK // alternative version, OK
+{//movzx //movzlq //movzbl
+    //utstring_printf(text, "\tmovzx\t%%eax, %%rax\n");
+        utstring_printf(text, "\tmovl\t%%eax, %%ebx\n");
+        utstring_printf(text, "\tmovq\t$0, %%rax\n");
+        utstring_printf(text, "\tmovl\t%%ebx, %%eax\n");
+}
+void int_to_double() //tested, OK:
+{
+      utstring_printf(text, "\tcvtsi2sd\t%%eax, %%xmm0\n");
+}
+void int_to_double_xmm1()
+{
+    utstring_printf(text, "\tcvtsi2sd\t%%eax, %%xmm1\n");
+}
+void uint_to_double() //tested OK;
+{
+    unsigned long long int lc1=LC_label++;
+    unsigned long long int lc2=LC_label++;
+    utstring_printf(text, "     testq   %%rax, %%rax\n");
+    utstring_printf(text, "     js      .L%llu\n", lc1); //if negative: i.e. greater than INT_MAX
+    utstring_printf(text, "     cvtsi2sdq       %%rax, %%xmm0\n\tjmp\t.L%llu\n",lc2);
+    utstring_printf(text, "\t.L%llu:\n", lc1);
+    utstring_printf(text,
+"       movq    %%rax, %%rdx\n\
+        shrq    %%rdx\n\
+        andl    $1, %%eax\n\
+        orq     %%rax, %%rdx\n\
+        cvtsi2sdq       %%rdx, %%xmm0\n\
+        addsd   %%xmm0, %%xmm0\n\
+.L%llu:", lc2);
+}
+void long_to_double() //tested OK;
+{
+    utstring_printf(text, "\tmovq\t%%rax, -8(%%rsp)\n");
+        utstring_printf(text, "\tcvtsi2sdq\t-8(%%rsp), %%xmm0\n");
+}
+void ulong_to_double() //tested probably OK;
+{
+    unsigned long long int lc1=LC_label++;
+    unsigned long long int lc2=LC_label++;
+
+    utstring_printf(text, "\
+        testq   %%rax, %%rax\n\
+        js      .L%llu\n\
+        cvtsi2sdq       %%rax, %%xmm0\n\
+        jmp     .L%llu\n\
+.L%llu:\n\
+        movq    %%rax, %%rdx\n\
+        shrq    %%rdx\n\
+        andl    $1, %%eax\n\
+        orq     %%rax, %%rdx\n\
+        cvtsi2sdq       %%rdx, %%xmm0\n\
+        addsd   %%xmm0, %%xmm0\n\
+.L%llu:",lc1,lc2,lc1,lc2);
+}
+void xmm0_to_rax()
+{
+    utstring_printf(text, "\tmovq\t%%xmm0, %%rax\n");
+}
+void rax_to_xmm0()
+{
+    utstring_printf(text, "\tmovq\t%%rax, %%xmm0\n");
+}
+void xmm1_to_rax()
+{
+    utstring_printf(text, "\tmovq\t%%xmm1, %%rax\n");
+}
+void rax_to_xmm1()
+{
+    utstring_printf(text, "\tmovq\t%%rax, %%xmm1\n");
+}
+void long_to_bool()
+{
+    utstring_printf(text,
+"       cmpl    $0, %%rax\n\
+        setne   %%al\n\
+        movzbl  %%al, %%eax\n\
+");
+}
+void long_to_char()
+{
+    utstring_printf(text, "\tandq\t$255, %%rax\n");
+}
+void type_convert(int ta, int tb)
+{
+    int magic_number = 0;
+    magic_number = ((ta-BASE_TYPE_CHAR)&lt;&lt;8)+(tb-BASE_TYPE_CHAR);
+    switch(magic_number)
+    {
+      case 0x103:
+      case 0x104:
+          int_to_long();break;
+      case 0x203:
+      case 0x204:
+          uint_to_long();break;
+      case 0x105:
+          int_to_double();break;
+      case 0x205:
+          uint_to_double();break;
+      case 0x305:
+          long_to_double();break;
+      case 0x405:
+          ulong_to_double();break;
+      default:
+      {
+          //todo: double to int.
+          myassert(magic_number&lt;0x500 || magic_number==0x505, "warning: cannot convert double, void, function, to others\n");
+          break;
+      }
+    }
+
+}
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-5-7" class="outline-3">
+<h3 id="sec-5-7"><span class="section-number-3">5.7</span> 数组空间分配</h3>
+<div class="outline-text-3" id="text-5-7">
+
+
+
+
+<pre class="example">int get_array_offset_help(struct arrayDim* ad)
+{
+  int tmp=1;
+  while(ad-&gt;next)
+  {
+    ad = ad-&gt;next;
+    tmp*=ad-&gt;length;
+  }
+  return tmp;
+}
+int get_array_offset(struct my_struct* info)
+{
+  // printf("in\n");
+  int offset = 0;
+  struct arrayDim* addef = info-&gt;addef;
+  struct arrayDim* adget = info-&gt;adget;
+  struct arrayDim* tmp;
+  // printf("here%d\n", adget-&gt;next-&gt;length);
+  while(addef)
+  {
+    tmp = addef;
+    offset += get_array_offset_help(tmp)*adget-&gt;length;
+    addef = addef-&gt;next;
+    adget = adget-&gt;next;
+  }
+  return offset;
+}
+--------SAMPLE--------
+INPUT:
+        int a[3];
+        a[0]=0;
+        a[1]=1;
+        a[2]=2;
+
+OUTPUT:
+        pushq   %rbp
+        movq    %rsp, %rbp
+        subq    $32, %rsp
+//ASSIGN:
+        movq    $0, %rax
+        pushq   %rax
+        popq    %rbx
+        movl    %ebx, 0(%rbp)
+        movq    %rbx, %rax
+//ASSIGN:
+        movq    $1, %rax
+        pushq   %rax
+        popq    %rbx
+        movl    %ebx, -8(%rbp)
+        movq    %rbx, %rax
+//ASSIGN:
+        movq    $2, %rax
+        pushq   %rax
+        popq    %rbx
+        movl    %ebx, -16(%rbp)
+        movq    %rbx, %rax
+
+----------------------
+
+</pre>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 其它技术细节及补充</h2>
+<div class="outline-text-2" id="text-6">
+
+
+</div>
+
+<div id="outline-container-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> FUNCTION CALL 函数调用</h3>
+<div class="outline-text-3" id="text-6-1">
+
+
+</div>
+
+<div id="outline-container-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> calling convention 函数调用规范</h4>
+<div class="outline-text-4" id="text-6-1-1">
+
+<p>function call implementation follows the <b>System V AMD64 ABI</b> standard(<b>main.c:278</b>), with an extra limitation of 64 parameters(<b>main.c:270</b>).
+</p>
+<p>
+The calling convention of the System V AMD64 ABI<sup><a class="footref" name="fnr-.1" href="#fn-.1">1</a></sup> is followed on Solaris, GNU/Linux, FreeBSD, Mac OS X, and other UNIX-like or POSIX-compliant operating systems. The first six integer or pointer arguments are passed in registers RDI, RSI, RDX, RCX, R8, and R9, while XMM0, XMM1, XMM2, XMM3, XMM4, XMM5, XMM6 and XMM7 are used for floating point arguments. For system calls, R10 is used instead of RCX.<sup><a class="footref" name="fnr-.1.2" href="#fn-.1">1</a></sup> As in the Microsoft x64 calling convention, additional arguments are passed on the stack and the return value is stored in RAX.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2"><span class="section-number-4">6.1.2</span> memory allocation of local variables 变量内存分配</h4>
+<div class="outline-text-4" id="text-6-1-2">
+
+<p>A proper space is reserved(<b>par.y:63</b>) for all local variables with this function despite their scope.
+All local variales are indexed by their appearence sequence(<b>par.y:296</b>) in stack.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6-1-3" class="outline-4">
+<h4 id="sec-6-1-3"><span class="section-number-4">6.1.3</span> looking up of a variable in symbol table 多级符号表</h4>
+<div class="outline-text-4" id="text-6-1-3">
+
+<p>when entering a scope(usually a LBRACE, aka "{", is recognized), MAKE_HASH(<b>scitree.h:69</b>) is called, which make a new hashtable and let its parent point to current hashtable, and link it with previously made hashtable(for garbage collection).
+The lookup procedure is in (<b>par.l:19</b>)
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6-1-4" class="outline-4">
+<h4 id="sec-6-1-4"><span class="section-number-4">6.1.4</span> using variable. 使用变量</h4>
+<div class="outline-text-4" id="text-6-1-4">
+
+<p>local variables are indexed by their position off %rbp, (<b>main.c:1656</b>)
+global variables are indexed by ther position off %rip, (<b>main.c:1683</b>)
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> DECLARATION of VARIABLES 变量声明</h3>
+<div class="outline-text-3" id="text-6-2">
+
+
+</div>
+
+<div id="outline-container-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1"><span class="section-number-4">6.2.1</span> string</h4>
+<div class="outline-text-4" id="text-6-2-1">
+
+<p>strings are stored in .rodata(<b>par.y:393</b>), indexed by unique label.
+</p></div>
+
+</div>
+
+<div id="outline-container-6-2-2" class="outline-4">
+<h4 id="sec-6-2-2"><span class="section-number-4">6.2.2</span> global variable</h4>
+<div class="outline-text-4" id="text-6-2-2">
+
+<p>global variables are stored in .data(<b>par.y:135</b>)
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> general expressions 表达式</h3>
+<div class="outline-text-3" id="text-6-3">
+
+<p>ALL INTEGER RESULT stores in RAX!!
+ALL FLOAT RESULT stores in xmm0!!
+</p>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn-.1" href="#fnr-.1">1</a></sup> <a href="http://en.wikipedia.org/wiki/X86_calling_convention#System_V_AMD64_ABI">http://en.wikipedia.org/wiki/X86_calling_convention#System_V_AMD64_ABI</a>
+</p>
+
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T22:05+0800</p>
+<p class="author">Author: Scinart O; Dar Fux.</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
