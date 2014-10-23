@@ -2,7 +2,7 @@
 layout: post
 title: "刷面试题"
 date: 2014-04-07
-timestamp: "2014-04-07 17:47:48 scinart"
+timestamp: "2014-09-27 21:13:15 scinart"
 categories: acm
 tag:
 comments: true
@@ -11,8 +11,22 @@ cc: "by-nc-sa"
 
 ---
 
-题都是从网上找的。
+### 操作系统
 
+[什么是优先级反转+有何危害+如何避免和解决](http://www.crifan.com/task_thread_schedule_what_is_priority_inversion_and_hazardous_and_solution/)
+[操作系统中的进程与线程](http://www.cnblogs.com/CareySon/archive/2012/05/04/2482134.html)
+
+
+### C++
+
+[C++ 虚函数表解析](http://blog.csdn.net/haoel/article/details/1948051)
+
+
+### Graph
+
+[Bellman-Ford method](http://www.cnblogs.com/AbandonZHANG/archive/2012/08/12/2610833.html)
+
+### 题都是从网上找的。
 
 ##### 定义栈的数据结构，要求添加一个min函数，能够得到栈的最小元素。要求函数min、push以及pop的时间复杂度都是O(1)。#####
 
