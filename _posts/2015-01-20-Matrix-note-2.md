@@ -4,7 +4,7 @@ title: "矩阵求导 (1)"
 date: 2015-01-20
 timestamp: "2015-01-20 16:26:50 scinart"
 categories: math
-label: note
+tag: note
 comments: true
 toc: no
 cc: "by-nc-nd"
