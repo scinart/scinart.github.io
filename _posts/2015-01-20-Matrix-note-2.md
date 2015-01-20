@@ -174,7 +174,7 @@ $$
 \begin{align}
 \frac{∂α}{∂\boldsymbol{z}}
 &= \boldsymbol{x}^{T}\frac{∂\left((\boldsymbol{y}^{T}\boldsymbol{A})^{T}\right)}{∂\boldsymbol{z}}
- + (\boldsymbol{y}^{T}\boldsymbol{A})\frac{∂\boldsymbol{x}}{∂\boldsymbol{z}} \text{由}\ref{mc.5}\text{得到} \\
+ + (\boldsymbol{y}^{T}\boldsymbol{A})\frac{∂\boldsymbol{x}}{∂\boldsymbol{z}} \text{由}\ref{mc.4}\text{得到} \\
 &= \boldsymbol{x}^{T}\boldsymbol{A}^{T}\frac{∂\boldsymbol{y}}{∂\boldsymbol{z}}
  + \boldsymbol{y}^{T}\boldsymbol{A}\frac{∂\boldsymbol{x}}{∂\boldsymbol{z}}
 \end{align}
