@@ -2,7 +2,7 @@
 layout: post
 title: "矩阵的意义 (1)"
 date: 2015-01-18
-timestamp: "2015-01-18 19:01:29 scinart"
+timestamp: "2015-01-20 10:43:53 scinart"
 categories: math
 tag: note
 comments: true
@@ -73,13 +73,60 @@ $$
 
 来源于[实用多元统计分析](http://book.douban.com/subject/3519805/)1.5 距离
 
-假设我们要定义一种新距离，叫椭圆距离。椭圆用$$\boldsymbol{C}$$表示。(没错，就是二次型)
+假设我们要定义一种新距离，叫椭圆距离。椭圆用$$\boldsymbol{C}$$表示。(C是一个正定矩阵)
 
 定义$$\|\boldsymbol{x}\|_{\boldsymbol{C}} = \sqrt{\boldsymbol{x'}\boldsymbol{C}\boldsymbol{x}} $$，其意义是等距离线(想像成等高线)是个椭圆形。
 
 当然，距离(范数)不是你想定义就定义的，必须满足[三角不等式等条件](https://zh.wikipedia.org/zh/%E8%8C%83%E6%95%B0#.E5.AE.9A.E7.BE.A9)。
 
-三角不等式我没证出来。证出来之后补在这里。![挥泪](http://bbs.nankai.edu.cn/data/ueditor/dialogs/emotion/images/jx2/j_0008.gif)
+<span><s>三角不等式我没证出来。证出来之后补在这里。</s><img src="http://bbs.nankai.edu.cn/data/ueditor/dialogs/emotion/images/jx2/j_0008.gif" alt="挥泪"></span>
+
+在
+<a href="javascript:;" 
+   class="screenshot" 
+   rel="http://cdn2.comtrya.com/wp-content/uploads/2013/05/tamayura2_thumb.jpg" 
+   title="">
+ 不愿透露的大牛
+</a>
+的帮助下。给出个证明。
+
+<!-- TODO: 此段应该做可折叠的 -->
+
+给定正定矩阵C，它是[正交可对角化](https://ccjou.wordpress.com/2011/02/09/%E5%AF%A6%E5%B0%8D%E7%A8%B1%E7%9F%A9%E9%99%A3%E5%8F%AF%E6%AD%A3%E4%BA%A4%E5%B0%8D%E8%A7%92%E5%8C%96%E7%9A%84%E8%AD%89%E6%98%8E/)的。
+换句话说，存在正交矩阵$$\boldsymbol{Q}$$使得$$\boldsymbol{C}=\boldsymbol{Q}\mathbf{Λ}\boldsymbol{Q}^{T}$$
+
+<p class="font12px">
+我还不知道为什么正定矩阵就是正交可对角化呢。
+</p>
+
+且$$\mathbf{Λ}$$都是正值。
+
+设两向量为$$\boldsymbol{x},\boldsymbol{y}$$，设
+
+$$
+\boldsymbol{Q}^{T}\boldsymbol{x}=\begin{pmatrix}a_1 a_2 ⋯ a_n \end{pmatrix}^{T} \\
+\boldsymbol{Q}^{T}\boldsymbol{y}=\begin{pmatrix}b_1 b_2 ⋯ b_n \end{pmatrix}^{T} \\
+则有： \\
+\begin{align}
+\|\boldsymbol{x}+\boldsymbol{y}\|_\boldsymbol{C}^{2}
+&= (\boldsymbol{x}+\boldsymbol{y})^{T} \boldsymbol{C} (\boldsymbol{x}+\boldsymbol{y}) \\
+&= (\boldsymbol{Q}^{T}\boldsymbol{x}+\boldsymbol{Q}^{T}\boldsymbol{y})^{T}\mathbf{Λ}(\boldsymbol{Q}^{T}\boldsymbol{x}+\boldsymbol{Q}^{T}\boldsymbol{y}) \\
+&= λ_1(a_1+b_1)^2 + ⋯ + λ_n(a_n+b_n)^2 \\
+&= \sum_{i}{λ_i(a_i+b_i)^2}
+\end{align}
+$$
+
+$$
+同样地：
+\begin{align}
+(\|\boldsymbol{x}\|_\boldsymbol{C}+\|\boldsymbol{y}\|_\boldsymbol{C})^{2}
+&= \left(\sqrt{\sum_{i}{λ_{i}a_{i}^{2}}} + \sqrt{\sum_{i}{λ_{i}b_{i}^{2}}} \right)^2
+\end{align}
+\\
+接下来三角不等式就有点显然了。
+$$
+
+
 
 #### 变换与新距离
 
@@ -102,7 +149,7 @@ $$
 \|\boldsymbol{x}\|_\boldsymbol{I} &= \|\boldsymbol{Ax}\|_{\boldsymbol{C}} \\
 \boldsymbol{x}^T\boldsymbol{I}\boldsymbol{x} &= (\boldsymbol{Ax})^T\boldsymbol{C}\boldsymbol{Ax} \\
 \boldsymbol{x}^T\boldsymbol{I}\boldsymbol{x} &= \boldsymbol{x}^T\boldsymbol{A^{T}CA}\boldsymbol{x} \\
-\boldsymbol{I} &= \boldsymbol{A^{T}CA} \;\;\;\;\;\;\;\;\cdots\cdots\cdots\cdots\text{一定么？一定么？一定是这样么？} \\
+\boldsymbol{I} &= \boldsymbol{A^{T}CA} \;\;\;\;\cdots\cdots\text{把上式展开，逐项对比系数可以得到。} \\
 \boldsymbol{C} &= \boldsymbol{A^{-T}A^{-1}}
 \end{aligned} 
 $$
