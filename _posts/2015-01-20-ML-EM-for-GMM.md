@@ -2,7 +2,7 @@
 layout: post
 title: "EM算法推导GMM参数"
 date: 2015-01-20
-timestamp: "2015-01-20 22:15:43 scinart"
+timestamp: "2015-01-22 13:34:35 scinart"
 categories: cs
 tag: ml
 comments: true
@@ -35,7 +35,7 @@ $$
 \begin{align}
 令 w_{j}^{i} = Q_i (z^{(i)}=j)
 &= p(z^{(i)}=j|\mathbf{x}^{(i)};ϕ,μ,Σ) \\
-&= \frac{p(z^{(i)}=j,\mathbf{x}^{(i)};ϕ,μ,Σ)}{\underset{z^{(i)}}{\sum{}}{p(z^(i)=j,\mathbf{x}^{(i)};ϕ,μ,Σ)}}
+&= \frac{p(z^{(i)}=j,\mathbf{x}^{(i)};ϕ,μ,Σ)}{\underset{z^{(i)}}{\sum{}}{p(z^{(i)}=j,\mathbf{x}^{(i)};ϕ,μ,Σ)}}
 \end{align}
 $$
 
