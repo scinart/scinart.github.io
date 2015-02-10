@@ -2,7 +2,7 @@
 layout: post
 title: "矩阵的意义 (1)"
 date: 2015-01-18
-timestamp: "2015-01-20 10:43:53 scinart"
+timestamp: "2015-02-10 21:01:04 scinart"
 categories: math
 tag: note
 comments: true
@@ -23,11 +23,16 @@ $$
 \boldsymbol{y^{m}} = \boldsymbol{A^{m×n}}\boldsymbol{x^{n}}
 $$
 
-定义了一个线性变换 $$ f : \mathbb{R}^n → \mathbb{R}^m $$，满足 $$f(\boldsymbol{x}+\boldsymbol{y}) = f(\boldsymbol{x})+f(\boldsymbol{y})$$
+定义了一个线性变换 $$ f : \mathbb{R}^n → \mathbb{R}^m $$，满足
+$$f(c_1\boldsymbol{x}+c_2\boldsymbol{y}) = c_1f(\boldsymbol{x})+c_2f(\boldsymbol{y})$$
 
-思考：任何满足 $$f(\boldsymbol{x}+\boldsymbol{y}) = f(\boldsymbol{x})+f(\boldsymbol{y})$$的$$ f : \mathbb{R}^n → \mathbb{R}^m $$都一一对应一个矩阵么？
+思考：任何满足
+$$f(c_1\boldsymbol{x}+c_2\boldsymbol{y}) = c_1f(\boldsymbol{x})+c_2f(\boldsymbol{y})$$
+的$$ f : \mathbb{R}^n → \mathbb{R}^m $$都一一对应一个矩阵么？
 
-存在一个矩阵$$\boldsymbol{A}$$，肯定存在一个函数 $$f_{\boldsymbol{A}}$$，因为这个$$\boldsymbol{A}$$就是一个函数。反之，任何以上函数都能找到一个$$\boldsymbol{A}$$么？(好像没有那么显然，待我想想。)
+存在一个矩阵$$\boldsymbol{A}$$，肯定存在一个函数 $$f_{\boldsymbol{A}}$$，因为这个$$\boldsymbol{A}$$就是一个函数。  
+<!-- 反之，任何以上函数都能找到一个$$\boldsymbol{A}$$么？(好像没有那么显然，待我想想。) -->
+反之，任意给定$$f$$，我们把$$f$$应用于$$\boldsymbol{I^{n×n}}$$的每个列向量，得到$$n$$个$$m$$维的向量，定义$$\boldsymbol{A}$$等于这$$n$$个列向量横向排列的矩阵，则有$$f(\boldsymbol{I})=\boldsymbol{AI}$$，由线性性可知，$$\boldsymbol{A}$$完全赞同于$$f$$
 
 #### 线性变换之旋转
 
@@ -55,7 +60,7 @@ $$
 
 #### 线性变换之投影
 
-以后写。
+直接参考 Gilbert Strang "Introduction to linear algebra" 4.2节吧。
 
 ## 满秩矩阵与距离
 
@@ -73,7 +78,9 @@ $$
 
 来源于[实用多元统计分析](http://book.douban.com/subject/3519805/)1.5 距离
 
-假设我们要定义一种新距离，叫椭圆距离。椭圆用$$\boldsymbol{C}$$表示。(C是一个正定矩阵)
+<s>假设我们要定义一种新距离，叫椭圆距离。椭圆用C表示。(C是一个正定矩阵)</s>  
+今天才知道这个叫“[马氏距离](https://zh.wikipedia.org/zh/%E9%A9%AC%E6%B0%8F%E8%B7%9D%E7%A6%BB)”，后面的名称不改了。
+<img src="http://bbs.nankai.edu.cn/data/ueditor/dialogs/emotion/images/jx2/j_0008.gif" alt="挥泪">
 
 定义$$\|\boldsymbol{x}\|_{\boldsymbol{C}} = \sqrt{\boldsymbol{x'}\boldsymbol{C}\boldsymbol{x}} $$，其意义是等距离线(想像成等高线)是个椭圆形。
 
