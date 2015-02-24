@@ -103,7 +103,8 @@ $$
 换句话说，存在正交矩阵$$\boldsymbol{Q}$$使得$$\boldsymbol{C}=\boldsymbol{Q}\mathbf{Λ}\boldsymbol{Q}^{T}$$
 
 <p class="font12px">
-我还不知道为什么正定矩阵就是正交可对角化呢。
+<s>我还不知道为什么正定矩阵就是正交可对角化呢。</s><br>
+<a href="/math/2015/02/24/Matrix-Note-5/">谱定理的证明终于找到一个</a>
 </p>
 
 且$$\mathbf{Λ}$$都是正值。
