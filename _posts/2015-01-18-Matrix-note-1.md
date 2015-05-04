@@ -17,10 +17,8 @@ cc: "by-nc-nd"
 
 ## 矩阵作为线性变换
 
-假设用粗体上标表示维度，那么
-
 $$
-\boldsymbol{y^{m}} = \boldsymbol{A^{m×n}}\boldsymbol{x^{n}}
+\underset{m×1}{\boldsymbol{y}} = \underset{m×n}{\boldsymbol{A}}\underset{n×1}{\boldsymbol{x}}
 $$
 
 定义了一个线性变换 $$ f : \mathbb{R}^n → \mathbb{R}^m $$，满足
