@@ -3,9 +3,9 @@ layout: post
 title:  "概率论笔记 (1)"
 date:   2015-05-19
 timestamp: "2015-05-21 01:32:32 scinart"
-categories: markdown
+categories: note
 comments: true
-toc: true
+toc: false
 cc: "by-nc-sa"
 
 ---
