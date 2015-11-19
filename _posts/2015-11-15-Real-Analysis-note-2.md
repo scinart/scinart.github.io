@@ -2,7 +2,7 @@
 layout: post
 title: "实变函数笔记 (2)"
 date: 2015-11-15
-timestamp: "2015-11-16 23:29:27 scinart"
+timestamp: "2015-11-18 23:03:31 scinart"
 categories: math
 tag:
 comments: true
@@ -11,6 +11,22 @@ cc: "by-nc-nd"
 
 ---
 
+* 注释：
+
+以下四个定理的等价性：
+
+柯西收敛 (1)  
+有限覆盖 (2)  
+闭区间套 (3)  
+Bolzano-Weierstrass (4)
+
+(1)→(2) 见本页13  
+(2)→(3) 见[上页](/math/2015/11/12/Real-Analysis-note-1/)14  
+(3)→(4) 见本页4  
+(4)→(1) 见本页5
+
+补充：开集的可数交叫做$$G_δ$$，闭集的可数并叫做$$F_σ$$
+
 * 各种定义：
 
 20. 实数列$$\{a_n\}$$收敛于$$a$$定义为$$\forall ε>0(\exists N (\forall n>N(\lvert a-a_n\rvert<ε)))$$
@@ -18,6 +34,7 @@ cc: "by-nc-nd"
 22. 实函数的连续性，设D是定义域：$$f$$在点$$x$$连续定义为$$∀ε>0(∃δ>0(∀x'∈D, \lvert x-x' \rvert <δ ⇒ \lvert f(x')-f(x) \rvert < ε ))$$
 23. $$f$$是Lipschitz定义为：$$∀c>0,x∈D,x'∈D(\lvert f(x')-f(x)\rvert ≤ c⋅\lvert x'-x \rvert)$$
 24. $$f$$是一致连续(uniformly continuous)定义为：$$∀ε>0\{∃δ>0\{∀x,x'\{\lvert x-x' \rvert <δ⇒\lvert f(x)-f(x')\rvert<ε\}\}\}$$
+25. $$\mathbf{R}^n$$空间中一个集合是紧的，如果它的任何开覆盖都有有限子覆盖。
 
 * 各种定理引理
 
@@ -33,11 +50,20 @@ cc: "by-nc-nd"
 
     证：royden的没看懂，见[维基百科的证明](https://zh.wikipedia.org/wiki/%E6%B3%A2%E7%88%BE%E6%9F%A5%E8%AB%BE%EF%BC%8D%E9%AD%8F%E7%88%BE%E6%96%AF%E7%89%B9%E6%8B%89%E6%96%AF%E5%AE%9A%E7%90%86)
 
+17. [Bolzano-Weierstrass Theorem](https://en.wikipedia.org/wiki/Bolzano%E2%80%93Weierstrass_theorem) 另一种证法(利用闭区间套)
+
+    设数列为$$\{a_n\}$$，设$$A=\{a_n \mid n ∈ N\}$$，原命题等价于，$$A'≠Φ$$  
+
+    反证，若$$A'=Φ$$，设$$E_n = \{a_j \mid j≥n\}$$，显然$$E_i ⊂ A$$，所以$$E_i' ⊂ A' = Φ$$，所以$$E_i$$是闭集。  
+	由闭区间套定理，设$$X = \bigcap{E_i} ≠ Φ$$，然而，$$∀a_i\{n>i ⇒ a_i ∉ E_n\}$$，所以$$X$$应该是空集，所以矛盾。
+
 18. 柯西收敛准则
 
     $$\{a_n\}→a ⇔ \forall ε>0(\exists N(\forall n,m≥N(\lvert a_m - a_n \rvert < ε ))) $$
 
     证：正向，显然，反向也很显然，只是借Bolzano-Weierstrass Theorem找到确定的一个数a罢了
+
+    在$$\mathbf{R}^n$$空间上分维度利用一维就可以了。
 
 19. 极限的线性和单调性
 
@@ -98,3 +124,34 @@ cc: "by-nc-nd"
     设$$δ=\frac{1}{2}min(δ_{x_i})$$，那么$$∀x,x'∈E, \lvert x-x' \rvert <δ$$, 总能找到一个$$I_{x_k}$$覆盖$$x$$，  
 	则$$\lvert x-x_k \rvert ≤ \frac{1}{2}δ_{x_i}$$，由于$$x$$与$$x'$$也很近，所以$$\lvert x'-x_k \rvert ≤ δ_{x_i}$$  
 	由$$δ_{x_i}$$定义，有$$\lvert f(x')-f(x) \rvert ≤ \lvert f(x') - f(x_k) \rvert + \lvert f(x) - f(x_k) \rvert < ε/2+ε/2 = ε$$
+
+26. 有限开覆盖定理([海涅－博雷尔定理](https://zh.wikipedia.org/wiki/海涅－博雷尔定理))的另一种证法：
+
+    证：
+
+    先考虑$$F$$是闭区间$$[a,b]$$，$$\mathcal{F}$$是$$[a,b]$$的一个开覆盖，
+    如若定理不成立，则二分$$F$$，必有至少其一不能被$$\mathcal{F}$$的有限子集覆盖，
+	继续二分，可以得到一个闭区间套，在此闭区间套中各取一点形成一个数列，由柯西收敛原则，这个数列的极限存在。
+	由闭区间的性质，极限属于这个闭区间，现选择这个极限点，$$\mathcal{F}$$中必有某个开区间覆盖之，
+	任取$$ G ∈ \mathcal{F}$$且$$G$$包含这个极限点，由$$G$$的产生过程，必有一个包含G的闭区间，
+	不能被$$\mathcal{F}$$的有限子集覆盖，然而当区间足够小时，只要一个$$G$$就可以将其覆盖，推出矛盾。
+
+    此步可以扩展到$$\mathbf{R}^n$$上。
+
+    一般情况同原来的证法：设$$F$$被闭区间$$[a,b]$$包间，$$\mathcal{F}$$是$$F$$的一个开覆盖，
+	设$$O=\mathbf{R} \sim F$$，则$$\{O\} \cup \mathcal{F}$$是$$[a,b]$$的一个开覆盖，
+	所以$$[a,b]$$有一个有限的开覆盖，再把$$O$$刨去，就得到$$F$$的一个有限的开覆盖。
+
+    注：闭区间是必要的，反例如(0,1]与(1/n,1]。
+
+27. $$\mathbf{R}$$中一个集合是紧的等价于它是有界闭集。
+
+    证：
+
+    由：有限开覆盖定理(26)，一个集合是紧的定义为有限开覆盖定理，所以右⇒左。
+
+    设$$A$$是紧集，对任意$$y ∉ A, x ∈ A$$，定义x和y有一定距离(吗？)，定义$$B_{δ_x}x$$是$$x$$的一个邻域，
+	且$$B_{δ_x}y ∩ B_{δ_x}x = Φ$$， 则$$\bigcup{B_x}$$是$$A$$的一个覆盖，由紧集定义，存在有限开覆盖，所以有界。
+	要证闭集，只要证明补集是开集， 只要证明$$y$$的某一邻域交$$A$$为空，由$$δ_x$$的产生方式，又因为有限，选择最小的$$δ_x$$做为y的开球，
+    则这个开球与有限个开覆交集均为空集，所以与$$A$$的交集也是空集。
+
