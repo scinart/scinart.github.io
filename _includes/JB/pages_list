@@ -24,6 +24,7 @@ Usage:
   {% include custom/pages_list %}
 {% else %}
   {% for node in pages_list %}
+  {% unless node.categories contains "private" %}
     {% if node.title != null %}
       {% if group == null or group == node.group %}
       	{% if page.url == node.url %}
@@ -33,6 +34,7 @@ Usage:
       	{% endif %}
       {% endif %}
     {% endif %}
+  {% endunless %}
   {% endfor %}
 {% endif %}
 {% assign pages_list = nil %}

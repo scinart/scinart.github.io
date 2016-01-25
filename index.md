@@ -32,8 +32,9 @@ tagline: Supporting tagline
     <!-- the syntax is quite ugly. but leave it as it is.-->
     {% assign count = 0 %}
     {% for post in sorted reversed %}
+	{% unless post.categories contains 'private' %}
       {% capture count %}{{ count | plus: 1 }}{% endcapture %}
-      {% if count.size == 1 or count <='20'  %} {% if count.size <= 2 %}
+      {% if count.size == 1 or count <='20'  %}
         <li> <a href="{{ post.url }}">{{ post.date | date_to_string }} &raquo; {{ post.title }}</a>
         {% if post.content contains '<!-- more -->' %}
         <span style="padding-left: 20px">{{ post.content | split:'<!-- more -->' | first }}</span>
@@ -41,7 +42,8 @@ tagline: Supporting tagline
         <br/>......
         {% endif %}
         </li>
-      {% endif %} {% endif %}
+      {% endif %}
+	{% endunless %}
     {% endfor %}
   {% else %}
     {% for post in site.posts limit:20 %}

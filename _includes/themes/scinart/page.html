@@ -1,5 +1,7 @@
 <div class="page-header">
+  {% unless page.categories == "words" %}
   <h1>{{ page.title }} {% if page.tagline %} <small>{{ page.tagline }}</small>{% endif %}</h1>
+  {% endunless %}
 </div>
 
 <div class="row-fluid">
