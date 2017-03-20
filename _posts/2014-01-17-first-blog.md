@@ -2,7 +2,7 @@
 layout: post
 title:  "第一篇博客看来是Markdown语法的笔记了。"
 date:   2014-01-17 15:30:25
-timestamp: "2014-04-01 21:24:52 scinart"
+timestamp: "2017-03-20 14:52:12 scinart"
 categories: markdown
 comments: true
 toc: true
@@ -50,6 +50,9 @@ cc: "by-nc-sa"
 	* 一个列表项的多个条目可以不缩进。但缩进看起来更整齐(本地测试未成功？)。
 效果是：</code></pre>
 
+* A
++ B
+- C
 * 他们是等效的。
   * 二级列表就像这样。都是一个 \*，缩进用四空格或一Tab都可以。
   * 如果列表项目间用空行分开，
@@ -73,7 +76,7 @@ cc: "by-nc-sa"
 5. which displays as follows:
 
 **取消转义** <br/>
-`` 2014\. : `` 2014\. 0x7DE.
+`` 2014\. : `` 2014\.
 
 ### 引用
 
@@ -97,27 +100,44 @@ which displays as:</code></pre>
 
 ####代码高亮
 
-代码高亮有几种方案，我选择轻量级的前端渲染，用的是<s>google-code-prettify</s> [highlightjs](http://highlightjs.org/)
+<https://highlightjs.org/> ps: 这个东西被设计成不支持line number.
 
-下载[google-code-prettify](https://code.google.com/p/google-code-prettify/)，将`run_prettify.js`和某css(ps：给了好几种，可以根据自己的喜好选择，有预览)加到网页模板中。比如我加到了我的 `_include/themes/...../post.html`里了。
+<https://www.hacksparrow.com/how-to-disable-github-pages-default-rouge-code-highlighter.html>
 
-以后要贴代码的时候，放在 `<pre class="prettyprint linenums">`和`</pre>`标签之间。(ps:linenums表示显示代码的行号，如果要从第四行开始，可以写成这样linenums:4)
+short story
 
-<strong>
-[其他的基本是按这里做的](http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/)
-</strong>
+~~~apache
+markdown: kramdown
 
-highlight js 同理，如何配置 highlight js <strong> [请见这里](http://highlightjs.org/usage/)。</strong>
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter_opts:
+    disable: true
+~~~
 
-<pre class="prettyprint lang-html">
-&lt;pre class="prettyprint lang-html"&gt;
-  The lang-* class specifies the language file extensions.
-  File extensions supported by default include
-    "bsh", "c", "cc", "cpp", "cs", "csh", "cyc", "cv", "htm", "html",
-    "java", "js", "m", "mxml", "perl", "pl", "pm", "py", "rb", "sh",
-    "xhtml", "xml", "xsl".
-&lt;/pre&gt;
-</pre>
+范例是初学别吐槽。
+
+```haskell
+
+module Sieve (primesUpTo) where
+
+primesUpTo n
+  | n < 2 = []
+  | otherwise = reverse $ aid2 ([2], [3,5..n])
+
+
+aid2 (p,remain) = if null remain then
+                    p
+                  else
+                    aid2 (aid p remain)
+
+-- aid [3,2] [5,7,...] = [5,3,2] [7,...]
+aid :: [Integer] -> [Integer] -> ([Integer], [Integer])
+aid p n = (pn:p, filter ((/= 0) . (`mod` pn)) n)
+          where pn = head n
+
+```
 
 ### 链接
 
@@ -126,8 +146,6 @@ highlight js 同理，如何配置 highlight js <strong> [请见这里](http://h
 
 <https://www.google.com>  
 [google](https://www.google.com)
-
-<p><s>可惜用&lt;&gt;包含的东西只能用http, https亲测不行。</s> Kramdown解析正常。</p>
 
 <pre><code>![图片链接，这里是alt标签内容](http://www.google.rw/images/srpr/logo4w.png)<br/></code></pre>
 

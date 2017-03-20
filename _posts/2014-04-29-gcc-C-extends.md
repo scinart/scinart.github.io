@@ -2,7 +2,7 @@
 layout: post
 title: "论gcc对C语言各种高大上的扩展"
 date: 2014-04-28
-timestamp: "2014-04-29 12:38:48 scinart"
+timestamp: "2017-03-20 16:30:53 scinart"
 categories: C
 tag: tips
 comments: true
@@ -11,7 +11,7 @@ cc: "by-nc-sa"
 
 ---
 
-<pre class="hljs">
+<pre><code class="c++">
 #include &lt;ctype.h&gt;
 #include &lt;stdio.h&gt;
 
@@ -102,5 +102,5 @@ int main()
 
     return 0;
 }
-</pre>
+</code></pre>
 

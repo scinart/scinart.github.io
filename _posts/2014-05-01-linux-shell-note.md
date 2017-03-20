@@ -2,11 +2,10 @@
 layout: post
 title: "Bash/Zsh Startup Files Loading Order"
 date: 2014-05-01
-timestamp: "2014-05-01 14:37:57 scinart"
+timestamp: "2017-03-20 16:36:17 scinart"
 categories: linux
 tag: note
 comments: false
-toc: false
 cc: "by-nc-sa"
 
 ---
