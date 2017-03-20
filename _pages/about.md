@@ -28,7 +28,8 @@ code {
 </hidden>
 
 <p class="intro">
-博主其人，于上世纪90年代初，因错选hard模式生于天朝。现受业于八里台女子文理学院，专攻修电脑。前途未卜。至于姓名，仅以Scinart O示人。Scinart者，Science & Art 也。
+<s>博主其人，于上世纪90年代初，因错选hard模式生于天朝。现受业于八里台女子文理学院，专攻修电脑。前途未卜。</s>
+至于姓名，仅以Scinart O示人。Scinart者，Science & Art 也。
 </p>
 <hr />
 博主性情随和，并无突出特点，稍作归纳，总结如下： 
@@ -41,6 +42,20 @@ code {
 * 偶尔文艺，听听Mozart
 
 <hr />
+
+<p>
+
+2017-03-20 18:01:13 更新：
+
+* 专心学数学，活一辈子没学数学==白活了。。。
+* 仍然是 Emacs 脑残粉
+* qwerty键盘仇视小组成员
+* 转学Haskell
+* 偶尔文艺，听听Mozart，视唱练耳中。
+
+</p>
+
+
 <p class="intro" style="margin: 0 0 10px;">
 江湖足迹：
 </p>
