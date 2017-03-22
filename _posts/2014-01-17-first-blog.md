@@ -2,7 +2,7 @@
 layout: post
 title:  "第一篇博客看来是Markdown语法的笔记了。"
 date:   2014-01-17 15:30:25
-timestamp: "2017-03-20 14:52:12 scinart"
+timestamp: "2017-03-22 13:41:51 scinart"
 categories: markdown
 comments: true
 toc: true
@@ -120,7 +120,9 @@ kramdown:
 
 ```haskell
 
-module Sieve (primesUpTo) where
+-- this is trial division...
+
+module NotSieve (primesUpTo) where
 
 primesUpTo n
   | n < 2 = []
