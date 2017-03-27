@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2017-03-24 20:23:58 scinart"
+timestamp: "2017-03-27 23:59:15 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -126,7 +126,7 @@ cc: "by-nc-nd"
   * 证：因为P非空，所以令x∈P，由于x是P的极限点(由完全集定义)，P包含无限个点。现假如
         P可数，那么将P的点排成一列x_1, x_2, …，令V_1是x_1的一个邻域，半径为r，在邻域内任取一个点p_2，
         令$$V_2=U(p_2, min(r-d(x_1,p_2), d(x_1,p_2))/2)$$，则$$x_1∉\overline{V_2} ∧ V_2⊂V_1$$，
-		递归，每次保证$$x_i ∉ \overline{V_{i+1}}，得到{V_n}  
+		递归，每次保证$$x_i ∉ \overline{V_{i+1}}$$，得到{V_n}  
         设$$K_n = \overline{V_n}∩P$$，由完全集的定义，P是闭集，则$$K_n$$是闭集，
         由V_n的构造过程，$$\overline{K_n}$$是非空紧集套，由2.36推论，非空紧集套之交非空，
 		然而P中任何一个点$$x_n$$都不属于$$K_{n+1}$$，矛盾。
