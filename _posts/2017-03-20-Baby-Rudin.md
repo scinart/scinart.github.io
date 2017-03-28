@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2017-03-28 00:30:57 scinart"
+timestamp: "2017-03-28 22:31:17 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -181,6 +181,22 @@ cc: "by-nc-nd"
   $$ (U(p,r) \frac{1}{2} \setminus U(p,\frac{1}{4}r)) ∩ E $$可数，等等。
   但是 U(p,r) ∩ E 等于以上的并，可数×可数=可数，与p是凝点矛盾。
 
+  证：$$P=\overline{P}$$这个很trivial，略。
+
+  由以上可知P是完全集。
+
+  再证E中最多有可数个点不在P中
+
+  思路，让每个不在P中的E的点映射到一个有理数，证明每个有理数最多由可数个点映射过来。然后可数×可数=可数
+
+  证：设e∈E, e∉P, 所以存在e的一个邻域只包含E的至多可数个点
+  令q为一有理点，q与e的距离≤r/2，将e映射到q，所以U(q,d(q,e))只包含E的至多可数个点
+  这样我们就建立了一个E→Q的映射，其中Q是有理点集，只要证明∀q∈Q，{q}的原象(不妨设之为无限集)至多可数，  
+  令$$r = \limsup_{p:f(p)=q}{d(p,q)}$$，若r→∞，则q的任意邻域内只包含E的至多可数个点，与P不空矛盾。所以r有限
+  下面证明U(q,r)包含E的至多可数个点。令$$\{r_n\}→r$$，$$r_n$$递增，则$$U(q,r) = \bigcup{U(q,r_n)}$$，所以可数×可数=可数
+  
++ p2.28
++ p2.29
 
 ## 第三章 数列与级数
 
@@ -415,3 +431,82 @@ cc: "by-nc-nd"
   证：见书。  
   其实还是挺intuitive的，因为如果直接对f-P用中值定理，会发现区间不断变小，无法保证(β-α)ⁿ的出现。
   所以只能用f, P, (β-α)ⁿ构成一个新函数，要求在α和β点的值为0
++ 5.19 定理 设$$\mathbf{f}:[a,b]→ℝ^k$$, f在(a,b)内可微，那么$$ ∃x∈(a,b) \,$\, \|\mathbf{f}(b)-\mathbf{f}(a)\|≤(b-a)\|\mathbf{f}'(x)\| $$
+
+  证：令$$\mathbf{z}=\mathbf{f}(b)-\mathbf{f}(a),\,\,ϕ(t) = \mathbf{z ⋅ f}(t)\,\,(a≤t≤b)$$，对$$ϕ(t)$$用中值定理
+
+## 第六章 RIEMANN-STIELTJES 积分
+
++ 6.1 定义 对f是[a,b]上的有界实函数：`Riemann上积分`, `Riemann下积分`, `Riemann可积`，Riemann可积函数集合记为$$\mathscr{R}$$
++ 6.2 定义 对α是[a,b]上的单调递增函数：`Riemann-Stieltjes积分`(简称Stieltjes积分) 记法为$$\int_{a}^{b}{f\text{d}α}$$，$$f ∈\mathscr{R}(α)$$
+
+  评注(by me)：太喜欢这个记法了，之前教科书里的微分记号一点意义都没有。
+  还假装在链式法则里推导，写了一堆看似很好用但是poorly-defined的东西。
++ 6.3 定义 分法的`加细`，`共同加细`
++ 6.4 定理 如果P*是P的加细，那么$$L(P,f,α) ≤ L(P*,f,α),\,\,U(P,f,α) ≥ U(P*,f,α)$$
++ 6.5 定理 $$ \underline{\int_{a}^{b}}f\text{d}α ≤ \overline{\int_{a}^{b}}f\text{d}α $$
++ 6.6 定理 可积等价于∀ε $ ∃P $ U(P,f,α)-L(P,f,α) < ε
++ 6.7 定理 略
++ 6.8 定理 f在[a,b]是连续，则$$ f ∈ \mathscr{R}(α) $$
+  证：由闭区间连续则一致连续易证
++ 6.9 定理 f在[a,b]上单调，α在[a,b]上连续，则$$ f ∈ \mathscr{R}(α) $$
++ 6.10 定理 f在[a,b]上只有有限个间断点，α在断点上连续，则$$ f ∈ \mathscr{R}(α) $$
+  证：用α的连续性，在间断点取很小的区间，把间断点的变化吃掉，剩下的部分f是连续的，用定理6.8
++ 6.11 定理 设在[a,b]上$$f ∈ \mathscr{R}(α),\,m≤f≤M$$, ϕ在[m,M]上连续，在[a,b]上h(x) = ϕ(f(x))，那么在[a,b]上$$h∈\mathscr{R}(α)$$
+  证：思路，由ϕ连续得一致连续，所以∀ε $ ∃ δ $ ϕ在δ区间内的variation小于ε  
+  对于某个分法，如果分法里的max f - min f < δ, 这里区间最后加起来显然 < ε(α(b)-α(a))  
+  对于max f - min f > δ的区间，设ϕ的variation为K, K是max ϕ - min ϕ, 只能让区间长度很小。这通过让U(P,f,α) - L(P,f,α)变小就可以。  
+  设U(P,f,α) - L(P,f,α)为B，则max f - min f > δ的区间长度总和小于B/δ，于是令B = δ*ε/K即可(原证明是令B=δ²，再让δ<ε)，这样最后总长度<ε  
+  这样最后ϕ在这个分法上U和L差了ε(α(b)-α(a)+1)，由ε的任意性，ϕ可积
+
++ 6.12 定理 积分满足加法，数乘，保号，区间可拆，对α满足加法，数乘  
+  specifically $$ f ∈ \mathscr{R}(α_1) ∧ f ∈ \mathscr{R}(α_2) ⇒ f∈\mathscr{R}(α_1+α_2)$$，并且右式的积分值等于左边相加
++ 6.13 定理 在[a,b]上, $$f,g∈\mathscr{R}(α)$$，那么
+  * (a) $$fg ∈ \mathscr{R}(α)$$
+  * (b) $$\vert f\vert∈\mathscr{R}(α)$$且$$\vert \int{f\text{d}α} \vert ≤ \int{\vert f \vert \text{d} α}$$
+
+  证：
+  * (a) 由$$(f+g)^2 - (f-g)^2$$立得
+  * (b) 由f和绝对值函数复合即可。
++ 6.14 定义 单位阶跃函数$$I$$的定义如下，定义(by me)函数$$I_x(t) = I(x-t)$$
+
+  $$I(x) = \begin{cases}0,\,\,x≤0 \\ 1,\,\,x>0\end{cases}$$
++ 6.15 定理 a<s<b, f在s点连续，则
+
+  $$\int_{a}^{b}{f\text{d}I_s} = f(s)$$
++ 6.16 定理 设cₙ≥0, ∑cₙ收敛，{sₙ}是(a,b)内一串不同的点，令
+
+  $$α = \sum_{n=1}^{∞}{c_nI_{s_n}}$$
+
+  则
+
+  $$\int_a^b{f\text{d}α} = \sum_{n=1}^{∞}{c_nf(s_n)}$$
+
++ 6.17 定理 设α单增，在[a,b]上$$α'∈\mathscr{R}$$, f在[a,b]上有界，那么 $$ f ∈ \mathscr{R}(α) ⇔ fα' ∈ \mathscr{R}$$，此时
+
+  $$\int_a^b{f\text{d}α} = \int_a^b{fα'\text{d}x}$$
+
+  评注(by me)：国内高数的换元啊，一般是用微积分基本定理证的，要求f和α'连续，dx记号乱七八糟，太坑啦。
+
+  评注(by me)：从(30)到(31)这个trick我一时竟没反应过来。
+
+  证明本质上是说区间非常小的时候Δα和α'Δx很像，可以用中值定理保证。
+
++ 6.19 定理(换元) 设$$\varphi: [A-B]→[a,b]$$严格单增，在[a,b]上$$f ∈ \mathscr{R}(α)$$，在[A,B]上定义
+
+  $$ \begin{aligned} β(y) &= α(\varphi(y)) \\ g(y) &= f(\varphi(y)) \end{aligned} $$
+
+  那么$$g ∈ \mathscr{R}(β) $$ 而且 $$\int_A^B{g\text{d}β} = \int_a^b{f\text{d}α}$$
+
+  评注(by me)：这个还挺intuitive的，就是本来是f,α，现在[a,b]下边通过$$\varphi$$又加了一层，
+  α的任意分法，由于$$\varphi$$严格单增，β也有一个对应的，所以结论还是挺显然的。
+
+  特殊情形：令$$α(x)=x$$, 则$$β=\varphi$$，将之用于
+
+  $$\int_a^b{f\text{d}α} = \int_a^b{fα'\text{d}x}$$
+
+  有
+
+  $$\int_a^b{f\text{d}x} = \int_A^B{g\text{d}\varphi} = \int_A^B{g\varphi'\text{d}x} = \int_A^B{(f\circ \varphi) \varphi ' \text{d}x}$$
+
+
