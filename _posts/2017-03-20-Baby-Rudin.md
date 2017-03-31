@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2017-03-28 22:31:17 scinart"
+timestamp: "2017-03-31 15:32:30 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -509,4 +509,63 @@ cc: "by-nc-nd"
 
   $$\int_a^b{f\text{d}x} = \int_A^B{g\text{d}\varphi} = \int_A^B{g\varphi'\text{d}x} = \int_A^B{(f\circ \varphi) \varphi ' \text{d}x}$$
 
++ 6.20 定理 设在[a,b]上$$f ∈ \mathscr{R} $$，对于a≤x≤b，令$$F(x) = \int_a^x{f(t)\text{d}t}$$，则F在[a,b]上连续  
+  如果f在x₀∈[a,b]连续，那么F在x₀可微并且$$F'(x_0) = f(x_0)$$
 
+  证：由f可积等到f有界，再由F的定义立得F连续，闭区间有界其实是一致连续。  
+  如果f在x₀连续，可以想像成x₀附近f是平的，那F'(x₀)当然等于f(x₀)
+
++ 6.21 定理(微积分基本定理) 设在[a,b]上$$f ∈ \mathscr{R}$$，且$$F' = f$$，则
+
+  $$\int_a^b{f(x)\text{d}x} = F(b)-F(a)$$
+
+  证：选一个上下界很小的分法：$$U(P,f)-L(P,f)<ε$$，由中值定理，$$∃ t_i ∈ [x_{i-1}, x_i] \,$\, F(x_i)-F(x_{i-1}) = f(t_i)Δx_i $$，全加起来即可。
+
++ 6.22 定理(分部积分)，设F和G是[a,b]上的可微函数，$$ F'=f ∈ \mathscr{R}, G'=g∈\mathscr{R}$$，则
+
+  $$\int_a^b{F(x)g(x)\text{d}x} = F(b)G(b) - F(a)G(a) - \int_a^b{f(x)G(x)\text{d}x}$$
+
+  由$$H(x)=F(x)G(x)$$可得，注意到闭区间可微意味着连续(5.2)，闭区间连续意味着可积(6.8)，微分和积分都满足加法和乘法
+
++ 6.23 定义，向量值函数和积分，$$f:[a,b]→ℝ^k$$，如果每个分量都可积。
+
+  向量值函数的积分满足加法，数乘，区间可拆，对α满足加法，数乘  
+  也满足换元，微积分基本定理。这些都是逐项满足的所以整体满足的。
+
++ 6.25 定理 6.13(b)变形
+
+  $$\vert \mathbf{f} \vert∈\mathscr{R}(α)$$且$$\vert \int_a^b{ \mathbf{f}\text{d}α} \vert ≤ \int_a^b{\vert \mathbf{f} \vert \text{d} α}$$
+
+  其中
+
+  $$ \vert \mathbf{f} \vert = (f_1^2 + ⋯ + f_k^2)^{1/2}$$
+
+  证：由$$ \vert \mathbf{f} \vert $$定义，它可积。从意义上看，$$ \vert \mathbf{f} \vert $$是f在每一点的切线的导数。由定(zhí)理(jué)6.27得知，$$\int_a^b{\vert \mathbf{f} \vert \text{d} x}$$是曲线长度，证明肯定是构造施瓦茨不等式，抄书如下：
+
+  设 $$\mathbf{y} = \int_a^b{\vert \mathbf{f} \vert \text{d} α}$$，于是$$\vert \mathbf{y} \vert^2 = \sum{y_i^2} = \sum{y_i (\int{f_i\text{d}α})} = \int{(\sum{y_jf_j})\text{d}α}$$
+
+  由Schwarz不等式，$$\sum{y_jf_j(t)} ≤ \vert \mathbf{y} \vert \vert \mathbf{f}(t) \vert,\,\,t ⊂ [a,b]$$
+
+  由积分保号性，就有
+
+  $$ \vert \mathbf{y} \vert ^ 2 ≤ \vert \mathbf{y} \vert \int{\vert \mathbf{f} \vert \text{d} α}$$
+
++ 6.26 定义 将$$γ: [a,b]→ℝ^k$$叫做$$ℝ^k$$里的`曲线`，也可以说$$γ$$是$$[a,b]$$上的曲线
+  * 如果γ是一对一的，就叫`弧`
+  * 如果γ(a)=γ(b)，就叫`闭曲线`
+
+  对曲线的某个分法P, 令
+
+  $$ Λ(P, γ) = \sum_{i=1}^{n}{\vert γ(x_i) - γ(x_{i-1}) \vert}$$
+
+  即：用折线逼近，定义 $$ Λ(γ) = \sup_P{Λ(P,γ)}$$，如果$$ Λ(γ) < ∞$$就说$$γ$$是`可求长的`
+
++ 6.27 定理 若γ'在[a,b]上连续，则γ是可求长的，且
+
+  $$Λ(γ) = \int_a^b{\vert γ'(t) \vert\text{d}t}$$
+
+  证：$$Λ(γ) ≤ \int_a^b{\vert γ'(t) \vert\text{d}t}$$可以由6.25推出来。
+
+  $$ Λ(γ) ≥ \int_a^b{\vert γ'(t) \vert\text{d}t} - ε $$
+  可以由6.25推出来。：当分法足够小时，可以用中值定理逼近，
+  由闭区间连续就一致连续，推出用中值定理逼近是可以任意充分的。
