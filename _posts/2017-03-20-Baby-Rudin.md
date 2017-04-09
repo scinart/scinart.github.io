@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2017-04-05 21:45:13 scinart"
+timestamp: "2017-04-10 00:44:29 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -707,7 +707,10 @@ cc: "by-nc-nd"
   证：设[a,b]=[0,1]，再设g(0) = g(1) = 0，然后让g与一个趋向于δ函数的多项式做卷积
 
   [这篇文章](http://web.math.sinica.edu.tw/math_media/d223/22302.pdf)([缓存](/pdfs/22302.pdf))里第三部分写的比卢丁明白些  
-  （在此我不得不吐槽卢丁的书越到后来越不好好写了，省略的东西越来越多([例子](http://math.stackexchange.com/questions/1701175/partitions-of-unity-from-pma-rudin))）。
+
+  <!-- （在此我不得不吐槽卢丁的书越到后来越不好好写了，省略的东西越来越多([例子](http://math.stackexchange.com/questions/1701175/partitions-of-unity-from-pma-rudin))）。 -->
+  <!-- 被baba鄙视了again -->
+  <!-- 我觉得baba不会看源码的。 -->
 
 + 7.28 等(Stone-Weierstrass定理)
 
@@ -724,3 +727,129 @@ cc: "by-nc-nd"
 + 8.8 定理(代数基本定理)
 
 证明思路应该是这样的(我改编过)，先令$$μ = \inf \vert P(z) \vert$$，再在$$μ$$周围去很小的一个变化量$$δ$$，使$$δ$$的高次方忽略不计，最底次方的方向使$$\vert P(z) \vert$$再变小，于是矛盾。
+
+## 第九章
+
++ 9.1 定义 非空集$$X ∈ ℝ^n $$且对加法和数乘封闭则被称为`向量空间`，`线性组合`，`生成`，`线性相关`，向量空间的`维度`，`基`，`标准基`
++ 9.2 定理 若向量空间$$X$$可以由$$r$$个向量生成，则$$\dim{X} ≤ r$$
++ 9.3 定理 设$$X$$为向量空间，$$\dim X = n$$
+  1. (a) $$X$$中$$n$$个向量的集$$E$$能生成$$X$$ ⇔ $$E$$是无关的
+  2. (b) $$X$$必有基，每个基由n个向量组成
+  3. (c) 若$$1≤r≤n$$，而$$\{\mathbf{y}_1, ⋯, \mathbf{y}_n\}$$是$$X$$中的一个无关集，则$$X$$中必有$$\{\mathbf{y}_1, ⋯, \mathbf{y}_n\}$$包含的基
++ 9.4 定义 向量空间$$X$$到向量空间$$Y$$的一个映射`线性变换`，$$X$$到$$X$$的线性变换叫`线性算子`，
+  一个线性算子是一一映射等价于它把$$X$$映满X，这种情况下把它叫做`可逆的`
++ 9.5 定理 一个线性算子是一一映射等价于它把$$X$$映满X
++ 9.6 定义 $$L(X,Y)$$是$$X→Y$$的所有线性变换的集，$$L(X,X)$$简写为$$L(X)$$，若$$A_1, A_2 ∈ L(X,Y)$$，$$c_1, c_2$$是标量，
+  定义$$c_1A_1 + c_2A_2$$为
+
+  $$(c_1A_1 + c_2A_2)\mathbf{x} = c_1A_1\mathbf{x} + c_2A_2\mathbf{x},\,\, x ∈ X$$
+
+  定义$$BA$$为
+
+  $$(BA)x = B(Ax),\,\,x∈X$$
+
+  定义$$\|A\|$$为
+
+  $$\sup_{\vert \mathbf{x} \vert ≤ 1}{\vert A\mathbf{x} \vert}$$
+
+  注意到
+
+  $$∀x∈R^n,\,\,\vert Ax \vert ≤ \|A\|\vert x\vert $$
+
+  其实这个定义就是2范数，补充材料见[矩陣範數](https://ccjou.wordpress.com/2010/05/10/%E7%9F%A9%E9%99%A3%E6%A8%A1/)
+
++ 9.7 定理
+  1. (a) 若$$A ∈ L(R^n, R^m)$$，则$$\|A\|<∞$$且$$A$$为一致连续映射
+  2. (b) 若$$A,B ∈ L(R^n, R^m)$$，$$c$$为标量，则
+
+    $$ \|A+B\|≤\|A\|+\|B\|,\,\, \|cA\|=\vert c\vert \|A\|$$
+
+    以$$\|A-B\|$$为度量，则$$L(R^n, R^m)$$是一个度量空间
+  3. (c) 若$$A ∈ L(R^n, R^m), \,\,B ∈ L(R^m, R^k)$$，则
+
+    $$ \|BA\|≤\|B\|\|A\|$$
++ 9.8 设$$Ω$$为$$R^n$$上可逆线性算子的集
+  1. (a) 若$$A ∈ Ω, \,\,B∈L(R^n),\,\,\|B-A\|⋅\|A^{-1}\| < 1 $$，则$$B ∈ Ω$$
+  2. (b) $$Ω$$是$$L(R^n)$$的开子集，$$f(A) = A^{-1},\,\,A ∈ Ω$$连续
+
+  吐槽(by me)，卢丁你多写一句intuition会死啊。
+
+  观察(by me)：这个intuition是这样的，如果B和A充分接近，换句话说就是$$\| B - A \|$$很小，
+  小到什么程度呢，$$B-A$$的最大奇异值比$$A$$的最小奇异值还小，那么显然$$(B-A)x$$没有办法把$$Ax$$变成0
+  就是说$$B$$没办法走出$$A$$可逆的影子。第二个证明的本质上是说若$$B$$充分接近$$A$$，则$$B^{-1}$$充分接近$$A^{-1}$$
+
+  证明：见书
++ 9.9 定义 终于把线性映射和通常意义的矩阵等价起来了
++ 9.11 定义 $$f:E→R^m,\,\,E ⊂R^n\text{ 是开集}$$，定义`可微`
++ 9.12 定理 可微矩阵唯一
++ 9.15 定理 可微函数可复合且结果等于矩阵乘
++ 9.16 定义 `偏导数`，记号 $$\frac{∂f_i}∂{x_j}$$也记为$$D_jf_i$$
+
+  $$ (D_jf_i)(\mathbf{x}) = \lim_{t→0}{\frac{f_i(\mathbf{x} + t\mathbf{e}_j) - f_i(\mathbf{x})}{t}} $$
+
+  其中 $$f_i(\mathbf{x}) = \mathbf{f}(\mathbf{x}) ⋅ \mathbf{u}_i$$，u是值空间的标准基
++ 9.17 定理 若导数存在则各个偏导数存在且
+
+  $$ D_jf_i(x) = f'(x) \text{的第i行第j列} $$
++ 9.19 定理 设$$f$$把凸开集$$E⊂R^n$$映入$$R^m$$内，$$f$$在$$E$$内可微且$$\| f'(x) \| ≤ M$$，则
+
+  $$ \vert \mathbf{f}(\mathbf{b}) - \mathbf{f}(\mathbf{a}) \vert ≤ M \vert \mathbf{b} - \mathbf{a} \vert $$
+
+  证：令$$\mathbf{g}(t) = \mathbf{f}((1-t)\mathbf{a}+t\mathbf{b})就可以了
++ 9.20 定义，如果f'是连续的，则称f是连续可微的，也称f是$$\mathscr{C}'$$映射，或者$$\mathbf{f} ∈ \mathscr{C}'(E)$$(E是定义域)
++ 9.21 定理 $$\mathbf{f} ∈ \mathscr{C}'(E)$$ ⇔ f的所有偏导数存在并连续
+
+  观察：$$L(R^n, R^m)$$与$$ℝ^{n×m}$$完全是一一对应，我们考虑$$ℝ^{n×m}$$就好了。
+
+  此处傻逼了，矩阵距离是$$\|A-B\|$$让我当成\|A\|-\|B\|了，想了半天。
+
+  这个问题的本质是矩阵的范数很小等价于矩阵的每个元素很小。  
+  正向，若范数很小，随意代入一个标准基，$$Au_i$$的每个分向都很小(由范数很小的定义)，所以每个元素都很小  
+  反向，显然啊。
+
++ 9.22 定义 凝缩函数, φ:X→X, c<1, ∀x,y∈X d(φ(x), φ(y)) ≤ cd(x,y)
++ 9.23 定理(不动点定理) 若X是完备度量空间，φ:X→X是凝缩函数，则存在唯一不动点
+
+  证明，比较trivial，略
+
++ 9.24 定理(反函数定理) 设$$\mathbf{f}$$是把开集 $$E⊂R^n$$映入 $$R^n$$内的$$\mathscr{c}'$$映射，对某个$$\mathbf{a}∈E$$
+  $$\mathbf{f}'(\mathbf{a})$$可逆，且$$\mathbf{b} = \mathbf{f}(\mathbf{a})$$，则
+  1. (a) 在$$R^n$$内存在开集U,V，使得$$\mathbf{a}∈U,\,\,\mathbf{b}∈V,\,\,\mathbf{f}\text{在}U$$上是一一的，并且$$\mathbf{f}(U)=V$$
+  2. (b) 在V上设$$\mathbf{g}(\mathbf{f}(\mathbf{x})) = \mathbf{x}$$，则$$\mathbf{g}∈\mathscr{C}'(V)$$
+
+  证：
+
+  $$ A := \mathbf{f}'(a) \\
+     λ := \frac{\|A\|}{2} \\
+     U := \text{以}a\text{为中心的开球且}\|f'(\mathbf{x})-A\|<λ,\,\,(\mathbf{x}∈U) \\
+     φ_\mathbf{y}(\mathbf{x}) := \mathbf{x} + A^{-1}(\mathbf{y}-\mathbf{f}(\mathbf{x})),\,\,(x∈E,\,y∈R^n) \\
+     \mathbf{f}(\mathbf{x})=\mathbf{y} ⇔ \mathbf{x}\text{是}φ_\mathbf{y}\text{的不动点} \\
+     φ'(\mathbf{x}) = I - A^{-1}\mathbf{f}'(\mathbf{x}) = A^{-1}(A-\mathbf{f}'(\mathbf{x})) \\
+     \|φ'(x)\| ≤ \frac{1}{2},\,\,(x∈U) \\
+     \text{于是}φ\text{是凝缩函数，于是只有一个不动点，于是}\mathbf{f}\text{是一一的。}
+  $$
+
+  令$$V=\mathbf{f}(U)$$，下面证$$V$$是开集，思路：任取$$\mathbf{y}_0∈V$$，
+  于是有一个$$\mathbf{x}_0 ∈ U$$满足$$\mathbf{y}_0=\mathbf{f}(\mathbf{x}_0)$$
+  只要证明对于$$\mathbf{y}$$，如果$$\mathbf{y}$$与$$\mathbf{y}_0$$很接近，就有$$\mathbf{y} ∈ V$$，就证明了$$V$$是开集。
+
+  那么要多接近才行呢。只要接近到让原象在U的内部就行了，所以只要考虑象中的两个点，原象中最远距离可能是多远。
+  这就是1/σₙ，也就是之上λ代表的意义。
+
+  但是证明的别的部分的intuition还没太看懂，有空好好看下，先抄下来。
+
+  $$
+    \mathbf{y}_0 :∈ V \\
+    \mathbf{x}_0 :∈ U \text{ such that } \mathbf{y}_0=\mathbf{f}(\mathbf{x}_0) \\
+    B := U(\mathbf{x}_0, r) \text{ such that } \overline{B} ⊂ U \\
+    \text{下面证 } \vert \mathbf{y}-\mathbf{y}_0 \vert < λr ⇒ \mathbf{y} ∈ V \\
+    \text{对于某个}))y,\,\,\vert \mathbf{y}-\mathbf{y}_0 \vert < λr,\,\,\vert φ_\mathbf{y}(\mathbf{x}_0) - \mathbf{x}_0 \vert = \vert A^{-1}(\mathbf{y}-\mathbf{y}_0) \vert < \| A^{-1} \|λr = \frac{r}{2} \\
+  $$
+  
+  $$ \begin{align} x ∈ \overline{B} ⇒ \vert φ(\mathbf{x}) - \mathbf{x}_0 \vert &≤ \vert φ(\mathbf{x}) - φ(\mathbf{x}_0) \vert + \vert φ(\mathbf{x}_0) - \mathbf{x}_0 \vert \\ &< \frac{1}{2} \vert \mathbf{x}-\mathbf{x}_0 \vert + \frac{r}{2} ≤ r \end{align} $$
+
+  于是$$φ$$是$$\overline{B}$$是的凝缩函数，由不动点定理，有$$\mathbf{x} ∈ \overline{B}$$使得$$\mathbf{f}(\mathbf{x})=\mathbf{y}$$，于是$$\mathbf{y}∈V$$
+
+  反函数定理 (b) ...
+
++ 9.25 隐函数定理
