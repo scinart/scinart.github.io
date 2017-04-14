@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2017-04-10 00:44:29 scinart"
+timestamp: "2017-04-14 20:39:11 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -817,38 +817,71 @@ cc: "by-nc-nd"
   1. (a) 在$$R^n$$内存在开集U,V，使得$$\mathbf{a}∈U,\,\,\mathbf{b}∈V,\,\,\mathbf{f}\text{在}U$$上是一一的，并且$$\mathbf{f}(U)=V$$
   2. (b) 在V上设$$\mathbf{g}(\mathbf{f}(\mathbf{x})) = \mathbf{x}$$，则$$\mathbf{g}∈\mathscr{C}'(V)$$
 
+  废话(by me):
+
+  想了好久，终于把(a)的intuition想懂了。证明的记号非常混乱，被我重新排版过，思路在这儿好好写写，然后再慢慢更新。
+
+  这个证明的关键在于函数$$φ_\mathbf{y}(\mathbf{x}) := \mathbf{x} + A^{-1}(\mathbf{y}-\mathbf{f}(\mathbf{x}))$$，
+  这里$$\mathbf{y}$$是某确定的值，是常数，$$\mathbf{x}$$是参数，这就很不人道了。卢丁的书里连下标都省了。  
+  我觉得写法应该是这样，(注：以下的x和y均在a,b附近)：
+
+  $$φ_{\mathbf{y}_c}(\mathbf{x}) := \mathbf{x} + A^{-1}(\mathbf{y}_c-\mathbf{f}(\mathbf{x})),\,\,\text{其中}\mathbf{y}_c\text{表示某个}\mathbf{y},\,\,c\text{表示const}$$
+
+  现在设$$\mathbf{y}=\mathbf{f}(\mathbf{x})$$，代入上式，得到
+
+  $$ \begin{align} φ_{\mathbf{y}_c}(\mathbf{x}) &= \mathbf{x} + A^{-1}(\mathbf{y}_c-\mathbf{y}) \\
+                                              &≈ \mathbf{x} + \mathbf{x}_c-\mathbf{x} ≈ \mathbf{x}_c \end{align}$$
+
+  它还有个很好的性质，就是$$φ_{\mathbf{y}_c}'(\mathbf{x}) = I - A^{-1}\mathbf{f}'(\mathbf{x}) ≈ 0 $$
+
+  证明第一步是让$$\|φ_{\mathbf{y}_c}'(x)\| ≤ \frac{1}{2}$$，
+  于是有$$\vert φ_{\mathbf{y}_c}(\mathbf{x}_1) - φ_{\mathbf{y}_c}(\mathbf{x}_2) \vert  ≤ \frac{1}{2} \vert \mathbf{x}_1 - \mathbf{x}_2 \vert $$，
+  若$$\mathbf{y}$$有两个原象，则有$$\vert φ_{\mathbf{y}_c}(\mathbf{x}_1) - φ_{\mathbf{y}_c}(\mathbf{x}_2) \vert = \vert \mathbf{x}_1 - \mathbf{x}_2 \vert ≤ \frac{1}{2} \vert \mathbf{x}_1 - \mathbf{x}_2 \vert $$，产生矛盾。
+
+
   证：
 
   $$ A := \mathbf{f}'(a) \\
      λ := \frac{\|A\|}{2} \\
      U := \text{以}a\text{为中心的开球且}\|f'(\mathbf{x})-A\|<λ,\,\,(\mathbf{x}∈U) \\
-     φ_\mathbf{y}(\mathbf{x}) := \mathbf{x} + A^{-1}(\mathbf{y}-\mathbf{f}(\mathbf{x})),\,\,(x∈E,\,y∈R^n) \\
-     \mathbf{f}(\mathbf{x})=\mathbf{y} ⇔ \mathbf{x}\text{是}φ_\mathbf{y}\text{的不动点} \\
-     φ'(\mathbf{x}) = I - A^{-1}\mathbf{f}'(\mathbf{x}) = A^{-1}(A-\mathbf{f}'(\mathbf{x})) \\
-     \|φ'(x)\| ≤ \frac{1}{2},\,\,(x∈U) \\
-     \text{于是}φ\text{是凝缩函数，于是只有一个不动点，于是}\mathbf{f}\text{是一一的。}
+     φ_{\mathbf{y}_c}(\mathbf{x}) := \mathbf{x} + A^{-1}(\mathbf{y}_c-\mathbf{f}(\mathbf{x})),\,\,(\mathbf{x}∈E,\,\mathbf{y}_c∈R^n) \\
+     \mathbf{f}(\mathbf{x}_c)=\mathbf{y}_c ⇔ \mathbf{x}_c\text{是}φ_{\mathbf{y}_c}\text{的不动点} \\
+     φ_{\mathbf{y}_c}'(\mathbf{x}) = I - A^{-1}\mathbf{f}'(\mathbf{x}) = A^{-1}(A-\mathbf{f}'(\mathbf{x})) \\
+     \|φ_{\mathbf{y}_c}'(x)\| ≤ \frac{1}{2},\,\,(x∈U) \\ 
+     \text{于是由定理9.19 } \vert φ_{\mathbf{y}_c}(\mathbf{x}_1) - φ_{\mathbf{y}_c}(\mathbf{x}_2) \vert  ≤ \frac{1}{2} \vert \mathbf{x}_1 - \mathbf{x}_2 \vert \\
+	 \text{于是，这个}\mathbf{y}_c\text{，至多有一个原象，由}\mathbf{y}_c\text{的任意性，}\mathbf{f}\text{是一一的。}
   $$
 
   令$$V=\mathbf{f}(U)$$，下面证$$V$$是开集，思路：任取$$\mathbf{y}_0∈V$$，
   于是有一个$$\mathbf{x}_0 ∈ U$$满足$$\mathbf{y}_0=\mathbf{f}(\mathbf{x}_0)$$
   只要证明对于$$\mathbf{y}$$，如果$$\mathbf{y}$$与$$\mathbf{y}_0$$很接近，就有$$\mathbf{y} ∈ V$$，就证明了$$V$$是开集。
 
-  那么要多接近才行呢。只要接近到让原象在U的内部就行了，所以只要考虑象中的两个点，原象中最远距离可能是多远。
-  这就是1/σₙ，也就是之上λ代表的意义。
+  要想证$$\mathbf{y} ∈ V$$，只能通过压缩不动点定理把它找到。设$$B = U(\mathbf{x}_0, r),\,\overline{B} ⊂ U$$
 
-  但是证明的别的部分的intuition还没太看懂，有空好好看下，先抄下来。
+  我们想像中，当$$\mathbf{y}_c→\mathbf{y}_0$$时，就有$$\mathbf{x}_c ∈ \overline{B}$$使$$\mathbf{y}_c = f(\mathbf{x}_c)$$
+ 
+  我们已经有 $$ \vert φ_{\mathbf{y}_c}(\mathbf{x}_0) - φ_{\mathbf{y}_c}(\mathbf{x}) \vert  ≤ \frac{1}{2} \vert \mathbf{x}_0 - \mathbf{x} \vert $$
+
+  也有 $$ \vert φ_{\mathbf{y}_c}(\mathbf{x}) - \mathbf{x}_0 \vert ≤ \vert φ_{\mathbf{y}_c}(\mathbf{x}) - φ_{\mathbf{y}_c}(\mathbf{x}_0) \vert + \vert φ_{\mathbf{y}_c}(\mathbf{x}_0) - \mathbf{x}_0 \vert $$
+
+  只需让$$\vert φ_{\mathbf{y}_c}(\mathbf{x}_0) - \mathbf{x}_0 \vert$$很小，就可以让$$φ_{\mathbf{y}_c}$$在$$\overline{B}$$上是凝缩函数，从而一定有不动点。
+
+
+  证：
 
   $$
     \mathbf{y}_0 :∈ V \\
     \mathbf{x}_0 :∈ U \text{ such that } \mathbf{y}_0=\mathbf{f}(\mathbf{x}_0) \\
     B := U(\mathbf{x}_0, r) \text{ such that } \overline{B} ⊂ U \\
-    \text{下面证 } \vert \mathbf{y}-\mathbf{y}_0 \vert < λr ⇒ \mathbf{y} ∈ V \\
-    \text{对于某个}))y,\,\,\vert \mathbf{y}-\mathbf{y}_0 \vert < λr,\,\,\vert φ_\mathbf{y}(\mathbf{x}_0) - \mathbf{x}_0 \vert = \vert A^{-1}(\mathbf{y}-\mathbf{y}_0) \vert < \| A^{-1} \|λr = \frac{r}{2} \\
+    \text{下面证对于某个}\mathbf{y}_c,\,\, \vert \mathbf{y}_c-\mathbf{y}_0 \vert < λr ⇒ \mathbf{y}_c ∈ V \\
+	\vert φ_{\mathbf{y}_c}(\mathbf{x}_0) - \mathbf{x}_0 \vert = \vert \mathbf{x}_0 + A^{-1}(\mathbf{y}_c - \mathbf{f}(\mathbf{x}_0)) - \mathbf{x}_0 \vert = \vert A^{-1}(\mathbf{y}_c-\mathbf{y}_0) \vert < \| A^{-1} \|λr = \frac{r}{2} \\
   $$
   
-  $$ \begin{align} x ∈ \overline{B} ⇒ \vert φ(\mathbf{x}) - \mathbf{x}_0 \vert &≤ \vert φ(\mathbf{x}) - φ(\mathbf{x}_0) \vert + \vert φ(\mathbf{x}_0) - \mathbf{x}_0 \vert \\ &< \frac{1}{2} \vert \mathbf{x}-\mathbf{x}_0 \vert + \frac{r}{2} ≤ r \end{align} $$
+  $$ \begin{align} x ∈ \overline{B} ⇒ \vert φ_{\mathbf{y}_c}(\mathbf{x}) - \mathbf{x}_0 \vert &≤ \vert φ_{\mathbf{y}_c}(\mathbf{x}) - φ_{\mathbf{y}_c}(\mathbf{x}_0) \vert + \vert φ_{\mathbf{y}_c}(\mathbf{x}_0) - \mathbf{x}_0 \vert \\ &< \frac{1}{2} \vert \mathbf{x}-\mathbf{x}_0 \vert + \frac{r}{2} ≤ r \end{align} $$
 
-  于是$$φ$$是$$\overline{B}$$是的凝缩函数，由不动点定理，有$$\mathbf{x} ∈ \overline{B}$$使得$$\mathbf{f}(\mathbf{x})=\mathbf{y}$$，于是$$\mathbf{y}∈V$$
+  于是$$x ∈ \overline{B} ⇒ φ_{\mathbf{y}_c}(x) ∈ \overline{B}$$，
+  注意到$$\vert φ_{\mathbf{y}_c}(\mathbf{x}_1) - φ_{\mathbf{y}_c}(\mathbf{x}_2) \vert  ≤ \frac{1}{2} \vert \mathbf{x}_1 - \mathbf{x}_2 \vert$$在$$U$$上成立，$$\overline{B} ⊂ U$$，于是在$$\overline{B}$$上也成立。
+  于是$$\overline{B}$$是的凝缩函数，由不动点定理，有$$\mathbf{x}_c ∈ \overline{B}$$使得$$\mathbf{f}(\mathbf{x}_c)=\mathbf{y}_c$$，于是$$\mathbf{y}_c∈V$$
 
   反函数定理 (b) ...
 
