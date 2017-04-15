@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2017-04-14 20:39:11 scinart"
+timestamp: "2017-04-15 18:32:59 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -812,6 +812,8 @@ cc: "by-nc-nd"
 
   证明，比较trivial，略
 
+#### 反函数定理
+
 + 9.24 定理(反函数定理) 设$$\mathbf{f}$$是把开集 $$E⊂R^n$$映入 $$R^n$$内的$$\mathscr{c}'$$映射，对某个$$\mathbf{a}∈E$$
   $$\mathbf{f}'(\mathbf{a})$$可逆，且$$\mathbf{b} = \mathbf{f}(\mathbf{a})$$，则
   1. (a) 在$$R^n$$内存在开集U,V，使得$$\mathbf{a}∈U,\,\,\mathbf{b}∈V,\,\,\mathbf{f}\text{在}U$$上是一一的，并且$$\mathbf{f}(U)=V$$
@@ -883,6 +885,39 @@ cc: "by-nc-nd"
   注意到$$\vert φ_{\mathbf{y}_c}(\mathbf{x}_1) - φ_{\mathbf{y}_c}(\mathbf{x}_2) \vert  ≤ \frac{1}{2} \vert \mathbf{x}_1 - \mathbf{x}_2 \vert$$在$$U$$上成立，$$\overline{B} ⊂ U$$，于是在$$\overline{B}$$上也成立。
   于是$$\overline{B}$$是的凝缩函数，由不动点定理，有$$\mathbf{x}_c ∈ \overline{B}$$使得$$\mathbf{f}(\mathbf{x}_c)=\mathbf{y}_c$$，于是$$\mathbf{y}_c∈V$$
 
-  反函数定理 (b) ...
+  反函数定理 (b) 
 
-+ 9.25 隐函数定理
+  下面证$$\mathbf{g}∈\mathscr{C}'(V)$$
+
+  取$$\mathbf{y}_c ∈ V,\,\,\mathbf{y}_c+\mathbf{k}∈V$$，于是有$$\mathbf{x}_c∈U,\,\,\mathbf{x}_c+\mathbf{h}∈U$$，使
+  $$\mathbf{y}_c=\mathbf{f}(\mathbf{x}_c), \mathbf{y}_c+\mathbf{k}=\mathbf{f}(\mathbf{x}_c+\mathbf{h})$$成立。
+  设$$\mathbf{f}'(\mathbf{x}_c)$$的逆为$$T$$，则
+
+  $$\mathbf{g}(\mathbf{y}_c+\mathbf{k})-\mathbf{g}(\mathbf{y}_c)-T\mathbf{k} = \mathbf{h}-T\mathbf{k} = T\mathbf{f}'(\mathbf{x}_c)\mathbf{h} - T(\mathbf{f}(\mathbf{x}_c+\mathbf{h})-\mathbf{f}(\mathbf{x}_c)) $$
+
+  于是 $$ \frac{ \vert \mathbf{g}(\mathbf{y}_c+\mathbf{k})-\mathbf{g}(\mathbf{y}_c)-T\mathbf{k} \vert }{\vert \mathbf{k} \vert} ≤ \frac{1}{\vert \mathbf{k} \vert} \| T \| \vert \mathbf{f}(\mathbf{x}+\mathbf{h})-\mathbf{f}(\mathbf{x})-\mathbf{f}'(\mathbf{x})\mathbf{h} \vert$$
+
+  接下来只要证$$\mathbf{h}< \text{some }\mathbf{k}$$即可。
+
+  $$ \vert φ(\mathbf{x}+\mathbf{h}) - φ(\mathbf{x}) \vert = \vert \mathbf{h} + A^{-1}(\mathbf{f}(\mathbf{x})-\mathbf{f}(\mathbf{x}+\mathbf{h})) \vert = \vert \mathbf{h} - A^{-1}\mathbf{k} \vert≤ \frac{1}{2} \vert \mathbf{h} \vert$$
+
+  其中最后一个不等号是由φ的性质($$\|φ_{\mathbf{y}_c}'(x)\| ≤ \frac{1}{2},\,\,(x∈U)$$)导出的。
+
+  于是$$\vert A^{-1}\mathbf{k} \vert ≥ \frac{1}{2} \vert \mathbf{h} \vert$$
+
+  于是我们证明了$$\mathbf{g}'(\mathbf{y}_c) = T$$
+
+  于是有$$\mathbf{g}'(\mathbf{y}) = (\mathbf{f}'(\mathbf{g}(\mathbf{y})))^{-1}$$，
+  但注意到不论是g，还是f'(注意这是证明中唯一用到条件$$\mathbf{f} ∈ \mathscr{C}'(E)$$的地方，换句话说其他都是局部性质，但要想推出$$\mathbf{g} ∈ \mathscr{C}'(V)$$，就要f'在一个小开区间上有更好的性质。)，还是$$()^{-1}$$都是连续映射，所以$$\mathbf{g} ∈ \mathscr{C}'(V)$$
+
++ 9.25 定理(反函数定理part (a)直接推论) 如果$$\mathbf{f}$$是开集$$E⊂R^n$$到$$R^n$$内的$$\mathscr{C}'$$映射，$$\mathbf{f}'(\mathbf{x})$$在每个$$\mathbf{x}∈E$$可逆，那么对于每个开集$$W⊂E,\,\,\mathbf{f}(W)$$是$$R^n$$的开子集。
+
+  由反函数定理part (a)，任意$$\mathbf{y}∈\mathbf{f}(W)$$都是内点。
+
+#### 隐函数定理
+
+  看懂了，不想抄了，证明不难，记号稍微有点混乱。理解一下就可以。
+
+## 完结撒花
+
+别的证明先不看了，第十章和第十一章实在适合单独找书看，后续也许补补习题吧。
