@@ -9,10 +9,13 @@ layout: home
 
 <p style="text-align: right"> -- 《死亡诗社》台词 </p>
 
-每次大版本升级都要折腾一下，折腾中。。
+<s>每次大版本升级都要折腾一下，折腾中。。</s>
 
-此处应该是自我介绍，或者是博客介绍什么的。  
-想好了，以后写。
+2017年6月以来正式切换到opensuse，不折腾了。
+
+    sudo zypper install ruby2.4-rubygem-jekyll
+    sudo gem install minima jekyll-feed
+    jekyll serve --watch --incremental
 
 还有以前的数学文章不太好，都删了，回头重新整理一下。
 
@@ -22,8 +25,5 @@ layout: home
 
 [Mandelbrot Set](http://en.wikipedia.org/wiki/Mandelbrot_set)是最好看的图案了吧。
 
-<p>关于我，请见<a href="about.html">ABOUT ME.</a></p>
+<s><p>关于我，请见<a href="about.html">ABOUT ME.</a></p></s>
 
-升级博客中(from jekyll 2 to jekyll 3)，以下链接暂时失效 
-<s><p>文章列表，请见<a href="archive.html">Archive.</a></p></s>
-<s><p>文章分类浏览：<a href="categories.html">Categories.</a></p></s>
