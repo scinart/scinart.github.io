@@ -2,7 +2,7 @@
 layout: post
 title: "CH analysis 笔记"
 date: 2017-04-24
-timestamp: "2017-11-02 21:18:29 scinart"
+timestamp: "2017-11-03 22:56:00 scinart"
 categories: Math
 comments: true
 visibility: false
@@ -318,3 +318,22 @@ cc: "by-nc-nd"
 + 1.2.10 引理 闭集可测
 
   证明，容易将闭集表示成闭紧集的并，再由紧集可测及可测集的可数并可测可得。
+
++ 1.2.11 定理 (Closure Under Complements) 可测集的补集可测
+
+  证明，见书，大意是，设$$E$$可测，令开集 $$ \lvert U_k \setminus E \rvert < 1/k $$，$$ U $$ 的补与$$ E $$的补相差任意小，所以将$$ E $$的补集为U的补的并与一测度为0的集，所以E的补可测。
+
++ 1.2.12 推论 (Closure Under Countable Intersections) 可数可测的交可测
+
+  由可数可测集的并可测及可测集的补集可测可得
+
++ 1.2.13 推论 (Closure Under Relative Complements) 两个可测集的差集可测
+
++ 1.2.14 定义 (Sigma Algebra) Σ代数
+
+  称 $$ Σ ⊂ \mathcal{P}(X) \text{(power set)} $$ 是 $$ \mathcal{P}(X) $$ 的 σ-algebra，如果
+
+  1. $$ Σ $$ 不空
+  2. $$ Σ $$ 的元素对X的补集运算封闭
+  3. $$ Σ $$ 的元素对可数并运算封闭
+
