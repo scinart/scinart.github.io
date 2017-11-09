@@ -37,7 +37,7 @@ img_url: /assets/images
 
 disqus:
   shortname: oyhy
-gems:
+plugins:
   - jekyll-feed
 include: ["_pages"]
 exclude:
