@@ -20,3 +20,4 @@ assets/images/telnet-smtp.png
 utils.el
 js
 .sass-cache
+.jekyll-metadata
