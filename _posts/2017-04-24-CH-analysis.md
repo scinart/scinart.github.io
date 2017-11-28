@@ -2,7 +2,7 @@
 layout: post
 title: "CH analysis 笔记"
 date: 2017-04-24
-timestamp: "2017-11-28 19:20:55 scinart"
+timestamp: "2017-11-28 23:27:38 scinart"
 categories: Math
 comments: true
 visibility: false
@@ -467,5 +467,34 @@ cc: "by-nc-nd"
 
   证：由上一题的结论，加ε→0可得，由1.2.21亦可得
 
-+ 1.2.43
++ 1.2.43 习题
 
+  设 $$ E⊂ℝ^d,\,\lvert A \rvert_e + \lvert B \rvert_e = \lvert E \rvert < ∞,\,A∪B=E,\,A∩B=∅,\,$$，求证$$A$$可测
+
+  <!-- 证：由 1.2.20 存在H_{A_1}为$$G_δ$$集，$$H_{A_1} ⊃ A$$，$$ \lvert A \rvert_e = \lvert H_{A_1} \rvert $$，同理有$$H_{B_1}$$， -->
+  <!-- 且由已知条件，$$ \lvert H_{A_1} \rvert + \lvert H_{B_1} \rvert_e = \lvert E \rvert $$ -->
+
+  <!-- 令$$H_A = H_{A_1} ∩ E,\,H_B = H_{B_1} ∩ E$$，则有$$H_A$$可测，且$$A ⊂ H_A ⊂ E$$，同理$$B ⊂ H_B ⊂ E$$ -->
+
+  <!-- 于是$$\lvert H_A \rvert + \lvert H_B \rvert ≤ \lvert H_{A_1} \rvert + \lvert H_{B_1} \rvert = \lvert E \rvert $$ -->
+
+  <!-- 又$$H_A ∪ H_B = E$$，所以$$\lvert H_A \rvert + \lvert H_B ≥ \lvert E \rvert$$，所以$$\lvert H_A \rvert + \lvert H_B = \lvert E \rvert$$ -->
+
+  <!-- 于是$$ \lvert H_A ∩ H_B \rvert = 0 $$，由 1.2.21 A可测等价于$$A=H∖Z$$($$H$$是$$G_δ$$-set, $$ \lvert Z \rvert = 0$$)，所以只需证 -->
+
+  证：由 1.2.20 存在$$H_A$$为$$G_δ$$集，$$H_A ⊃ A$$，$$ \lvert A \rvert_e = \lvert H_A \rvert $$，同理有$$H_B$$，
+  且由已知条件，$$ \lvert H_A \rvert + \lvert H_B \rvert = \lvert E \rvert $$，又$$H_A ∪ H_B ⊃ E$$，这里很直观，但是要写一下：
+
+  由于 $$H_A ∪ H_B ⊃ E$$，所以 $$ \lvert H_A ∪ H_B \rvert = \lvert H_A \rvert + \lvert H_B \rvert - \lvert H_A ∩ H_B \rvert ≥ \lvert E \rvert $$
+
+  于是$$ \lvert H_A ∩ H_B \rvert = 0 $$，$$ \lvert H_A ∪ H_B \rvert = \lvert E \rvert $$，
+
+  另外有$$ \lvert (H_A ∪ H_B) ∖ E \rvert = 0 = \lvert (H_A ∖ E) ∪ (H_B ∖ E) \rvert = \lvert (H_A ∖ E) \rvert + \lvert (H_B ∖ E) \rvert - 0 $$，所以$$\lvert (H_A ∖ E) \rvert = 0$$
+
+  由 1.2.21 $$A$$可测等价于$$A=H∖Z$$($$H$$是$$G_δ$$-set, $$ \lvert Z \rvert = 0$$)，所以只需证$$ \lvert H_A ∖ A \rvert = 0$$即可
+
+  $$ \lvert H_A ∖ A \rvert_e = \lvert ((H_A ∖ A) ∖ H_B) ∪ ((H_A ∖ A) ∩ H_B) \rvert_e ≤ \lvert (H_A ∖ A) ∖ H_B \rvert_e + 0 $$
+
+  $$ \lvert (H_A ∖ A) ∖ H_B \rvert_e = \lvert H_A ∖ (A∪B) ∖ (H_B ∖ B) \rvert_e = \lvert (H_A ∖ E) ∖ (H_B ∖ B) \rvert_e = 0 $$
+
+  所以$$ \lvert H_A ∖ A \rvert = 0$$，故$$A$$可测
