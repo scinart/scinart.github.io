@@ -2,7 +2,7 @@
 layout: post
 title: "CH analysis 笔记"
 date: 2017-04-24
-timestamp: "2017-11-28 23:27:38 scinart"
+timestamp: "2018-02-24 19:56:20 scinart"
 categories: Math
 comments: true
 visibility: false
@@ -168,9 +168,10 @@ cc: "by-nc-nd"
 
   设开集为$$U$$，$$Q_i$$为边长为$$1/i$$在整数点(1/2整数点，1/3整数点，类推)上的Cube的集合，  
   先从$$Q_1$$中选出在$$U$$内部的Cube, 再从$$Q_2$$中选出在$$U$$内部，但是不在刚才选出的$$Q_1$$中的Cube，再选$$Q_3$$等。
+
 + 1.1.6
 
-  若$$Q, Q_1, Q_2, ...$$为Box, 且$$ Q = Q_1 ∪ Q_2 ∪ Q_3 ∪ ... $$，则$$\text{Vol}(Q) = \text{Vol}(Q_1) + \text{Vol}(Q_2) + ... $$
+  若$$Q, Q_1, Q_2, ...$$为nonoverlapping Box, 且$$ Q = Q_1 ∪ Q_2 ∪ Q_3 ∪ ... $$，则$$\text{Vol}(Q) = \text{Vol}(Q_1) + \text{Vol}(Q_2) + ... $$
 
   证：见书
 + 1.1.7 练习
@@ -181,7 +182,7 @@ cc: "by-nc-nd"
 
 + 1.1.8 定义：外测度(Exterior Measure)：$$E ⊂ R^d$$，为所有包含$$E$$的可数Cube的体积的和的下确界
 
-  $$ \lvert E \rvert_e = inf \left\{ \sum_k{\text{vol}(Q_k)} \right\} $$
+  $$ \lvert E \rvert_e = \inf \left\{ \sum_k{\text{vol}(Q_k)} \right\} $$
 
 + 1.1.13 定理：(Countable Subadditivity) 外测度是次可数可加的
 + 1.1.14 定义：Limsup Liminf
@@ -319,6 +320,8 @@ cc: "by-nc-nd"
 
 + 1.2.9 定理 紧集可测(实为有界闭集可测)
 
+  此处需要先看书再看我的理解。
+
   这个证明好像比较tricky. 见书，思路是：设$$F$$是非空紧集，则由1.1.26(胀小盒子定理)，存在开集 $$ U ⊃ F $$ 使得 $$ \lvert U \rvert_e < \lvert F \rvert_e + ε $$
 
   而 $$ U \setminus F $$ 是开集，由1.1.5开集小盒子引理，开集可以表示成可数个小盒子的并，所以
@@ -401,7 +404,15 @@ cc: "by-nc-nd"
 
   $$ E ⊂ ℝ^d $$，E可测 ⟺ $$∀A ⊂ ℝ^d,\,\lvert A \rvert_e = \lvert A ∩ E \rvert_e + \lvert A ∖ E \rvert_e $$
 
-  证明见书
+  证：正向：设一个$$G_δ$$-set $$H ⊃ A,\, \lvert H \rvert = \lvert A \rvert_e$$，则
+
+  $$ \lvert A \rvert_e = \lvert H \rvert = \lvert H ∩ E \rvert + \lvert H ∖ E \rvert ≥ \lvert A∩E \rvert_e + \lvert A∖E \rvert_e ≥ \lvert A \rvert_e $$
+
+  反向：
+
+  $$k∈ℕ,\,E_k=\{x∈E: \lvert x \rvert ≤ k\},\,H_k ⊃ E_k$$是$$G_δ$$集，$$ \lvert H_k \rvert = \lvert E_k \rvert_e $$
+
+  可以看到 ∪H 和 ∪E 差了可数个零测集。
 
 + 1.2.24 记号 Almost Everywhere (a.e.) (几乎处处)
 
@@ -467,6 +478,18 @@ cc: "by-nc-nd"
 
   证：由上一题的结论，加ε→0可得，由1.2.21亦可得
 
++ 1.2.37 习题
+
+  设 $$ E⊂ℝ^d,\,0 < \lvert E \rvert_e < ∞,\, 0 < α < 1 $$ 求证存在box $$Q$$满足$$ \lvert E ∩ Q \rvert_e ≥ α \lvert Q \rvert $$
+
+  思路：由外测度定义：存在$$Q_1,\,Q_2,\,⋯$$使得$$ \sum{\lvert Q_k \rvert} < \lvert E \rvert_e + ε $$
+
+  我们断定$$Q_k$$中一定有一个满足条件，因为否则的话，相当于每一个 $$ \lvert E ∩ Q_k \rvert_e < α \lvert Q_k \rvert $$
+
+  这样每一个$$Q_k$$用一列新的$$Q_{k_1},\,Q_{k_2},\,⋯$$替代，可数乘可数为可数，新$$Q_n$$数列包含$$E$$，相当于$$E$$的外测度变成了原来的α倍
+
+  当然外测度定义时还有一个ε，这个很好消去，就不在此严密化了。
+
 + 1.2.43 习题
 
   设 $$ E⊂ℝ^d,\,\lvert A \rvert_e + \lvert B \rvert_e = \lvert E \rvert < ∞,\,A∪B=E,\,A∩B=∅,\,$$，求证$$A$$可测
@@ -498,3 +521,158 @@ cc: "by-nc-nd"
   $$ \lvert (H_A ∖ A) ∖ H_B \rvert_e = \lvert H_A ∖ (A∪B) ∖ (H_B ∖ B) \rvert_e = \lvert (H_A ∖ E) ∖ (H_B ∖ B) \rvert_e = 0 $$
 
   所以$$ \lvert H_A ∖ A \rvert = 0$$，故$$A$$可测
+
++ 1.2.44 习题 给出集合$$E$$，函数$$f:E→ℝ$$，$$f$$在$$E$$上连续，但是 $$ \text{esssup} \lvert f(x) \rvert ≠ \sup { \lvert f(x) \rvert }
+
+  $$ f(x) = x,\, E = [0,1] ∪ {2} $$
+
++ 1.2.45 习题
+
+  (a) G-δ 和 F-σ 互为补集 略
+
+  (b) 每个可数集是F-σ 略
+
+  (c) 可数集是G-δ
+
+  <!-- 想了想好像也是，既然可数，   -->
+  <!-- 第一个点涨1/1, 第二个涨1/2，第三个涨1/4, ...，并起来也是开集，作为第一个开集。   -->
+  <!-- 第一个点涨1/2, 第二个涨1/4，第三个涨1/8, ...，并起来也是开集，作为第二个开集。   -->
+  <!-- 等等。 -->
+  <!-- TODO: 查了一下好像结论不对，不知道过程哪儿错了中。-->
+
+  (d)，找出G-δ-σ, F-σ-δ, G-δ-σ-δ, F-σ-δ-σ, etc, 但不是G-δ，也不是F-σ
+
+  <!-- 开集是G-δ, 可数闭集是G-σ, 考虑不可数闭集康托尔集，嗯，边界点是可数的，还是可以由可数开集交而来。 -->
+
+  <!-- TODO: 这个暂时还没想到。 -->
+  
+  (c)和(d)好像还挺复杂的，暂时没想明白，附几个链接以后看
+
+  <https://math.stackexchange.com/questions/73296/example-of-a-borel-set-that-is-neither-f-sigma-nor-g-delta>
+  <https://math.stackexchange.com/questions/69451/how-to-show-that-mathbbq-is-not-g-delta>
+
+  这表明现在我对“可测”这个概念还是没理解全啊。<!-- 2018-02-24 17:04:20 -->
+
++ 1.3.1 引理 \lvert A \rvert < ∞ ⟹ $$ \lvert B ∖ A \rvert = \lvert B \rvert - \lvert A \rvert $$
++ 1.3.2 定理 (Continuity from Below)
+
+  若$$E_1 ⊂ E_2 ⊂ ⋯ ⊂ ℝ^d $$，$$E_k$$可测，则$$ \lvert E_1 \rvert ≤ \lvert E_2 \rvert ≤ ⋯ $$ 且 $$ \lvert \bigcup_{k=1}^{∞}{E_k} \rvert = \lim_{k→∞}{ \lvert E_k \rvert} $$
++ 1.3.3 例子 Let $$B_k(0)$$ be the open ball of radius k centered at the origin, and let $$E_k$$ be its complement:
+
+  $$ E_k = ℝ^d ∖ B_k(0) = x ∈ Rd : \|x\| ≥ k $$ 测不满足Continuity from Above，(即越变越小)
+
++ 1.3.4 定理 (Continuity from Above)
+
+  若$$ ℝ ⊃ E_1 ⊃ E_2 ⊃ ⋯ $$，$$E_k$$可测且$$∃k,\lvert E_k \rvert < ∞$$，则$$ \lvert E_1 \rvert ≥ \lvert E_2 \rvert ≥ ⋯ $$ 且 $$ \lvert \bigcap_{k=1}^{∞}{E_k} \rvert = \lim_{k→∞}{ \lvert E_k \rvert} $$
+
++ 1.3.5 推论 $$ E ⊂ ℝ^d,\, \lvert E \rvert < ∞ ⟹ V_1 ⊃ V_2 ⊃ ⋯ ⊃ E,\, V_k\text{开},\,\lim_{k→∞}\lvert V_k \rvert = \lvert E \rvert $$
+
+  由1.2.20找到nested decreasing open sets $$U_1, U_2, ⋯ $$交于$$G_δ$$-set $$H$$，$$H⊃E,\,\lvert H \rvert = \lvert E \rvert $$
+
+  再找到一个包含$$H$$的开集，与$$U_k$$取交即可。
+
++ 1.3.6 练习
+
+  这个练习真是妙哉，结论便是1.3.7
+
+  (a) 设$$Q ⊂ ℝ^m,\, R ⊂ ℝ^n\,Q,R\text{ are boxes}$$，则$$Q×R\text{ is a box in }ℝ^{m+n},\,\lvert Q×R \rvert = \lvert Q \rvert \lvert R \rvert $$
+
+  略
+
+  (b) 设$$U ⊂ ℝ^m,\, V ⊂ ℝ^n\,U,V\text{ are non-empty open sets}$$，则$$U×V\text{ is open},\,\lvert U×V \rvert = \lvert U \rvert \lvert V \rvert $$
+
+  开集的笛卡尔积显然是开集，由开集小盒子定理，开集是一系列小盒子的并，所以$$U×V$$是可数个小盒子乘可数个小盒子，可得。
+
+  (c) 设$$G ⊂ ℝ^m,\, H ⊂ ℝ^n\,G,H\text{ are bounded }G_δ\text{-sets}$$，则$$G×H\text{ is a G_δ-set},\,\lvert G×H \rvert = \lvert G \rvert \lvert H \rvert $$
+
+  由$$G_δ$$-set可以表示成嵌套开集的可数交，再加上Continuity from Above，再加上(b)可得。
+
+  (d) 设$$E ⊂ ℝ^m \text{ measurable},\,Z ⊂ ℝ^n, \lvert Z \rvert = 0 $$，则$$ \lvert E×Z \rvert = 0 = \lvert E \rvert \lvert Z \rvert $$
+
+  单位方格乘Z为0测，E可划分成可数个单位方格
+
+  (e) 设$$E ⊂ ℝ^m,\,F ⊂ ℝ^n,\, E,F \text{ are measurable} $$，则$$ \lvert E×F \rvert = \lvert E \rvert \lvert F \rvert $$
+
+  把$$E,F$$表示成$$G_δ$$-set和一个零测集的并即可
+
++ 1.3.7 定理 $$E ⊂ ℝ^m,\,F ⊂ ℝ^n,\, E,F \text{ are measurable} $$，则$$ E × F ⊂ ℝ^{m+n} \text{ is measurable},\, \lvert E×F \rvert = \lvert E \rvert \lvert F \rvert $$
+
++ 1.3.8 例子 高维中的零测集降维之后可能变成不可测集
+
++ 1.3.9 引理 若连续函数$$f$$将零测集映射为零测集，则$$f$$将可测集映射为可测集
+
+  证：可测集可以表示成$$F_σ$$-set的一个零测集的并，$$F_σ$$可以表示成有界闭集(紧集)的并，而$$f$$将紧集映射为紧集。
+
++ 1.3.10 定义 [Lipschitz Function](https://zh.wikipedia.org/zh-cn/利普希茨連續)
+
++ 1.3.11 线性函数都是Lipschitz的
+
++ 1.3.12 练习 设$$f:ℝ^d→ℝ^d$$是Lipschitz的，求证$$∃C≥0,\,∀Q⊂ℝ^d,\, \lvert f(Q) \rvert ≤ C \lvert Q \rvert $$
+
+  略。
+
++ 1.3.13 定理 设$$f:ℝ^d→ℝ^d$$是Lipschitz的，则$$f$$将零测集映射到零测集。
+
+  由1.3.12可得
+
++ 1.3.14 推论 线性函数$$L:ℝ^d→ℝ^d$$将可测集映射为可测集。
+
+  略
+
++ 1.3.15 定理 (Linear Change of Variables) $$L:ℝ^d→ℝ^d, E⊂ℝ^d ⟹ \lvert L(E) \rvert = \lvert \text{det}(L) \rvert \lvert E \rvert \$$
+
+  证明: 和 1.3.6 一样，也是先证cube，再开集，再可测集
+
++ 1.3.16 练习 为1.3.15的证明，略
++ 1.3.17 习题
+  $$E⊂ℝ^d,\,0<\lvert E \rvert<∞,\,A_n ⊂ E,\,\lvert A_n \rvert → \lvert E \rvert $$ 求证 $$ ∃ B_n \text{是}A_n\text{的子列},\,\lvert ∩B_n \rvert > 0$$
+
+  证：设 $$ \lvert E \rvert = 5$$, $$ \lvert A_1 \rvert = 4 $$, $$ \lvert A_2 \rvert = 3 $$，其实只要证 $$ \lvert A_1 ∩ A_2 \rvert ≥ 2 $$ 就可以了。
+
+  这说明，$$ \lvert A_1 ∩ A_2 \rvert $$ 的损失程度是受限的，只要按 $$ \lvert B_n \rvert > 5 - \frac{1}{2^n} $$ 选子列就行了。
+
+  举例说明 $$ \lvert E \rvert = ∞ $$ 有反例
+
+  $$E = ℝ, A_n = (2^n, 2^{n+1})$$
+
++ 1.3.18 习题 证明E可测 ⟺ 对每个box Q, $$ \lvert Q \rvert = \lvert Q∩E \rvert_e + \lvert Q∖E \rvert_e $$
+
+  证：和1.2.23的证法一样，可数乘可数还是可数，用Q填充起一个个开集(开集小盒子定理)就行了。
+
+  评：证明虽然更麻烦了，但是理解起来更简单了，不可测就是有一个Box Q, $$ \lvert Q∩E \rvert_e + \lvert Q∖E \rvert_e > \lvert Q \rvert $$
+
++ 1.3.21 习题 设$$E⊂ℝ,\, \lvert E \rvert ≥ 0,\, ∀t≠0:\, \lvert E∩(E+t) \rvert = 0$$，求证 $$ \lvert E \rvert = 0 $$
+
+  证：因为是一维上的，把$$E$$看成开区间与零测集的差集，问题就变成了
+
+  $$ A,B ⊂ (0,1),\, \lvert A \rvert = 1,\, \lvert B \rvert = 1 $$，求证 $$ \lvert A∩B \rvert = 1 $$，非常简单。
+
++ 1.3.24 习题 $$ E ⊂ ℝ^d,\, d_E(x) = \text{dist}(x, E) = \inf_{x∈ℝ^d,\,y∈E}{ \| x-y \| },\,E_r = \{ x ∈ ℝ^d: d_E(x)<r \}  $$
+
+  (a) $$d_E$$ 是 $$ℝ^d$$ 上的连续函数
+
+  证$$d_E$$是 Lipschitz 就可以，常数为1
+
+  (b) $$r > 0 ⇒ E_r$$是开集 略
+
+  (c) 设$$E$$为闭集，$$d_E(x)=0 ⇔ x ∈ E$$ 略
+
+  (d) $$ℝ^d$$中闭集是$$G_δ$$-set (开集的交)
+
+  是$$E_{r_n}$$的交, $$r_n=1/n$$
+
+  (e) $$ℝ^d$$中开集是$$F_δ$$-set (闭集的交)
+
+  怀疑是笔误，应为$$ℝ^d$$中开集是$$F_σ$$-set (闭集的并)，对(d)取补集即可。
+
+  (f) $$ E\text{紧} ⇒ \lvert E \rvert = lim_{r→0^+}{ \lvert E_r \rvert }，但无界闭集，无界开集，有界开集不成立
+
+  证：直接由紧集的性质(每个点都是极限点)，推出$$E_r$$收敛于$$E$$
+
+  反例1，E为无界闭集，如所有整数点，$$ \lvert E_r \rvert = ∞ $$  
+  反例2，E为无界开集，如所有整数点扩大一点点($$1/2^n$$大法好)，$$ \lvert E \rvert $$ 有限而 $$ \lvert E_r \rvert $$ 无限。  
+  反例3，E为有界开集
+
+  在(0,1)区间上取所有$$\frac{1}{2^n}$$这些点，然后每个点再取小邻域($$ε/2^n$$)，再并，构成一个开区间，且测度很小(小于ε)  
+  但是由于包含了$$\frac{1}{2^n}$$这些点，这个开区间是稠密的，所以 $$ \lvert E_r \rvert > 1 $$
+  
