@@ -2,7 +2,7 @@
 layout: post
 title: "CH analysis 笔记"
 date: 2017-04-24
-timestamp: "2018-02-27 12:11:31 scinart"
+timestamp: "2018-02-27 12:17:54 scinart"
 categories: Math
 comments: true
 visibility: false
@@ -729,7 +729,7 @@ cc: "by-nc-nd"
   在(0,1)区间上取所有$$\frac{1}{2^n}$$这些点，然后每个点再取小邻域($$ε/2^n$$)，再并，构成一个开区间，且测度很小(小于ε)  
   但是由于包含了$$\frac{1}{2^n}$$这些点，这个开区间是稠密的，所以 $$ \lvert E_r \rvert > 1 $$
   
-+ 1.3.25 Let $$\mathcal{U}$$ be **the** topology of $$ℝ^d$$, i.e.
++ 1.3.25 习题 Let $$\mathcal{U}$$ be **the** topology of $$ℝ^d$$, i.e.
 
   $$ \mathcal{U} = \left\{ U ⊂ ℝ^d: U\text{ is open} \right\} $$
 
@@ -745,4 +745,11 @@ cc: "by-nc-nd"
 
   (c)的特例居然要到3.1.6才能看到。
 
++ 1.4.1 公理 选择公理 (Axiom of Choice)
+
+  Let S be a nonempty set, and let P be the family of all nonempty subsets of S. Then there exists a function f : P → S such that f (A) ∈ A for each set A ∈ P.
+
++ 1.4.2 公理 选择公理 (另一种等价形式)
+
+  The Cartesian product of any collection of nonempty sets is nonempty.
 
