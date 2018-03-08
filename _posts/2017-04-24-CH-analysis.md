@@ -2,7 +2,7 @@
 layout: post
 title: "CH analysis 笔记"
 date: 2017-04-24
-timestamp: "2018-02-27 12:17:54 scinart"
+timestamp: "2018-03-08 21:39:24 scinart"
 categories: Math
 comments: true
 visibility: false
@@ -752,4 +752,32 @@ cc: "by-nc-nd"
 + 1.4.2 公理 选择公理 (另一种等价形式)
 
   The Cartesian product of any collection of nonempty sets is nonempty.
+
++ 1.4.3 定理 (Steinhaus Theorem)
+
+  $$ E ⊂ ℝ,\, \left\vert E \right\vert > 0 ⟹ ∃r,\,B(0,r) ⊂ (E - E) $$
+
++ 1.4.4 定理 R上对~Q(差为有理数)构成的等价类，每个类中选择一个元素，组成的集合不可测。
+
+  1.4.3 和 1.4.4 见[图片](/assets/images/math/CH-analysis-1.4.3-1.4.4.png)
+
++ 1.4.8 习题 不好想的习题
+
+  (a) 证明continuity from below holds for exterior Lebesgue measure
+
+  见[图片](/assets/images/math/CH-analysis-1.4.8-a.png)
+
+  (b) 举反例证明continuity from above does not hold for exterior Lebesgue measure
+
+  见[图片](/assets/images/math/CH-analysis-1.4.8-b.png)
+
++ 1.4.9 习题 证明ℝ中每个外测度大于0的集合都包含了一个不可测集
+
+  见[图片](/assets/images/math/CH-analysis-1.4.9.png)\
+
++ 1.4.10 - 1.4.43 比较简单，略
+
++ 1.4.14 习题
+
+  TODO: 不会做。
 
