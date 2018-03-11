@@ -2,7 +2,7 @@
 layout: post
 title: "CH analysis 笔记"
 date: 2017-04-24
-timestamp: "2018-03-08 22:32:22 scinart"
+timestamp: "2018-03-11 13:54:11 scinart"
 categories: Math
 comments: true
 visibility: false
@@ -773,7 +773,7 @@ cc: "by-nc-nd"
 
 + 1.4.9 习题 证明ℝ中每个外测度大于0的集合都包含了一个不可测集
 
-  见[图片](/assets/images/math/CH-analysis-1.4.9.png)\
+  见[图片](/assets/images/math/CH-analysis-1.4.9.png)
 
 + 1.4.10 - 1.4.43 比较简单，略
 
@@ -840,4 +840,103 @@ cc: "by-nc-nd"
 
   扩展实数域上1/g可测可证，复数域上1/g可以由实部和虚部表示出来，这里用到了√f可测，由2.1.18可得。
 
-+ 2.1.18 设 $$E ⊂ ℝ^d$$可测，$$ f : E → ℂ $$ 几乎处处有限，φ是ℝ→ℝ上的连续函数，则
++ 2.1.18 引理 设 $$E ⊂ ℝ^d$$可测，$$ f : E → ℂ $$ 几乎处处有限，φ是ℝ→ℝ(或ℂ→ℂ)上的连续函数，则
+
+  (a) $$ φ \circ f $$ is measurable
+
+  证，当φ : ℝ→ℝ 时，由定义 $$ \left\{ φ \circ f > a \right\} = (φ \circ f)^{-1}(a, ∞) = f^{-1}(φ^{-1}(a, ∞)) $$
+
+  注：第一个等号不成立，但是找到一个处处有限的$$f' = f \text{ a.e. },\,$$就可以满足要求了。
+
+  当φ : ℂ → ℂ 时，只需要实部虚部分开考虑，就可以推出也成立。
+
+  (b) $$ \left\vert f \right\vert,\, f^2, f^+, f^-, \text{ and } \left\vert f \right\vert ^ p \text{ for } p > 0 \text{ are measurable}.$$
+
+  注：$$ \left\vert f \right\vert,\, f^2, f^+, f^- $$ 是实数形式，$$\left\vert f \right\vert ^ p$$实数复数均可。
+
++ 2.1.19 引理 若 $$ L $$ 是可逆线性变换，则$$f \circ L$$可测
+
++ 2.1.20 引理 设 $$E ⊂ ℝ^d$$可测，$$ f_n : E → \left[ -∞, ∞ \right] $$ 可测，则
+
+  (a) $$ \sup{f_n},\,\, \inf{f_n},\,\, \limsup_{n→∞}{f_n},\,\, \liminf_{n→∞}{f_n} $$ 可测
+
+  (b) 若 $$ f(x) = lim_{n→∞}{f_n(x)} $$ 存在 for a.e. $$ x ∈ E $$，则 $$ f $$ 可测
+
+  (c) 若 $$ f(x) = \sum_{n=1}^{∞}{f_n(x)} 收敛 for a.e. $$ x ∈ E $$，则 $$ f $$ 可测
+
+  证： \left\{ \sup{f_n} > a \right\} = \bigcup{f_n > a } 可测
+
+  $$ \limsup_{n→∞}{f_n(x)} = \inf_m{\sup_{n≥m}{f_n(x)}} $$ by definition，所以可测了
+
+  如果 $$ f(x) = lim_{n→∞}{f_n(x)} $$ 存在 则等于其上极限和下极限，由(a)，可测
+
+  (c) 其部分和的函数列每个都可测，若极限存在，由(b)，可测
+
++ 2.1.21 记号 几乎逐点收敛 即2.1.20 (b)
+
+  $$ f(x) = \lim_{n->∞}{f_n(x)} \text{ for a.e. } x $$
+
+  简记为 $$ f_n → f \text{pointwise a.e. } $$ 或 $$ f_n → f \text{ a.e.} $$
+
++ 2.1.22 Fix any function $$ f : ℝ → ℝ $$
+
+  For each n ∈ ℕ, let
+
+  $$ \phi_n = \sum_{k∈ℤ}{f\left(\frac{k}{n}\right)χ_{\left[\frac{k}{n},\frac{k+1}{n}\right)}} $$
+
+  这个定理可以说是非常有意思了，见[$$\phi_n$$的配图](/assets/images/math/CH-analysis-2.1.22.svg)
+
+  (a) 证明 $$ \phi_n $$ 可测，且若 $$ f $$ 在点 $$ x $$ 连续，则 $$ \phi_n(x) → f(x) $$ 
+
+  由配图可证
+
+  (b) 若 $$ f $$ 几乎处处连续，则 $$ f $$ 可测
+
+  若 $$ f $$ 几乎处处连续，则 $$ \phi_n → f \text{ a.e. }$$，由2.1.20 (b) $$ f $$ 可测
+
+  (c) 证明几乎处处连续的 $$ f : ℝ^d → R $$ 可测
+
+  配图中一个线一个线抬变成一个面一个面抬，类推。
+
++ 2.1.23 证明复数域上可测函数的一些性质
+
+  都被我分散到以上的定理中去了。
+
++ -- 2.1.4 The Lebesgue Space $$ L^∞(E) $$ --
+
+  定义 $$ L^∞(E) $$ 为所有 $$ E $$ 上的本质上有界的可测函数的集合。
+
+  定义 $$L^∞$$-norm 为
+
+  $$ \| f \|_∞ = \underset{x∈E}{\text{esssup}}{\left\vert f(x) \right\vert}$$
+
++ 2.1.24 Remark 注意到 uniform norm 为 $$ \| f \|_u = \underset{x∈E}{\text{sup}}{\left\vert f(x) \right\vert}$$，我们有
+
+  对于定义域是开集U⊂ℝ^d上的连续函数，由于其上确界等于其本质上确界，
+
++ 2.1.25 引理 $$ \left\vert f(x) \right\vert ≤ \| f \|_∞ $$ for a.e. $$x ∈ E$$
+
++ 2.1.26 定义 $$ L^∞(E) $$ 为所有 $$ E $$ 上的本质上有界的可测函数的集合。
+
++ 2.1.27 $$ \| f \|_∞ $$ 具有
+
+  1. (a) Nonnegativity
+  2. (b) Homogeneity: $$ \| cf \|_∞ = \left\vert c \right\vert \| f \|_∞ $$
+  3. (c) Triangle Inequality
+  4. Almost Everythere Uniqueness: $$ \| f \| = 0 ⟹ f = 0 \text{ a.e.} $$
+
+  注：这里如果把把 $$ L^∞(E) $$ 上的函数用almost equal作为等价关系分类的话，就变成正经八本儿的Norm了，
+
++ 2.1.28 定义 $$ L^∞ $$-norm 上的收敛
+
+  $$ f_n $$ 在 $$ L^∞ $$-norm 上收敛到 $$ f $$，定义为：
+
+  $$ \lim_{n→∞}{\|f-f_n\|}_∞ = \lim_{n→∞}{\left( \underset{x∈E}{\text{esssup}}{\left\vert f(x) - f_n(x) \right\vert} \right)} = 0 $$
+
++ 2.1.29 证明
+
+  $$ f_n → f \text{ in } L^∞\text{-norm} ⟺ f_n → f \text{ uniformly on } E ∖ Z \text(某0测集) $$
+
++ 2.1.30
+
+  回头写纸上吧
