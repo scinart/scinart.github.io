@@ -2,10 +2,10 @@
 layout: post
 title: "CH analysis 笔记"
 date: 2017-04-24
-timestamp: "2018-03-11 13:54:11 scinart"
+timestamp: "2018-03-12 17:32:28 scinart"
 categories: Math
 comments: true
-visibility: false
+published: false
 cc: "by-nc-nd"
 
 ---
@@ -788,6 +788,8 @@ cc: "by-nc-nd"
   设 $$E ⊂ ℝ^d$$，$$ f : E → [-∞, ∞]$$，定义$$f$$可测为
 
   $$ ∀a∈ℝ,\, \left\{ f > a \right\} = f^{-1} \left(a, ∞\right] \text{可测} $$
+
+  注：原书中有遗漏，若2.1.5成立，则必有E是可测集，但是原书中不要求E可测，这是不对的。
 
 + 2.1.5 引理，以下四种定义等价
 

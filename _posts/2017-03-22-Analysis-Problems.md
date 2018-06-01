@@ -5,7 +5,7 @@ date: 2017-03-22
 timestamp: "2017-03-22 18:23:38 scinart"
 categories: Math
 comments: true
-visibility: false
+published: false
 cc: "by-nc-nd"
 
 ---
