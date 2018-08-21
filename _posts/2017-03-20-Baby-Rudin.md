@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2017-04-15 18:32:59 scinart"
+timestamp: "2018-08-21 11:32:53 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -36,11 +36,41 @@ cc: "by-nc-nd"
 + 1.24 定义`复数域`
 + 1.30 定义`共轭得数，实部，虚部`，有时写成 $$ z=(a,b) \,\, a=\text{Re}(z) \,\, b=\text{Im}(z) $$
 + 1.31 定理
- 
+
+  * $$ \overline{z+w} = \overline{z} + \overline{w} $$.
+  * $$ \overline{zw} = \overline{z} \cdot \overline{w} $$.
+  * $$ z + \overline{z} = 2\text{Re}(z),\, z-\overline{z} = 2i \text{Im}(z) $$.
+  * $$ z \overline{z} $$ 是正实数(除了z=0时)
+
++ 1.32 定义
+
+  如果z是一复数，它的绝对值 $$ \lvert z \rvert $$ 是 $$ z \overline{z} $$ 的非负平方根
+
++ 1.33 定理 设z和w都是复数，那么
+
+  * $$ \lvert z \rvert ≥ 0,\, \lvert z \rvert = 0 ⟹ z=0 $$.
+  * $$ \lvert \overline{z} \rvert = \lvert z \rvert $$.
+  * $$ \lvert zw \rvert = \lvert z \rvert \lvert w \rvert $$.
+  * $$ \lvert \text{Re}z \rvert ≤ \lvert z \rvert $$.
+  * $$ \lvert z+w \rvert ≤ \lvert z \rvert + \lvert w \rvert $$.
+
++ 1.35 定理 柯西-施瓦茨(Cauchy–Schwarz_inequality)不等式
+
+  如果 $$ a_1, a_2, \cdots, a_n, \text{ and } b_1, b_2, \cdots, b_n $$ 都是复数，那么
+
   $$
-  \vert \sum_{j=1}^n a_j \overline{b_j} \vert^2 ≤ \vert \sum_{j=1}^n a_j \vert^2 \vert \sum_{j=1}^n b_j \vert^2 
+  \lvert \sum_{j=1}^{n}{a_j\overline{b}_j} \rvert \leq \sum_{j=1}^{n}{\lvert a_j \rvert^2}\sum_{j=1}^{n}{\lvert b_j \rvert^2}
   $$
- 
+
+  **证**：设 $$ A = \sum { \lvert a_j \rvert ^2 },\,
+                B = \sum { \lvert b_j \rvert ^2 },\,
+                C = \sum { a_j \overline{b_j} } $$，且设$$ B>0 $$，则：
+
+  $$ \begin{aligned} \sum \lvert Ba_j - Cb_j \rvert ^2 &= \sum { (Ba_j - Cb_j) ( B \overline{a}_j - \overline{Cb_j}) } \\
+       &= B^2 \sum { \lvert a_j \rvert ^2 } - B \overline{C} \sum { a_j \overline{b}_j } - BC\sum{ \overline{a}_j b_j } + \lvert C \rvert ^2\sum \lvert b_j \rvert ^2 \\
+       &= B^2A-B \lvert C \rvert ^2 \\
+       &= B(AB- \lvert C \rvert ^2) ≥ 0 \end{aligned} $$
+
 + 1.36 定义`欧式空间`
 + 习题9，没有，例如集合$$\left\{ \frac{n}{n+1} \right\}$$
  
