@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2018-08-21 11:32:53 scinart"
+timestamp: "2018-08-21 14:24:34 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -59,7 +59,7 @@ cc: "by-nc-nd"
   如果 $$ a_1, a_2, \cdots, a_n, \text{ and } b_1, b_2, \cdots, b_n $$ 都是复数，那么
 
   $$
-  \lvert \sum_{j=1}^{n}{a_j\overline{b}_j} \rvert \leq \sum_{j=1}^{n}{\lvert a_j \rvert^2}\sum_{j=1}^{n}{\lvert b_j \rvert^2}
+  \lvert \sum_{j=1}^{n}{a_j\overline{b}_j} \rvert^2 \leq \sum_{j=1}^{n}{\lvert a_j \rvert^2}\sum_{j=1}^{n}{\lvert b_j \rvert^2}
   $$
 
   **证**：设 $$ A = \sum { \lvert a_j \rvert ^2 },\,
@@ -70,6 +70,8 @@ cc: "by-nc-nd"
        &= B^2 \sum { \lvert a_j \rvert ^2 } - B \overline{C} \sum { a_j \overline{b}_j } - BC\sum{ \overline{a}_j b_j } + \lvert C \rvert ^2\sum \lvert b_j \rvert ^2 \\
        &= B^2A-B \lvert C \rvert ^2 \\
        &= B(AB- \lvert C \rvert ^2) ≥ 0 \end{aligned} $$
+
+  另一个证明见[这里](./2018-08-21-Inequality.md)
 
 + 1.36 定义`欧式空间`
 + 习题9，没有，例如集合$$\left\{ \frac{n}{n+1} \right\}$$
