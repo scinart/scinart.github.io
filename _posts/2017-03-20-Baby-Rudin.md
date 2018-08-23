@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2018-08-23 03:44:43 scinart"
+timestamp: "2018-08-23 12:04:48 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -114,6 +114,18 @@ cc: "by-nc-nd"
   | 标量乘法的单位元           | 域F存在乘法单位元1满足1v = v                                  |
   | 标量乘法对向量加法的分配律 | a(u + v) = au + av                                            |
   | 标量乘法对域加法的分配律   | (a + b)v = av + bv                                            |
+
++ 范数(norm)定义
+
+  Given a vector space $$V$$ over a **subfield F of the complex numbers**, a norm on $$V$$ is a **nonnegative-valued** scalar function $$p: V → [0,+∞)$$ with the following properties:
+
+  For all $$a ∈ F$$ and all $$u, v ∈ V$$,
+
+    * $$p(u + v) ≤ p(u) + p(v)$$ (being subadditive or satisfying the triangle inequality).
+    * $$ p(av) = \left\vert a \right\vert p(v) $$ (being absolutely homogeneous or absolutely scalable).
+    * If $$p(v) = 0$$ then $$v=0$$ is the zero vector being positive definite or being point-separating).
+
+A seminorm on V is a function p : V → R with the properties 1 and 2 above. 
   
 + 1.36 定义`欧式空间`
 
