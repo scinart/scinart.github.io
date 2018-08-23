@@ -2,7 +2,7 @@
 layout: post
 title: "Baby Rudin 笔记"
 date: 2017-03-20
-timestamp: "2018-08-21 14:24:34 scinart"
+timestamp: "2018-08-23 03:44:43 scinart"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -71,9 +71,77 @@ cc: "by-nc-nd"
        &= B^2A-B \lvert C \rvert ^2 \\
        &= B(AB- \lvert C \rvert ^2) ≥ 0 \end{aligned} $$
 
-  另一个证明见[这里](./2018-08-21-Inequality.md)
+  另一个证明见[这里](../../../2018/08/21/Inequality.md)
 
+**注：此处插入一点抽象代数**
+
+* 原群 (Magma)
+
+  在抽象代數裡，原群是一種基本的代數結構。具體地說，原群有一個集合 M 和一個 M 上的二元運算 M × M → M 。此二元運算依定義是封閉的，且除此之外便沒有其他公理被加在此運算中。
+* 半群
+
+  符合结合律的原群
+* 幺半群
+
+  有單位元的半群
+* 群
+
+  有逆元的幺半群，或整理一下：  
+  群(G,·)是由集合G和二元運算"·"构成的，符合以下四个性质（称“群公理”）的数学结构。其中，二元运算结合任何兩個元素a和b而形成另一個元素，记為a·b，符號"·"是具體的運算，比如整數加法。
+
+    1. 封閉性：對于所有G中a, b，運算$$ a·b $$的結果也在G中。
+    2. 結合律：對于所有G中的a, b和c，等式 $$ (a·b)·c = a· (b·c) $$ 成立。
+    3. 單位元：存在G中的一個元素e，使得對于所有G中的元素a，总有等式 $$ e·a = a·e = a $$ 成立。
+    4. __逆元：對于每個G中的a，存在G中的一個元素b使得总有 $$ a·b = b·a = e $$ ，此处e为單位元。
++ 阿貝爾群（Abelian group）
+
+  也稱爲交換群（commutative group）或可交換群，滿足交换律的群
++ 域 (不严格定义，严格的以后补)
+
+  A field has two operations, the addition and the multiplication; it is an abelian group under addition, with 0 as additive identity; the nonzero elements form an abelian group under multiplication, and the multiplication is distributive over addition. 
+
++ 向量空间
+
+  域$$F$$是的向量空间是一个集合$$V$$，$$V$$上有两个运算$$ + : V × V → V $$(加法)和$$ · : F × V → V $$(标量乘法)，满足以下性质：
+
+  | 公理                       | 说明                                                          |
+  |----------------------------+---------------------------------------------------------------|
+  | 向量加法的结合律           | u + (v + w) = (u + v) + w                                     |
+  | 向量加法的交换律           | u + v = v + u                                                 |
+  | 向量加法的单位元           | 存在一个叫做零向量的元素0 ∈ V，使得对任意u ∈ V都满足u + 0 = u |
+  | 向量加法的逆元素           | 对任意v ∈ V都存在其逆元素−v ∈ V使得v + (−v) = 0               |
+  | 标量乘法与标量的域乘法相容 | a(bv) = (ab)v                                                 |
+  | 标量乘法的单位元           | 域F存在乘法单位元1满足1v = v                                  |
+  | 标量乘法对向量加法的分配律 | a(u + v) = au + av                                            |
+  | 标量乘法对域加法的分配律   | (a + b)v = av + bv                                            |
+  
 + 1.36 定义`欧式空间`
+
+  定义 $$ \boldsymbol{x} $$ 与 $$ \boldsymbol{y} $$ 的内积为
+
+  $$ \boldsymbol{x} \cdot \boldsymbol{y} = \sum{x_iy_i} $$
+
+  定义 $$ \boldsymbol{x} $$ 的范数(由1.37可见满足范数的四个条件(1235))为 $$ \| x \| = \left( \boldsymbol{x} \cdot \boldsymbol{x} \right)^{1/2} $$
+
+  定义 有上述内积和范数的 $$ \mathbb{R}^n $$ 上的向量空间为$$n$$维欧式空间
+
++ 1.37 定理
+  
+  设 $$ \boldsymbol{x},\, \boldsymbol{y},\, \boldsymbol{z},\, \in \mathbb{R}^k,\, a \in \mathbb{R} $$:
+
+  1. $$ \| \boldsymbol{x} \| \geq 0 $$.
+  2. $$ \| \boldsymbol{x} \| = 0 \iff \boldsymbol{x} = \boldsymbol{0} $$.
+  3. $$ \| a \boldsymbol{x} \| = \left\vert a \right\vert \| \boldsymbol{x} \| $$.
+  4. $$ \left\vert \boldsymbol{x} \cdot \boldsymbol{y} \right\vert \leq \| \boldsymbol{x} \| \| \boldsymbol{y} \| $$.
+  5. $$ \| \boldsymbol{x} + \boldsymbol{y} \| \leq \| \boldsymbol{x} \| + \| \boldsymbol{y} \| $$.
+  6. $$ \| \boldsymbol{x} - \boldsymbol{z} \| \leq \| \boldsymbol{x} - \boldsymbol{y} \| + \| \boldsymbol{y} - \boldsymbol{z} \| $$.
+
+  注意：这里的$$ \mathbb{R} $$换成 $$ \mathbb{C} $$也是成立的
+  证：1,2显然成立，3由定义可得，4即Schwarz不等式，
+  5由$$ \| \boldsymbol{x}+\boldsymbol{y}\|^2 = (\boldsymbol{x}+\boldsymbol{y})^*(\boldsymbol{x}+\boldsymbol{y}) $$ 展开加Schwarz可得，
+  6由5中用$$ \boldsymbol{x} - \boldsymbol{y} $$替代 $$ \boldsymbol{x} $$，$$ \boldsymbol{y} - \boldsymbol{z} $$ 代 $$ \boldsymbol{y} $$ 得
+
+  
 + 习题9，没有，例如集合$$\left\{ \frac{n}{n+1} \right\}$$
  
 ## 第二章 基础拓扑
