@@ -2,7 +2,7 @@
 layout: post
 title: "Inequality Notes"
 date: 2018-08-21
-timestamp: "2018-08-21 22:03:53 mama"
+timestamp: "2018-08-27 14:05:37 mama"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -13,7 +13,12 @@ cc: "by-nc-nd"
 
 * 柯西-施瓦茨不等式(Cauchy Schwarz inequality)
 
-  这篇文章：[向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜](http://www.math.ncku.edu.tw/~fang/向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜.pdf)([缓存](/pdfs/向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜.pdf))写的非常好。
+
+更新：柯西-施瓦茨不等式，本质上是内积空间中内积的一个性质，在[另一篇笔记的6.15节](../26/Algebra-2)看到了这个不等式，以下是过时的原始内容：
+
+-------------------------
+
+这篇文章：[向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜](http://www.math.ncku.edu.tw/~fang/向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜.pdf)([缓存](/pdfs/向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜.pdf))写的非常好。
 
   在思考内积时，不能用欧式空间/余弦定理等，而要抽象成不依赖空间的东西，再用内积定义角度，神奇的是，角度定义可以不止一种，甚至可以是复数。
 
