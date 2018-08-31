@@ -2,7 +2,7 @@
 layout: post
 title: "CSE 6140 Algorithms Notes on Betweenness Centrality"
 date: 2018-08-26
-timestamp: "2018-08-30 20:59:37 mama"
+timestamp: "2018-09-02 12:05:25 mama"
 categories: GT
 comments: true
 cc: "by-nc-nd"
@@ -49,7 +49,7 @@ $$
 C_C(v) = \frac{1}{\sum_{t\in V}{d_G(v,t)}} & & \text { closeness centrality } \\
 C_G(v) = \frac{1}{\max_{t\in V}{d_G(v,t)}} & & \text { graph centrality } \\
 C_S(v) = \sum_{s,v,t \in V, s\neq v \neq t}{\sigma_{st}(v)} & & \text { stress centrality } \\
-C_B(v) = \sum_{s,v,t \in V, s\neq v \neq t}{\frac{\sigma_{st}(v)}{\sigma_{st}}} & & \text { stress centrality } \\
+C_B(v) = \sum_{s,v,t \in V, s\neq v \neq t}{\frac{\sigma_{st}(v)}{\sigma_{st}}} & & \text { betweenness centrality } \\
 \end{aligned}
 $$
 
