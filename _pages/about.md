@@ -23,4 +23,5 @@ code {
 
 </style>
 
-自我介绍已删，留于git commit log中
+活着：快乐最重要。  
+Fuck the life.
