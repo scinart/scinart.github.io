@@ -2,12 +2,107 @@
 layout: post
 title: "Convex Optimization Notes"
 date: 2018-09-03
-timestamp: "2018-09-03 17:20:33 mama"
+timestamp: "2018-09-19 16:14:42 mama"
 categories: Math
 comments: true
 cc: "by-nc-nd"
 
 ---
+
+Convex Optimization
+
++ 2.1.1 Line
+
+  Suppose $$ x_1 \neq x_2 $$ are two points in $$ \mathbb{R}^n $$. Points of the form
+
+  $$ y = θx1 + (1 − θ)x2 $$
+
+  where θ ∈ R, form the line passing through $$x_1$$ and $$x_2$$.
+
++ 2.1.2 Affine sets
+
+  (It is hyperplane (may not passing the origin))
+
+  A set $$ C ⊆ \mathbb{R}^n $$ is affine if the line through any two distinct points in $$C$$ lies in $$C$$
+
+  We refer to a point of the form $$ θ_1 x_1 + · · · + θ_k x_k,\text{ where }θ_1 + · · · + θ_k = 1$$, as an affine combination of the points $$ x_1 , . . . , x_k $$
+
+  If $$ C $$ is an affine set and $$ x_0 ∈ C $$, then the set
+
+  $$ V = C − x_0 = \{x − x_0 \vert x ∈ C\} $$
+
+  is a subspace
+
+  The set of all affine combinations of points in some set $$ C ⊆ \mathbb{R} $$ n is called the affine hull of $$C$$, and denoted $$\operatorname{aff} C$$:
+
+  $$ \operatorname{aff} C = \{ θ_1x_1 + \cdots + θ_kx_k \vert x_1,\ldots,x_k ∈ C, θ_1+\ldots+θ_k = 1 \} $$
+
+  The affine hull is the smallest affine set that contains $$C$$
+
++ 2.1.3 **Affine dimension** and relative interior
+
+  We define the ***affine dimension*** of a set $$ C $$ as the dimension of its affine hull
+
+  We define the ***relative interior*** of the set $$ C $$, denoted $$ \operatorname{relint} C $$ as its interior relative to $$ \operatorname{aff} C $$:
+
+  $$ \operatorname{relint} = \{x ∈ C \vert B(x, r) ∩ aff C ⊆ C \text{ for some }r > 0\} $$
+
+  where $$ B(x, r) = \{y \vert \|y − x\| ≤ r\} $$, the ball of radius $$ r $$ and center $$ x $$ in the norm $$ \| \cdot \| $$
+
+  We can then define the ***relative boundary*** of a set $$ C $$ as $$ \operatorname{cl} C \setminus \operatorname{relint} C $$, where $$ \operatorname{cl} C $$ is the closure of C.
+
++ 2.1.4 Convex sets
+
+  A set $$C$$ is convex iff
+
+  $$ θx_1 + (1 − θ)x_2 ∈ C,\,\,\forall θ∈[0,1], x_1,x_2∈C $$
+
+  Roughly speaking, a set is convex if every point in the set can be seen by every other point,
+  along an unobstructed straight path between them, where unobstructed means lying in the set.
+  Every affine set is also convex, since it contains the entire line between any two distinct points in it,
+  and therefore also the line segment between the points.
+
+  We call a point of the form $$ θ_1x_1 + \cdots + θ_kx_k $$, where $$ θ_1 + \cdots + θ_k = 1 $$ and $$θ_i ≥ 0$$, a convex combination of the points $$x_1, \ldots, x_k$$.
+  As with affine sets, it can be shown that a set is convex if and only if it contain contains every convex combination of its points.
+  A convex combination of points can be thought of as a mixture or weighted average of the points, with $$ θ_i $$ the fraction of $$x_i$$ in the mixture.
+
+  The ***convex hull*** of a set $$ C $$, denoted $$ \operatorname{conv} C $$, is the set of all convex combinations of points in $$C$$:
+
+  $$ \operatorname{conv} C = \{θ_1x_1 + \ldots + θ_kx_k \vert x_i ∈ C,\, θ_i ≥ 0\, θ_1 + \cdots + θ_k = 1\} $$
+
+  As the name suggests, the convex hull $$ \operatorname{conv} C $$ is always convex. It is the smallest convex set that contains $$C$$
+
++ 2.1.5 Cones
+
+  A set $$ C $$ is called a cone, or nonnegative homogeneous, if for every $$ x ∈ C $$ and $$θ ≥ 0$$, 
+  we have $$ θx ∈ C $$. A set $$ C $$ is a convex cone if it is convex and a cone, which means that for any$$ x1, x2 ∈ C $$ and $$ θ1 , θ2 ≥ 0 $$, we have
+
+  $$ θ_1x_1 + θ_2x_2 ∈ C. $$
+
+  A point of the form $$ θ_1x_1 + \cdots + θ_kx_k $$ with $$ θ_1, \ldots, θ_k ≥ 0 $$ is called a conic combination
+  (or a nonnegative linear combination) of $$ x_1, \ldots, x_k $$. If $$ x_i $$ are in a convex cone $$ C $$,
+  then every conic combination of $$ x_i $$ is in $$ C $$. Conversely, a set $$C$$ is a convex cone if and only if it contains all conic combinations of its elements. 
+
+  The conic hull of a set $$ C $$ is the set of all conic combinations of points in $$C$$, i.e.,
+
+  $$ \{ θ_1x_1 + \cdots + θ_kx_k \vert x_i ∈ C,\, θ_i ≥ 0,\, i = 1, \ldots , k\} $$
+
+  which is also the smallest convex cone that contains $$C$$.
+
+#### Convex functions
+
++ 3.1 Basic properties and examples
+
++ 3.1.1 Definition
+
+  A function $$ f: \mathbb{R}^n \mapsto \mathbb{R} $$ is convex if $$ \operatorname{dom} f $$ is a convex set and
+
+  $$ \forall x,y ∈ \operatorname{dom} f,\,\, 0 ≤ θ ≤ 1,\,\, f(θx + (1 − θ)y) ≤ θf(x) + (1 − θ)f(y) $$ 
+
+
+
+
+<!--
 
 ## Convex Optimization Theory
 
@@ -176,15 +271,4 @@ is closed and $$f$$ is lower semicontinuous at each $$ x \in \operatorname{dom}(
   * If $$\nabla^2f(x)$$ is positive definite for all $$ x \in C $$, then $$f$$ in strictly convex over $$C$$.
   * If $$C$$ is open and $$F$$ is convex over $$C$$, then $$\nabla^2f(x)$$ is positive semidefinite for all $$ x \in C $$
 
-
-
-
-
-
-
-
-
-
-
-
-
+!-->
