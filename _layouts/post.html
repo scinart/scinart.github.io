@@ -6,7 +6,8 @@ layout: default
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
+    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%Y-%m-%d" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}{% if page.timestamp %} • <br>Last Modified: <span itemprop="lastmodified">{{ page.timestamp | date: "%Y-%m-%d" }}</span>{% endif %}</p>
+    {% comment %} page.date | use %-d to remove leading zero. Default is %b %-d, %Y" {% endcomment %}
   </header>
 
   <div class="post-content" itemprop="articleBody">
