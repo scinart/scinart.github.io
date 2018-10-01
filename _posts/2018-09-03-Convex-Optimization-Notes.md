@@ -2,7 +2,7 @@
 layout: post
 title: "Convex Optimization Notes"
 date: 2018-09-03
-timestamp: "2018-09-19 16:14:42 mama"
+timestamp: "2018-09-20 14:35:11 mama"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -99,6 +99,68 @@ Convex Optimization
 
   $$ \forall x,y ∈ \operatorname{dom} f,\,\, 0 ≤ θ ≤ 1,\,\, f(θx + (1 − θ)y) ≤ θf(x) + (1 − θ)f(y) $$ 
 
+  We say $$ f $$ is concave if $$ −f $$ is convex, and strictly concave if $$ −f $$ is strictly convex.
+
+  A function is convex if and only if it is convex when restricted to any line that intersects its domain.
+  In other words $$ f $$ is convex if and only if for all $$ x ∈ \operatorname{dom} f $$ and all $$ v $$, the function $$ g(t) = f (x + tv) $$ is convex
+  (on its domain, $$ \{t | x + tv ∈ \operatorname{dom} f \} $$).
+  This property is very useful, since it allows us to check whether a function is convex by restricting it to a line.
+
++ 3.1.2 Extended-value extensions
+
+  It is often convenient to extend a convex function to all of $$ \mathbb{R}^n $$ by defining its value $$ f $$ to be $$ \infty $$ outside its domain.
+
+  If f is convex we define its extended-value extension $$ \widetilde{f} : \mathbb{R}^n \mapsto \mathbb{R} ∪ \{\infty\} $$ by
+
+  $$
+  \widetilde{f}(x) = \begin{cases}
+    f(x) & x \in \operatorname{dom} f.\\
+    \infty & x \not\in \operatorname{dom} f.
+  \end{cases}
+  $$
+
++ 3.1.3 First-order conditions
+
+  Suppose $$ f $$ is differentiable (**i.e.**, its gradient $$∇f$$ exists at each point in $$ \operatorname{dom} f $$, which is open).
+  Then $$f$$ is convex if and only if $$ \operatorname{dom} f $$ is convex and $$ f(y)≥f(x) + ∇f(x)^T(y − x) $$ holds for all $$ x, y ∈ \operatorname{dom} f $$
+
+  Strict convexity can also be characterized by a first-order condition: $$ f $$ is strictly convex if and only if $$ \operatorname{dom} f $$ is convex and for $$ x, y ∈ \operatorname{dom} f, x \neq y $$, we have
+
+  $$ f (y) > f (x) + ∇f(x)^T (y − x). $$
+
++ 3.1.4 Second-order conditions
+
+  We now assume that $$f$$ is twice differentiable, that is, its Hessian or second derivative $$ ∇^2f $$ exists at each point in $$ \operatorname{dom} f $$, which is open.
+  Then $$ f $$ is convex if and only if $$ \operatorname{dom} f $$ is convex and its Hessian is positive semidefinite: for all $$ x ∈ \operatorname{dom} f $$
+
+  $$ ∇^2 f(x) \succeq 0. $$
+
+  Strict convexity can be partially characterized by second-order conditions.
+  If $$ ∇^2f (x) \succ 0 $$ for all $$ x ∈ \operatorname{dom} f $$, then $$f$$ is strictly convex.
+  The converse, however, is not true: for example, the function $$ f : \mathbb{R} \mapsto \mathbb{R} $$ given by
+  $$ f(x) = x^4 $$ is strictly convex but has zero second derivative at $$ x = 0 $$.
+
+  Remark 3.1 The separate requirement that $$ \operatorname{dom} f $$ be convex cannot be dropped from the first- or second-order characterizations of convexity and concavity.
+  For example, the function $$ f(x) = \frac{1}{x2} $$, with $$ \operatorname{dom} f = \{x ∈ R \vert x \neq 0 \} $$,
+  satisfies $$ f''(x) > 0 $$ for all $$ x ∈ \operatorname{dom} f $$, but is not a convex function.
+
++ 3.1.6 Sublevel sets
+
+  The $$ α $$-sublevel set of a function $$f : \mathbb{R}^n \mapsto R $$ is defined as
+
+  $$ C_α = \{x ∈ \operatorname{dom} f \vert f(x) ≤ α \} $$.
+
++ 3.1.7 Epigraph
+
+  The epigraph of a function $$ f : \mathbb{R}^n \mapsto R $$ is defined as
+
+  $$ \operatorname{epi} f = \{(x, t) \vert x ∈ \operatorname{dom} f, f(x) ≤ t \} $$
+
++ 3.1.8 Jensen’s inequality and extensions
+
++ 3.1.9 Inequalities
+
+
 
 
 
@@ -191,8 +253,6 @@ whether this set can be empty, but we will often be specific in order to minimiz
 + 1.1.4-d2 ***lower semicontinuous***
 
   $$ f(x) \leq \liminf_{k\to\infty}{f(x_k)} $$
-
-<!-- 1.1.4-d3 ***closed*** -->
 
 + 1.1.2-p For a function $$ f : \mathbb{R}^n \mapsto [ -\infty, \infty ] $$, the following are equivalent:
 
