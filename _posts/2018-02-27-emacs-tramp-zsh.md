@@ -2,10 +2,14 @@
 layout: post
 title:  "Emacs加prezto(或oh-my-zsh)加tramp连接失败的解决办法"
 date: "2018-02-27 08:41:04"
-timestamp: "2018-02-27 09:01:31 scinart"
+timestamp: "2018-10-01 10:09:35 scinart"
 categories: linux
 comments: true
 cc: "by-sa-cn"
+
+---
+
+更新：[已修复](https://github.com/sorin-ionescu/prezto/issues/1552#issuecomment-425576712)
 
 ---
 
