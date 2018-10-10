@@ -2,7 +2,7 @@
 layout: post
 title: "Matrix Calculus"
 date: 2018-10-02 
-timestamp: "2018-10-10 02:08:08 scinart"
+timestamp: "2018-10-10 13:56:48 scinart"
 categories: cs
 tag: ML
 comments: true
@@ -100,8 +100,6 @@ main reference: <https://en.wikipedia.org/wiki/Matrix_calculus>
 
   $$ f, g, h, u, v, \textbf{f}, \textbf{g}, \textbf{h}, \textbf{u}, \textbf{v} $$ are functions of $$ \textbf{x} $$
 
-  + {: .foldme open="" summary-style="font-size: 24px" } Scalar to Vector
-
   {: style="font-size: 18px; text-align: center" }
   |------------------------------------------+------------------------------------------+--------------------------------------------------------------|
   |                                          |                                          |                                                              |
@@ -151,8 +149,19 @@ main reference: <https://en.wikipedia.org/wiki/Matrix_calculus>
   | \[ \frac{\partial \operatorname{tr}(\textbf{AX})}{\partial \textbf{X}} = \frac{\partial \operatorname{tr}(\textbf{XA})}{\partial \textbf{X}} \] | \[ \textbf{A} \]                         |                                                              |
   | \[ \frac{\partial \operatorname{tr}(\textbf{AX}^\top)}{\partial \textbf{X}} = \frac{\partial \operatorname{tr}(\textbf{X}^\top \textbf{A})}{\partial \textbf{X}} \] | \[ \textbf{A}^\top \]                    |                                                              |
   | \[ \frac{\partial \operatorname{tr}(\textbf{X}^\top \textbf{AX})}{\partial \textbf{X}} \] | \[ \textbf{X}^\top (\textbf{A} + \textbf{A}^\top)\] |                                                              |
-  | \[ \frac{\partial \operatorname{tr}(\textbf{X}^{-1}\textbf{A})}{\partial \textbf{X}} \] | \[ - \textbf{X}^{-1} \textbf{AX}^{-1} \] |                                                              |
+  | \[ \frac{\partial \operatorname{tr}(\textbf{X}^{-1}\textbf{A})}{\partial \textbf{X}} \] | \[ - \textbf{X}^{-1} \textbf{AX}^{-1} \] | Deduction see below:                                         |
+  | \[ \frac{\partial \textbf{AXB}}{\partial \textbf{X}} = \frac{\partial \textbf{ABX}}{\partial \textbf{X} } \] | \[ \textbf{BA} \]                        |                                                              |
+  | \[ \frac{\partial \textbf{AXBX}^\top \textbf{C} }{\partial \textbf{X}} \] | \[ \textbf{BX}^\top \textbf{CA} + (\textbf{CAXB})^\top \] |                                                              |
+  | \[ \frac{\partial \operatorname{tr}(\textbf{X}^n) }{\partial \textbf{X}} \] | \[ n \textbf{X}^{n-1} \]                 | n is positive integer                                        |
+  | \[ \frac{\partial \operatorname{tr}(\textbf{AX}^n) }{\partial \textbf{X}} \] | \[ \sum_{i=0}^{n-1}{\textbf{X}^i \textbf{AX}^{n-i-1}} \] |                                                              |
+  | \[ \frac{\partial \operatorname{tr}(e^{\textbf{X}}) }{\partial \textbf{X} }\] | \[ e^{\textbf{X}}\]                      | \[ e^{\textbf{X}} = \sum_{i=0}^{\infty}{\frac{\textbf{X}^i}{i!}} \] |
+  | \[ \frac{\partial \operatorname{tr}(\sin(\textbf{X}))}{\partial \textbf{X}} \] | \[ \cos(\textbf{X}) \]                   | $ \sin(\textbf{X}) $ are defined in a similar way.           |
+  | \[ \frac{\partial \operatorname{tr}(\textbf{g}(\textbf{X})) }{\partial \textbf{X}} \] | \[ \textbf{g}'(\textbf{X}) \]            | $ \textbf{g}(\textbf{X}) $ is any polynomial with scalar coefficients, or any matrix function defined by an infinite polynomial series (e.g. $ e^{\textbf{X}},\, \sin(\textbf{X}),\, \cos(\textbf{X}),\, \ln(\textbf{X}) $, etc. using a Taylor series); $g(x)$ is the equivalent scalar function, $g'(x)$ is its derivative, and $\textbf{g}'(\textbf{X})$ is the corresponding matrix function. |
+  |------------------------------------------+------------------------------------------+--------------------------------------------------------------|
+  | \[ \frac{\partial \left\vert \textbf{X} \right\vert }{\partial \textbf{X}} \] | \[ \operatorname{cofactor}(\textbf{X})^\top = \left\vert \textbf{X} \right\vert \textbf{X}^{-1} \] | because \[ \frac{\partial \left\vert \textbf{X} \right\vert }{\partial X_{ij}} = \textbf{C}_{ij} \] and \[ \textbf{C}^\top \textbf{X} = \left\vert \textbf{X} \right\vert \textbf{I} \] |
+  | \[ \frac{\partial \ln \left( \left\vert a \textbf{X} \right\vert \right) }{\partial \textbf{X}} \] | \[ \textbf{X}^{-1} \]                    |                                                              |
   |                                          |                                          |                                                              |
+
 
   To be continued.
 
