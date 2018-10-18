@@ -2,7 +2,7 @@
 layout: post
 title: "Inequality Notes"
 date: 2018-08-21
-timestamp: "2018-09-02 12:07:27 mama"
+timestamp: "2018-10-02 17:19:10 mama"
 categories: Math
 comments: true
 cc: "by-nc-nd"
@@ -11,7 +11,7 @@ cc: "by-nc-nd"
 
 ## Notes on Inequality
 
-## 实数上的平均值不等式
++ {: .foldme } 实数上的平均值不等式
 
   若 $$ a,b > 0,\, a,b \in \mathbb{R} $$, 则
 
@@ -34,7 +34,7 @@ cc: "by-nc-nd"
 
   $$ ab \leq \frac{1}{2}\epsilon a^2 + \frac{1}{2}\frac{b^2}{\epsilon},\, \forall \epsilon > 0 $$
 
-#### AM-GM不等式
++ {: .foldme } AM-GM不等式
 
   虽然此时还没有长度，面积，体积等的定义，但是直觉理解是：$$ \frac{a+b}{2} $$ 是平均边长，$$ \sqrt{ab} $$ 是等体积的正方形的平均边长。
 
@@ -67,7 +67,7 @@ cc: "by-nc-nd"
 
   Hence $$ \alpha^{n+1} > x_1x_2\cdots x_{n+1} $$ If x_i are not all the same.
   
-#### Weighted AM–GM inequality
++ {: .foldme } Weighted AM–GM inequality
 
   if $$w_i$$ are positive integers, we can easily have
 
@@ -79,7 +79,7 @@ cc: "by-nc-nd"
 
   if $$w_i$$ are real numbers, by basic analysis, it still holds.
 
-## 常用复数上的不等式
++ {: .foldme } 常用复数上的不等式
 
   Let $$ z = x + yi $$, by definition
 
@@ -109,65 +109,65 @@ cc: "by-nc-nd"
 
   $$ \left\vert \left\vert w \right\vert - \left\vert z \right\vert \right\vert \leq \left\vert w - z \right\vert $$
 
-## 柯西-施瓦茨不等式(Cauchy Schwarz inequality)
++ {: .foldme } 柯西-施瓦茨不等式(Cauchy Schwarz inequality)
 
-更新：柯西-施瓦茨不等式，本质上是内积空间中内积的一个性质，在[另一篇笔记的6.15节](../26/Algebra-2)看到了这个不等式，以下有部分是过时的原始内容：
+  更新：内积是柯西-施瓦茨不等式的抽象，在[另一篇笔记的6.15节](../26/Algebra-2)看到了这个不等式，以下有部分是过时的原始内容：
 
-这篇文章：[向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜](http://www.math.ncku.edu.tw/~fang/向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜.pdf)([缓存](/pdfs/向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜.pdf))写的非常好。
+  这篇文章：[向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜](http://www.math.ncku.edu.tw/~fang/向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜.pdf)
+  ([缓存](/pdfs/向量分析-Cauchy-Schwarz不等式之本質與意義-林琦焜.pdf))写的非常好。
 
   在思考内积时，不能用欧式空间/余弦定理等，而要抽象成不依赖空间的东西，再用内积定义角度，神奇的是，角度定义可以不止一种，甚至可以是复数。
 
-#### 证法一：
-  如果 $$ a_1, a_2, \cdots, a_n, \text{ and } b_1, b_2, \cdots, b_n $$ 都是复数，那么
+  + 证法一：
 
-  $$
-  \left\vert \sum_{i=1}^{n}{a_i\overline{b}_i} \right\vert^2 \leq \left( \sum_{i=1}^{n}{\lvert a_i \rvert^2} \right) \left( \sum_{i=1}^{n}{\lvert b_i \rvert^2} \right)
-  $$
+    如果 $$ a_1, a_2, \cdots, a_n, \text{ and } b_1, b_2, \cdots, b_n $$ 都是复数，那么
 
-  证：设$$a,b$$是复向量, $$ a≠0 $$，$$λ$$是标量，$$c = b - λa$$
+    $$
+    \left\vert \sum_{i=1}^{n}{a_i\overline{b}_i} \right\vert^2 \leq \left( \sum_{i=1}^{n}{\lvert a_i \rvert^2} \right) \left( \sum_{i=1}^{n}{\lvert b_i \rvert^2} \right)
+    $$
 
-  $$ 0 ≤ \lvert c \rvert = c \overline{c} = (b-λa) (\overline{b} - λ \overline{a}) $$
+    证：设$$a,b$$是复向量, $$ a≠0 $$，$$λ$$是标量，$$c = b - λa$$
 
-  对$$λ$$应用判别式Δ≤0，得：
+    $$ 0 ≤ \lvert c \rvert = c \overline{c} = (b-λa) (\overline{b} - λ \overline{a}) $$
 
-  $$
-    ( b \overline{a} + a \overline{b} )^2 ≤ 4 \lvert a \rvert ^2 \lvert b \rvert ^2 \\
-    ( b \overline{a} )^2 + (a \overline{b} )^2 ≤ 2 \lvert a \rvert ^2 \lvert b \rvert ^2
-  $$
+    对$$λ$$应用判别式Δ≤0，得：
 
-  注意到 $$ b \overline{a} = \overline{b \overline{a}} $$，所以
+    $$
+      ( b \overline{a} + a \overline{b} )^2 ≤ 4 \lvert a \rvert ^2 \lvert b \rvert ^2 \\
+      ( b \overline{a} )^2 + (a \overline{b} )^2 ≤ 2 \lvert a \rvert ^2 \lvert b \rvert ^2
+    $$
 
-  $$ ( a \overline{b} )^2 ≤ \lvert a \rvert ^2 \lvert b \rvert ^2 $$
+    注意到 $$ b \overline{a} = \overline{b \overline{a}} $$，所以
 
-#### 证法二：
+    $$ ( a \overline{b} )^2 ≤ \lvert a \rvert ^2 \lvert b \rvert ^2 $$
 
-由平均值不等式， $$ \sqrt{ab} \leq \sqrt { \frac{1}{2}a^2 + \frac{1}{2}b^2 }$$
+  + 证法二：
 
-令
+    由平均值不等式， $$ \sqrt{ab} \leq \sqrt { \frac{1}{2}a^2 + \frac{1}{2}b^2 }$$, 令
 
-$$ \widetilde{a}_i = \frac{a_i}{\sqrt{\sum_{i=1}^{n}{a_i^2}}},\,\,\,\, \widetilde{b}_i = \frac{b_i}{\sqrt{\sum_{i=1}^{n}{b_i^2}}} $$
+    $$ \widetilde{a}_i = \frac{a_i}{\sqrt{\sum_{i=1}^{n}{a_i^2}}},\,\,\,\, \widetilde{b}_i = \frac{b_i}{\sqrt{\sum_{i=1}^{n}{b_i^2}}} $$
 
-则
+    则
 
-$$ \widetilde{a}_i \widetilde{b}_i \leq \frac{1}{2}\widetilde{a}_i^2 + \frac{1}{2}\widetilde{b}_i^2 $$
+    $$ \widetilde{a}_i \widetilde{b}_i \leq \frac{1}{2}\widetilde{a}_i^2 + \frac{1}{2}\widetilde{b}_i^2 $$
 
-两边对$$i$$求和
+    两边对$$i$$求和
 
-$$ \sum_i { \widetilde{a}_i \widetilde{b}_i } \leq \sum_i { \frac{1}{2}\widetilde{a}_i^2 + \frac{1}{2}\widetilde{b}_i^2 } $$
+    $$ \sum_i { \widetilde{a}_i \widetilde{b}_i } \leq \sum_i { \frac{1}{2}\widetilde{a}_i^2 + \frac{1}{2}\widetilde{b}_i^2 } $$
 
-a.k.a.
+    a.k.a.
 
-$$ \frac{\sum_{i}^{n}a_ib_i}{\sqrt{\sum_{i=1}^{n}{a_i^2}}\sqrt{\sum_{i=1}^{n}{b_i^2}}} \leq 1 $$
+    $$ \frac{\sum_{i}^{n}a_ib_i}{\sqrt{\sum_{i=1}^{n}{a_i^2}}\sqrt{\sum_{i=1}^{n}{b_i^2}}} \leq 1 $$
 
-a.k.a
+    a.k.a
 
-$$ \sum_{i}^{n}a_ib_i \leq \sqrt{\sum_{i=1}^{n}{a_i^2}}\sqrt{\sum_{i=1}^{n}{b_i^2}} $$
+    $$ \sum_{i}^{n}a_ib_i \leq \sqrt{\sum_{i=1}^{n}{a_i^2}}\sqrt{\sum_{i=1}^{n}{b_i^2}} $$
 
-在实数成立之后，由  $$ \left\vert z+w \right\vert \leq \left\vert z \right\vert + \left\vert w \right\vert $$ 要叫推出在复数上也成立
+    在实数成立之后，由  $$ \left\vert z+w \right\vert \leq \left\vert z \right\vert + \left\vert w \right\vert $$ 要叫推出在复数上也成立
 
-$$ \left\vert \sum_{i}^{n}a_ib_i \right\vert \leq \sum_{i}^{n}{\left\vert a_ib_i \right\vert} = \sum_{i}^{n}{ \left\vert a_i \right\vert \left\vert b_i \right\vert } $$
+    $$ \left\vert \sum_{i}^{n}a_ib_i \right\vert \leq \sum_{i}^{n}{\left\vert a_ib_i \right\vert} = \sum_{i}^{n}{ \left\vert a_i \right\vert \left\vert b_i \right\vert } $$
 
-## 杨氏不等式(Young's inequality)
++ {: .foldme } 杨氏不等式(Young's inequality)
 
   $$ ab ≤ \int_0^a{f(x)} + \int_0^b{f^{-1}(y)} $$
 
@@ -181,7 +181,7 @@ $$ \left\vert \sum_{i}^{n}a_ib_i \right\vert \leq \sum_{i}^{n}{\left\vert a_ib_i
 
   另一种比较代数的证明方式见 <https://math.stackexchange.com/a/259837>
 
-* Hölder不等式(实数版)
++ {: .foldme } Hölder不等式(实数版)
 
   给定任意实数$$a_1, \cdots, a_n,\, b_1, \cdots, b_n,\, p>1,\, q>1,\, \frac{1}{p} + \frac{1}{q} = 1 $$则：
 
@@ -196,4 +196,6 @@ $$ \left\vert \sum_{i}^{n}a_ib_i \right\vert \leq \sum_{i}^{n}{\left\vert a_ib_i
      \widetilde{b}_i = \frac{b_i}{\left( \sum_{i=1}^{n} \left\vert b_i \right\vert ^q \right) ^ { \frac{1}{q} }}, $$
 
   则由杨式不等式，左右累加并化简得 $$ \sum{\widetilde{a}_i \widetilde{b}_i} ≤ 1 $$，又分母大于0，所以分子小于分母，即为所求。
+
+<!-- + {: .foldme open="" } Jensen(詹森)不等式 -->
 
