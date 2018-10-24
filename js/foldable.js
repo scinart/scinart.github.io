@@ -8,7 +8,7 @@ $(
 		var summary = elem.html();
 		// if (reg.test(elem.prop("tagName")))
 		//    summary = elem.prop("outerHTML");
-		console.log(summary);
+		// console.log(summary);
 		$(this).wrapInner("<details" + (this.hasAttribute("open")?" open=''":"") + "></details>")
 		    .children().first().prepend("<summary " + (this.hasAttribute("summary-style")?(" style='" + this.getAttribute("summary-style") + "'"):"") + ">" + summary + "</summary>")
 		    .children().first().next().remove();
