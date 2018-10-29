@@ -2,7 +2,7 @@
 layout: post
 title: "Machine Learning Notes"
 date: 2018-10-02
-timestamp: "2018-10-10 15:19:47 scinart"
+timestamp: "2018-10-29 13:11:17 mama"
 categories: cs
 tag: ML
 comments: true
@@ -10,6 +10,36 @@ toc:
 cc: "by-nc-nd"
 
 ---
+
++ 随机模拟 蒙特卡洛算法(Monte Carlo)
+
+  + 直接采样、接受-拒绝采样、重要性采样
+
+    <https://www.jianshu.com/p/3d30070932a8> [缓存](https://web.archive.org/web/20181024195425/https://www.jianshu.com/p/3d30070932a8)
+
+  + 马尔可夫链 (Markov Chain)
+
+    定义见<https://pages.uoregon.edu/dlevin/MARKOV/> [缓存](https://web.archive.org/web/20181029165013/https://pages.uoregon.edu/dlevin/MARKOV/mcmt2e.pdf)
+
+    + irreducibility and aperiodicity
+
+      A chain P is called irreducible if for any two states $x,y$ there exists an integer t (possibly depending on x and y) such that
+
+      $$ P^t(x,y) > 0 $$
+
+      This means that it is possible to get from any state to any other state using only transitions of positive probability.
+
+      否则的话，所有状态就像有一个高度，状态只能从上到下转移或平行转移，不能从下到上转移。
+
+      Let $$ \mathcal{T}(x) = \{ t \in \mathbb{Z}^+ : P^t(x,x) > 0\} $$ The **period** of state $x$ is defined to be the GCD of $ \mathcal{T}(x) $.
+
+      *[GCD]: greatest common divisor
+
+      The chain will be called **aperiodic** if all states have period 1. If a chain is not aperiodic, we call it **periodic**.
+
+    + MCMC M-H and Gibbs
+
+      <https://cosx.org/2013/01/lda-math-mcmc-and-gibbs-sampling> [缓存](https://web.archive.org/web/20180831144743/https://cosx.org/2013/01/lda-math-mcmc-and-gibbs-sampling)
 
 
 + {: .foldme summary-style="font-size: 24px" } EM Algorithm
@@ -150,6 +180,8 @@ cc: "by-nc-nd"
       λ = m
       $$
 
+      Note: Another way to do this is by substitute of variable, let $$ ϕ_j = \frac{\exp \psi_j}{\sum \exp \psi_j } $$
+
       So
       
       $$
@@ -178,32 +210,3 @@ cc: "by-nc-nd"
       $$
       Σ_l = \frac{\sum_{i=1}^{m}{w^{(i)}_{l}\left((x^{(i)}-μ_l)(x^{(i)}-μ_l)^{T} \right)}}{\sum_{i=1}^{m}w^{(i)}_{l}}
       $$
-
-
-<!-- + {: .foldme summary-style="font-size: 24px" } Woodbury matrix identity -->
-
-<!--   \[ \left(A+UCV \right)^{-1} = A^{-1} - A^{-1}U \left(C^{-1}+VA^{-1}U \right)^{-1} VA^{-1} \] -->
-
-<!--   Proof: By directly check. -->
-
-<!-- + Block Matrix Inverse -->
-
-<!--   \[ -->
-<!--     \begin{aligned} -->
-<!-- 	\begin{bmatrix} A & B \\ C & D \end{bmatrix} \begin{bmatrix} I_p & 0 \\ -D^{-1}C & I_q \end{bmatrix} = \left[\begin{matrix} A-BD^{-1}C & B \\ 0 & D \end{matrix}\right] \\[4pt] -->
-<!-- & = \left[\begin{matrix} I_p & BD^{-1} \\ 0 & I_q \end{matrix}\right] \left[\begin{matrix} A-BD^{-1}C & 0 \\ 0 & D \end{matrix}\right]. -->
-<!-- \end{aligned} -->
-<!--   \] -->
-<!-- $$ -->
-<!-- (A+CBD)^{-1}=A^{-1}-A^{-1}C(B^{-1}+DA^{-1}C)^{-1}DA^{-1} -->
-<!-- $$ -->
-
-<!-- $$ -->
-<!-- \begin{aligned} -->
-<!-- & &(A+CBD)[A^{-1}-A^{-1}C(B^{-1}+DA^{-1}C)^{-1}DA^{-1}]\\ -->
-<!-- &=&(A+CBD)A^{-1}-(A+CBD)A^{-1}C(B^{-1}+DA^{-1}C)^{-1}DA^{-1} \\ -->
-<!-- &=&I+CBDA^{-1}-(C+CBDA^{-1}C)(B^{-1}+DA^{-1}C)^{-1}DA^{-1} \\ -->
-<!-- &=&I+CBDA^{-1}-CB(B^{-1}+DA^{-1}C)(B^{-1}+DA^{-1}C)^{-1}DA^{-1} \\ -->
-<!-- &=&I+CBDA^{-1}-CBDA^{-1}=I -->
-<!-- \end{aligned} -->
-<!--  $$ -->
