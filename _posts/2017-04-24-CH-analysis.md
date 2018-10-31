@@ -2,7 +2,7 @@
 layout: post
 title: "CH analysis 笔记"
 date: 2017-04-24
-timestamp: "2018-03-12 17:32:28 scinart"
+timestamp: "2018-10-27 15:42:21 scinart"
 categories: Math
 comments: true
 published: false
@@ -826,7 +826,7 @@ cc: "by-nc-nd"
 
   (d) 再证值域是复数时，由于实部虚部分别相加可测，所以可测。
 
-+ 2.1.15 引理 f,g 几乎处处有界，f + g, f - g 可测
++ 2.1.15 引理 f,g 可测并几乎处处有界，f + g, f - g 可测
 
 + 2.1.16 引理 f*g 可测 (这里定义 0 * ∞ = 0 )
 
@@ -866,7 +866,7 @@ cc: "by-nc-nd"
 
   (c) 若 $$ f(x) = \sum_{n=1}^{∞}{f_n(x)} 收敛 for a.e. $$ x ∈ E $$，则 $$ f $$ 可测
 
-  证： \left\{ \sup{f_n} > a \right\} = \bigcup{f_n > a } 可测
+  证： $$ \left\{ \sup{f_n} > a \right\} = \bigcup{f_n > a } $$ 可测
 
   $$ \limsup_{n→∞}{f_n(x)} = \inf_m{\sup_{n≥m}{f_n(x)}} $$ by definition，所以可测了
 
@@ -904,11 +904,13 @@ cc: "by-nc-nd"
 
   都被我分散到以上的定理中去了。
 
-+ -- 2.1.4 The Lebesgue Space $$ L^∞(E) $$ --
++ {: style="font-size: 20px" } 2.1.4 The Lebesgue Space $$ L^∞(E) $$
 
-  定义 $$ L^∞(E) $$ 为所有 $$ E $$ 上的本质上有界的可测函数的集合。
++ .
 
-  定义 $$L^∞$$-norm 为
+  定义 Space $$ L^∞(E) $$ 为所有 $$ E $$ 上的本质上有界的可测函数的集合。
+
+  定义 Space 的元素 f 的 $$L^∞$$-norm 为
 
   $$ \| f \|_∞ = \underset{x∈E}{\text{esssup}}{\left\vert f(x) \right\vert}$$
 
@@ -942,3 +944,40 @@ cc: "by-nc-nd"
 + 2.1.30
 
   回头写纸上吧
+
++ {: style="font-size: 20px" } 2.2 Egorov's Theorem
+
++ 2.2.1 例子
+
+  函数的 pointwise convergence does not imply uniform convergence
+
+  ![Shrinking triangles](https://i.stack.imgur.com/eRvEo.png)
+
++ 2.2.2 Egorov's Theorem
+
+  Let $$ E ⊆ \mathbb{R}^d $$ be a measurable set such that $$ \|E\| < ∞ $$. Suppose that $$ f_n $$ is a sequence of measurable functions on $$ E $$
+  (either complex-valued or extended real-valued), and $$ f_n \to f \text{ a.e.} $$, where $$ f $$ is finite **a.e.**
+  Then for each $$ ε > 0 $$ there exists a measurable set $$ A ⊆ E, \| A \| < ε $$ such that:
+
+  $$ f_n $$ converges uniformly to $$ f $$ on $$ E\setminus A $$.
+
+  证明不写了。
+
++ 2.2.3 (Almost Uniform Convergence)
+
+  Let E be a measurable subset of $$ \mathbb{R}^d $$.
+  We say that functions $$ f_n : E \mapsto \mathbb{F} $$ converge almost uniformly to $$ f $$ on the set $$ E $$,
+  and write $$ f_n → f $$ almost uniformly, if for each $$ ε > 0 $$ there exists a measurable set $$ A ⊆ E $$ such that:
+
+  + (a) $$ \left\vert A \right\vert < ε $$, and
+  + (b) fn converges uniformly to f on $$ E \setminus A $$
+
++ 2.2.4 练习
+
+  Let E be a measurable subset of Rd, and let fn , f : E → F be measurable on E. Prove the following statements.
+
+  + (a) If fn → f in L∞-norm, then fn → f almost uniformly.
+  + (b) If fn → f almost uniformly, then fn → f pointwise a.e.
+
+  
+ 
