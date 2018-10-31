@@ -2,7 +2,7 @@
 layout: post
 title: "算法拾遗"
 date: 2018-09-30
-timestamp: "2018-10-31 01:54:14 scinart"
+timestamp: "2018-10-31 02:21:42 scinart"
 categories: CS
 comments: true
 cc: "by-nc-nd"
@@ -30,7 +30,7 @@ cc: "by-nc-nd"
     + 3-CNF-SAT < clique(最大完全子图问题) 见蒜捣Theorem 34.11
 	+ clique < vertex-cover(图选最小的点集cover所有边) 见蒜捣Theorem 34.12
     + vertex-cover < hamiltonian cycle 见蒜捣Theorem 34.13 (未看)
-    + hamiltonian cycle < TSP(放行商问题) 见蒜捣Theorem 34.14 (未看)
+    + hamiltonian cycle < TSP(旅行商问题) 见蒜捣Theorem 34.14 (未看)
     + 3-CNF-SAT < Subset-Sum 见蒜捣Theorem 34.15
 
 + {: .foldme summary-style="font-size: 24px"} 线段树
