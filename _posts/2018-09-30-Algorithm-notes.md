@@ -2,7 +2,7 @@
 layout: post
 title: "算法拾遗"
 date: 2018-09-30
-timestamp: "2018-10-31 02:21:42 scinart"
+timestamp: "2018-10-31 15:36:51 scinart"
 categories: CS
 comments: true
 cc: "by-nc-nd"
@@ -21,17 +21,19 @@ cc: "by-nc-nd"
 
   + 第一个NP-hard问题
 
-    CIRCUIT-SAT 问题(布尔可满足性问题)，蒜捣上给了大概的证明思路，据说证明很长。
+    CIRCUIT-SAT 问题(布尔可满足性问题)，蒜捣上给了大概的证明思路，据说证明很长。见相关论文(未看)
 
   + 一些常见的归约：
 
     + CIRCUIT-SAT < SAT 见蒜捣Theorem 34.9
     + SAT < 3-CNF-SAT 见蒜捣Theorem 34.10
     + 3-CNF-SAT < clique(最大完全子图问题) 见蒜捣Theorem 34.11
-	+ clique < vertex-cover(图选最小的点集cover所有边) 见蒜捣Theorem 34.12
+	+ clique < vertex-cover (all edges) (图选最小的点集cover所有边) 见蒜捣Theorem 34.12
     + vertex-cover < hamiltonian cycle 见蒜捣Theorem 34.13 (未看)
     + hamiltonian cycle < TSP(旅行商问题) 见蒜捣Theorem 34.14 (未看)
     + 3-CNF-SAT < Subset-Sum 见蒜捣Theorem 34.15
+    + Subset-sum < Set-Sum-Equal-Divide 作业题，比较好证。
+    + vertex-cover (all edges) < vertex-cover (all vertices) 作业题，比较好证。
 
 + {: .foldme summary-style="font-size: 24px"} 线段树
 
