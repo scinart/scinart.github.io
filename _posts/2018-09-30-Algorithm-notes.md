@@ -2,7 +2,7 @@
 layout: post
 title: "算法拾遗"
 date: 2018-09-30
-timestamp: "2018-10-31 15:36:51 scinart"
+timestamp: "2018-11-04 11:52:51 mama"
 categories: CS
 comments: true
 cc: "by-nc-nd"
@@ -15,7 +15,7 @@ cc: "by-nc-nd"
 
     注意：蒜捣上说：The complexity class NP is the class of languages that can be verified by a polynomial-time algorithm.
 
-    The name “NP” stands for “nondeterministic polynomial time.” The class NP was originally studied in the context of nondeterminism, but this book uses the somewhat simpler yet equivalent notion of verification. Hopcroft and Ullman [180] give a good presentation of NP-completeness in terms of nondeterministic models of computation.
+    The name “NP” stands for “nondeterministic polynomial time.” The class NP was originally studied in the context of nondeterminism, but this book uses the somewhat simpler yet equivalent notion of verification. Hopcroft and Ullman give a good presentation of NP-completeness in terms of nondeterministic models of computation.
 
     蒜捣上用了很长的铺垫，用encoding把问题转换成binary string representation, 转换后的问题叫concrete problem, 一个concrete problem的可行解和集合叫做***Language***，然后一个算法为一个机器，它***accept***或者***reject***一个字符串来决定它是不是属于这个concrete problem的language
 
@@ -28,12 +28,47 @@ cc: "by-nc-nd"
     + CIRCUIT-SAT < SAT 见蒜捣Theorem 34.9
     + SAT < 3-CNF-SAT 见蒜捣Theorem 34.10
     + 3-CNF-SAT < clique(最大完全子图问题) 见蒜捣Theorem 34.11
-	+ clique < vertex-cover (all edges) (图选最小的点集cover所有边) 见蒜捣Theorem 34.12
+	+ clique <> vertex-cover (all edges) (图选最小的点集cover所有边)
+
+      见蒜捣Theorem 34.12 或 [this slide](/pdfs/CSE6140-slide-3clique-to-vertex-cover.pdf)
+    + clique <> independent set 两问题互补 见蒜捣Problem 34-1 (a)
+
+      只要图变为原图的补就可以
+    + vertex-cover <> independent
+
+      因为图不变 vertex-cover 的解的补集是 independent set 的解
+    + 3-CNF-SAT < independent set
+
+      见 [this slide](/pdfs/CSE6140-slide-3SAT-to-independent-set.pdf)
+    + vertex-cover < set cover (选集合的子集的集合使得所选集合的并等于原集合)
+
+      见 [this slide](/pdfs/CSE6140-slide-vertex-cover-to-set-cover.pdf)
     + vertex-cover < hamiltonian cycle 见蒜捣Theorem 34.13 (未看)
-    + hamiltonian cycle < TSP(旅行商问题) 见蒜捣Theorem 34.14 (未看)
-    + 3-CNF-SAT < Subset-Sum 见蒜捣Theorem 34.15
-    + Subset-sum < Set-Sum-Equal-Divide 作业题，比较好证。
+    + 3-CNF-SAT < DIR-HAM-CYCLE(有图汉密尔顿回路)
+
+      见 [this slide](/pdfs/CSE6140-slide-3-SAT-to-DIR-HAM-CYCLE.pdf)
+
+    + DIR-HAM-CYCLE < HAM-CYCLE
+
+      见 [this slide](/pdfs/CSE6140-slide-DIR-HAM-CYCLE-to-HAM-CYCLE.pdf)
+    + HAM-CYCLE < TSP (旅行商问题)
+
+      见蒜捣Theorem 34.14 or [this slide](/pdfs/CSE6140-slide-HAM-CYCLE-to-TSP.pdf)
+    + 3-CNF-SAT < Subset-Sum (可加限定为正数) 见蒜捣Theorem 34.15
+    + Subset-sum < set-partition (集合分两瓣使两者对Σ相等, 可加限定为正数) CSE6140作业题，也是蒜捣Exercise 34.5-5，比较好证。
     + vertex-cover (all edges) < vertex-cover (all vertices) 作业题，比较好证。
+    + 3-CNF-SAT < 3-COLOR
+
+      见 [this slide](/pdfs/CSE6140-slide-3-SAT-to-3-COLOR.pdf)
+
+    + SUBSET-SUM (限定正数版本) < SCHEDULE-RELEASE-TIMES
+
+      见 [this slide](/pdfs/CSE6140-slide-Subset-Sum-to-Scheduling.pdf)
+
+    + SUBSET-SUM (限定正数版本) < Knapsack
+
+      见 [this slide](/pdfs/CSE6140-slide-Subset-Sum-to-Knapsack.pdf)
+
 
 + {: .foldme summary-style="font-size: 24px"} 线段树
 
