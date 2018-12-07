@@ -2,7 +2,7 @@
 layout: post
 title: "算法拾遗"
 date: 2018-09-30
-timestamp: "2018-11-04 11:52:51 mama"
+timestamp: "2018-11-27 10:13:53 mama"
 categories: CS
 comments: true
 cc: "by-nc-nd"
@@ -18,6 +18,21 @@ cc: "by-nc-nd"
     The name “NP” stands for “nondeterministic polynomial time.” The class NP was originally studied in the context of nondeterminism, but this book uses the somewhat simpler yet equivalent notion of verification. Hopcroft and Ullman give a good presentation of NP-completeness in terms of nondeterministic models of computation.
 
     蒜捣上用了很长的铺垫，用encoding把问题转换成binary string representation, 转换后的问题叫concrete problem, 一个concrete problem的可行解和集合叫做***Language***，然后一个算法为一个机器，它***accept***或者***reject***一个字符串来决定它是不是属于这个concrete problem的language
+
+  + 归约 (Reducibility)
+
+	在matrix67的文章中，提到了归约，但只是简单提了提，但是，最近(Nov. 2018)我才知道，归约分为两种:
+
+    + [Many-one reduction](https://en.wikipedia.org/wiki/Many-one_reduction)
+
+      最常用一种，是说把问题A的input space (or language)映射成问题B的
+    + [Turing reduction](https://en.wikipedia.org/wiki/Turing_reduction)
+
+	  是说用问题B作为子算法解问题A
+
+      A polynomial-time Turing reduction is known as a Cook reduction
+
+    stackexchange上说两种方式定义出的NPC的集合是不同的，所以Turing reduction是什么就没管了。
 
   + 第一个NP-hard问题
 
